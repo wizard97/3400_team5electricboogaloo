@@ -19,7 +19,7 @@ David test
 
 [This is the potentiometer reading out to the oscillioscope](https://www.youtube.com/watch?v=5ptlXNE0SdU)
 
-[Watch the servo in action!]{https://www.youtube.com/watch?v=6YAM4Ws2xsg)
+[Watch the servo in action!](https://www.youtube.com/watch?v=6YAM4Ws2xsg)
 
 [Here we demonstrate the potentiometer being used to adjust the LED's brightness](https://www.youtube.com/watch?v=AT2JbbWekOo)
 
