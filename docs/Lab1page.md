@@ -11,3 +11,5 @@
 [Here we demonstrate the potentiometer being used to adjust the LED's brightness](https://www.youtube.com/watch?v=AT2JbbWekOo)
 
 [Our finished product after Lab 1: The Spinning Robot!](https://www.youtube.com/watch?v=KmciZg2paYE)
+
+Leaving the link to the Markdown instructions here: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
