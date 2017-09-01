@@ -14,7 +14,7 @@ Rajiv Kommareddy (rrk64), Adam Macioszek (amm452), Kelsey Nedd (kan54), David Va
 * Decisions will made by team consensus
 * Adam will be taking minutes for meetings
 * Aaron agreed to be team leader for the first week and made website
-* Rajiv made a youtube channel, username: team5electricboogaloo
+* Rajiv made a Youtube channel, username: team5electricboogaloo
 * People who do not contribute to the team will be placed on a public shame list on our website
 * Everyone signed the contract
 
