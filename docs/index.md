@@ -19,7 +19,7 @@ Rajiv Kommareddy (rrk64), Adam Macioszek (amm452), Kelsey Nedd (kan54), David Va
 * Everyone signed the contract
 
 ## Check out the team contract!
-[team contract (3400_team5electricboogaloo/docs/ece3400teamcontract.pdf)]
+[team contract](3400_team5electricboogaloo/docs/ece3400teamcontract.pdf)
 
 ## PUBLIC SHAME LIST
 * Nobody, currently
