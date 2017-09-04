@@ -4,7 +4,7 @@
 Our objective, for this lab, was to get an introduction to using the Ardunio Uno and the Arduino IDE by creating a couple basic programs that performed simple functions. We were also tasked with assembling our robot and having it perform a simple autonomous task.
 
 ### Work Distribution
-We split into two teams. One team was compromised of Kelsey, Rajiv, and Christina, while the other was made up of Aaron, Adam, and David. The second team was primarily responsible for the video and picture documentation of this lab. The entire group worked on the construction of the robot.
+We split into two teams. One team was compromised of Kelsey, David, and Christina, while the other was made up of Aaron, Adam, and Rajiv. The second team was primarily responsible for the video and picture documentation of this lab. The entire group worked on the construction of the robot.
 
 ### Helpful links
 [Arduino Reference](https://www.arduino.cc/en/Reference/HomePage)
@@ -28,7 +28,7 @@ We split into two teams. One team was compromised of Kelsey, Rajiv, and Christin
    * Here is a picture of how we wired the LED to the Arduino Uno (Make note of the series resistors. They are important!!!)
    ![alt text](pics/IMG_20170828_195909.jpg)
    * [Here's a video of the simple "Blink" program working with the external LED, using the analog inputs of the Arduino](https://www.youtube.com/watch?v=1fyEXJ2TXzA)
-5. Next, we wired to the potentiometer to the board(example below)
+5. Next, we wired to the potentiometer to the board (example below)
 ![alt text](pics/IMG_20170828_201126.jpg)
 6. We then created a program, using the serial interface, that could read different voltage analog outputs from the potentiometer.
    * A picture of our code and outputs
