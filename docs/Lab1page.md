@@ -1,5 +1,8 @@
 # __*Lab 1*__
 
+### Objective
+Our objective, for this lab, was to get an introduction to using the Ardunio Uno and the Arduino IDE by creating a couple basic programs that performed simple functions. We were also tasked with assembling our robot and having it perform a simple autonomou task.
+
 [Here's a video of the simple "Blink" program using the analog inputs of the Arduino](https://www.youtube.com/watch?v=1fyEXJ2TXzA)
 
 [Observe the potentiometer reading out to the computer](https://www.youtube.com/watch?v=Fhkigo1iTkE)
