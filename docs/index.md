@@ -6,7 +6,7 @@ Rajiv Kommareddy (rrk64), Adam Macioszek (amm452), Kelsey Nedd (kan54), David Va
 
 ## Labs
 
-[Lab 1] (docs/Lab1Page.md)
+[Lab 1](docs/Lab1Page.md)
 
 ## Meeting Minutes (9/1/17)
 * Met at Mac’s at 11:15
