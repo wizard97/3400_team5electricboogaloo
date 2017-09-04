@@ -29,18 +29,18 @@ We split into two teams. One team was compromised of Kelsey, Rajiv, and Christin
    ![alt text](pics/IMG_20170828_195909.jpg)
    * [Here's a video of the simple "Blink" program working with the external LED, using the analog inputs of the Arduino](https://www.youtube.com/watch?v=1fyEXJ2TXzA)
 5. Next, we wired to the potentiometer to the board(example below)
-![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_201126.jpg)
+![alt text](pics/IMG_20170828_201126.jpg)
 6. We then created a program, using the serial interface, that could read different voltage analog outputs from the potentiometer.
    * A picture of our code and outputs
-   ![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_201034.jpg)
+   ![alt text](pics/IMG_20170828_201034.jpg)
    * [Click here to see the code in action: Observe the potentiometer reading out to the computer](https://www.youtube.com/watch?v=Fhkigo1iTkE)
 
 7. Next, we used the code we wrote to change the brightness of an external LED. We also used a pin with a pulse width modulator to create an analog output and then observed its frequency on an oscilloscope.  
    * Note: Make sure the digital pin you use has PWM capabilities. It will have a tilde(~) next to it.
    * Here is a photo of the wiring we used 
-   ![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_201917.jpg)
+   ![alt text](pics/IMG_20170828_201917.jpg)
    * A picture of readings on the oscilloscope
-   ![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_203818.jpg)
+   ![alt text](pics/IMG_20170828_203818.jpg)
  
    * [Here we demonstrate the potentiometer being used to adjust the LED's brightness](https://www.youtube.com/watch?v=AT2JbbWekOo)
 
