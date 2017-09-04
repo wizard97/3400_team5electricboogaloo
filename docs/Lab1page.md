@@ -26,7 +26,7 @@ We split into two teams. One team was compromised of Kelsey, Rajiv, and Christin
    * Note: When running blink sketch with board, the LED that flashes is a little green LED next to an L on the board
 4. We then modified the blink sketch to work with an external IDE
    * Here is a picture of how we wired the LED to the Arduino Uno (Make note of the series resistors. They are important!!!)
-   ![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_195909.jpg)
+   ![alt text](pics/IMG_20170828_195909.jpg)
    * [Here's a video of the simple "Blink" program working with the external LED, using the analog inputs of the Arduino](https://www.youtube.com/watch?v=1fyEXJ2TXzA)
 5. Next, we wired to the potentiometer to the board(example below)
 ![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_201126.jpg)
