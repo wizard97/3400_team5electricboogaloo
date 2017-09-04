@@ -51,7 +51,7 @@ We split into two teams. One team was compromised of Kelsey, Rajiv, and Christin
 ![alt text](pics/IMG_20170828_201126.jpg)
 6. We then created a program, using the serial interface, that could read different voltage analog outputs from the potentiometer.
 
-    ```c++
+```c++
     #define ANALOG_PIN A0
     // the setup routine runs once when you press reset:
     void setup() {                
@@ -67,8 +67,7 @@ We split into two teams. One team was compromised of Kelsey, Rajiv, and Christin
       Serial.println(percent);
       delay(1000);               // wait for a second
     }
-    ```
-    
+```
 
    * [Click here to see the code in action: Observe the potentiometer reading out to the computer](https://www.youtube.com/watch?v=Fhkigo1iTkE)
 
