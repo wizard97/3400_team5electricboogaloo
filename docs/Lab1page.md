@@ -22,7 +22,7 @@ We split into two teams. One team was compromised of Kelsey, Rajiv, and Christin
    * Several resistors (kΩ range)
    * Solderless breadboard
 2. We installed the Arduino IDE on our laptops (the program can also be used on the lab computers where it is already installed)
-3. Next, we located the blink sketch and ran it with the board. (File > Examples > 1.Basics > Blink)(insert pic of Blink Sample)
+3. Next, we located the blink sketch and ran it with the board. (File > Examples > 1.Basics > Blink)
    * Note: When running blink sketch with board, the LED that flashes is a little green LED next to an L on the board
 4. We then modified the blink sketch to work with an external IDE
    * Here is a picture of how we wired the LED to the Arduino Uno (Make note of the series resistors. They are important!!!)
