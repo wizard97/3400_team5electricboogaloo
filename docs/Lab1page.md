@@ -8,6 +8,7 @@ We split into two teams. One team was compromised of Kelsey, Rajiv, and Christin
 
 ### Helpful links
 [Arduino Reference](https://www.arduino.cc/en/Reference/HomePage)
+[Potentiometer Data Sheet](http://www.bourns.com/data/global/pdfs/3306.pdf)
 
 ### Lab Documentation 
 1. We collected all the materials needed for the the lab(listed below)
@@ -26,11 +27,15 @@ We split into two teams. One team was compromised of Kelsey, Rajiv, and Christin
 4. We then modified the blink sketch to work with an external IDE
    * Here is a picture of how we wired the LED to the Arduino Uno (Make note of the series resistors. They are important!!!)
    ![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_195909.jpg)
+ [Here's a video of the simple "Blink" program working with the external LED, using the analog inputs of the Arduino](https://www.youtube.com/watch?v=1fyEXJ2TXzA)
+5. Next, we wired to the potentiometer to the board(example below)
+![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_201126.jpg)
+6. We then created a program, using the serial interface, that could read different voltage analog outputs from the potentiometer.
+   * A picture of our code and outputs
+   ![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_201034.jpg)
+   [Click here to see the code in action: Observe the potentiometer reading out to the computer](https://www.youtube.com/watch?v=Fhkigo1iTkE)
 
-[Here's a video of the simple "Blink" program using the analog inputs of the Arduino](https://www.youtube.com/watch?v=1fyEXJ2TXzA)
-
-[Observe the potentiometer reading out to the computer](https://www.youtube.com/watch?v=Fhkigo1iTkE)
-
+7. Next, we used the code we wrote to change the brightness of an external LED. We also used a pin with a pulse width modulator to create an analog output and then observed its frequency on an oscilloscope.  
 [This is the potentiometer reading out to the oscillioscope](https://www.youtube.com/watch?v=5ptlXNE0SdU)
 
 [Watch the servo in action!](https://www.youtube.com/watch?v=6YAM4Ws2xsg)
