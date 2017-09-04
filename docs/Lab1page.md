@@ -98,7 +98,7 @@ void loop() {
    * [This is the potentiometer reading out to the oscillioscope](https://www.youtube.com/watch?v=5ptlXNE0SdU)
 
 8. Next we got acquainted with using the Parallax Servos. We powered the servos by writing code with functions from the Servo Library. We also experimented with different speeds and rotations in different directions. After experimenting, we also proceeded to connect the servo to the potentiometer and control its speed with the potentiometer.  
-```c+++
+```c++
 #include <Servo.h>
 #define ANALOG_PIN A0
 
