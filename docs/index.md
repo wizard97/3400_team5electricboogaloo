@@ -4,7 +4,9 @@ Monday Night Lab Section 403:
 
 Rajiv Kommareddy (rrk64), Adam Macioszek (amm452), Kelsey Nedd (kan54), David Valley (drv34), Aaron Wisner (daw286), and Christina Xu (chx3)
 
+## Labs
 
+[Lab 1] (docs/Lab1Page.md)
 
 ## Meeting Minutes (9/1/17)
 * Met at Mac’s at 11:15
