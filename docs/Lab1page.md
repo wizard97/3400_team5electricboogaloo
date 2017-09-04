@@ -68,6 +68,7 @@ We split into two teams. One team was compromised of Kelsey, Rajiv, and Christin
       delay(1000);               // wait for a second
     }
     ```
+    
 
    * [Click here to see the code in action: Observe the potentiometer reading out to the computer](https://www.youtube.com/watch?v=Fhkigo1iTkE)
 
