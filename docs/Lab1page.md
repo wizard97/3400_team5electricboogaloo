@@ -27,21 +27,33 @@ We split into two teams. One team was compromised of Kelsey, Rajiv, and Christin
 4. We then modified the blink sketch to work with an external IDE
    * Here is a picture of how we wired the LED to the Arduino Uno (Make note of the series resistors. They are important!!!)
    ![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_195909.jpg)
- [Here's a video of the simple "Blink" program working with the external LED, using the analog inputs of the Arduino](https://www.youtube.com/watch?v=1fyEXJ2TXzA)
+   * [Here's a video of the simple "Blink" program working with the external LED, using the analog inputs of the Arduino](https://www.youtube.com/watch?v=1fyEXJ2TXzA)
 5. Next, we wired to the potentiometer to the board(example below)
 ![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_201126.jpg)
 6. We then created a program, using the serial interface, that could read different voltage analog outputs from the potentiometer.
    * A picture of our code and outputs
    ![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_201034.jpg)
-   [Click here to see the code in action: Observe the potentiometer reading out to the computer](https://www.youtube.com/watch?v=Fhkigo1iTkE)
+   * [Click here to see the code in action: Observe the potentiometer reading out to the computer](https://www.youtube.com/watch?v=Fhkigo1iTkE)
 
 7. Next, we used the code we wrote to change the brightness of an external LED. We also used a pin with a pulse width modulator to create an analog output and then observed its frequency on an oscilloscope.  
-[This is the potentiometer reading out to the oscillioscope](https://www.youtube.com/watch?v=5ptlXNE0SdU)
+   * Make sure the digital pin you use has PWM capabilities. It will have a tilde(~) next to it.
+   * Here is a photo of the wiring we used 
+   ![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_201917.jpg)
+   * A picture of readings on the oscilloscope
+   ![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/pics/IMG_20170828_203818.jpg)
+ 
+   * [Here we demonstrate the potentiometer being used to adjust the LED's brightness](https://www.youtube.com/watch?v=AT2JbbWekOo)
 
-[Watch the servo in action!](https://www.youtube.com/watch?v=6YAM4Ws2xsg)
+   * [This is the potentiometer reading out to the oscillioscope](https://www.youtube.com/watch?v=5ptlXNE0SdU)
 
-[Here we demonstrate the potentiometer being used to adjust the LED's brightness](https://www.youtube.com/watch?v=AT2JbbWekOo)
+8. Next we got acquainted with using the Parallax Servos. We powered the servos by writing code with functions from the Servo Library. We also experimented with different speeds and rotations in different directions. After experimenting, we also proceeded to connect the servo to the potentiometer and control its speed with the potentiometer.  
+   * [Servo Library reference page](https://www.arduino.cc/en/Reference/Servo)
+   * [Here we show the final product with the potentiometer and the servo: Watch the servo in action!](https://www.youtube.com/watch?v=6YAM4Ws2xsg)
 
-[Our finished product after Lab 1: The Spinning Robot!](https://www.youtube.com/watch?v=KmciZg2paYE)
+9. Next, we assembled our robot with a variety of provided materials and modeled it after the sample robots in lab.
+
+10. Lastly, we programmed our robot to drive in a circle by programming one servo to rotate quickly.
+
+   * [Our finished product after Lab 1: The Spinning Robot!](https://www.youtube.com/watch?v=KmciZg2paYE)
 
 Leaving the link to the Markdown instructions here: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
