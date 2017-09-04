@@ -1,4 +1,4 @@
-# Lab 1
+# __*Lab 1*__
 
 [Here's a video of the simple "Blink" program using the analog inputs of the Arduino](https://www.youtube.com/watch?v=1fyEXJ2TXzA)
 
