@@ -1,7 +1,21 @@
 # __*Lab 1*__
 
 ### Objective
-Our objective, for this lab, was to get an introduction to using the Ardunio Uno and the Arduino IDE by creating a couple basic programs that performed simple functions. We were also tasked with assembling our robot and having it perform a simple autonomou task.
+Our objective, for this lab, was to get an introduction to using the Ardunio Uno and the Arduino IDE by creating a couple basic programs that performed simple functions. We were also tasked with assembling our robot and having it perform a simple autonomous task.
+
+### Work Distribution
+We split into two teams. One team was compromised of Kelsey, Rajiv, and Christina, while the other was made up of Aaron, Adam, and David. The second team was primarily responsible for the video and picture documentation of this lab. The entire group worked on the construction of the robot. 
+
+### Lab Documentation 
+1. We collected all the materials needed for the the lab(listed below)
+1 Arduino Uno
+1 USB A/B cable
+1 Continuous rotation servos
+1 Pushbutton
+1 LED (any color except IR!)
+1 Potentiometer
+Several resistors (kΩ range)
+1 Solderless breadboard
 
 [Here's a video of the simple "Blink" program using the analog inputs of the Arduino](https://www.youtube.com/watch?v=1fyEXJ2TXzA)
 
