@@ -8,14 +8,14 @@ We split into two teams. One team was compromised of Kelsey, Rajiv, and Christin
 
 ### Lab Documentation 
 1. We collected all the materials needed for the the lab(listed below)
-1 Arduino Uno
-1 USB A/B cable
-1 Continuous rotation servos
-1 Pushbutton
-1 LED (any color except IR!)
-1 Potentiometer
-Several resistors (kΩ range)
-1 Solderless breadboard
+  *Arduino Uno
+  *USB A/B cable
+  *Continuous rotation servos
+  *Pushbutton
+  *LED (any color except IR!)
+  *Potentiometer
+  *Several resistors (kΩ range)
+  *Solderless breadboard
 
 [Here's a video of the simple "Blink" program using the analog inputs of the Arduino](https://www.youtube.com/watch?v=1fyEXJ2TXzA)
 
