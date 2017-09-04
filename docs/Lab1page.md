@@ -4,7 +4,10 @@
 Our objective, for this lab, was to get an introduction to using the Ardunio Uno and the Arduino IDE by creating a couple basic programs that performed simple functions. We were also tasked with assembling our robot and having it perform a simple autonomous task.
 
 ### Work Distribution
-We split into two teams. One team was compromised of Kelsey, Rajiv, and Christina, while the other was made up of Aaron, Adam, and David. The second team was primarily responsible for the video and picture documentation of this lab. The entire group worked on the construction of the robot. 
+We split into two teams. One team was compromised of Kelsey, Rajiv, and Christina, while the other was made up of Aaron, Adam, and David. The second team was primarily responsible for the video and picture documentation of this lab. The entire group worked on the construction of the robot.
+
+### Helpful links
+[Arduino Reference](https://www.arduino.cc/en/Reference/HomePage)
 
 ### Lab Documentation 
 1. We collected all the materials needed for the the lab(listed below)
@@ -18,7 +21,11 @@ We split into two teams. One team was compromised of Kelsey, Rajiv, and Christin
    * Several resistors (kΩ range)
    * Solderless breadboard
 2. We installed the Arduino IDE on our laptops (the program can also be used on the lab computers where it is already installed)
-3. Next, we located the blink sketch. (File > Examples > 1.Basics > Blink)(insert pic of Blink Sample)
+3. Next, we located the blink sketch and ran it with the board. (File > Examples > 1.Basics > Blink)(insert pic of Blink Sample)
+* Note: When running blink sketch with board, the LED that flashes is a little green LED next to an L on the board
+4. We then modified the blink sketch to work with an external IDE
+   * Here is a picture of how we wired the LED to the Arduino Uno (Make note of the series resistors. They are important!!!)
+   ![alt text](3400_team5electricboogaloo/docs/pics/IMG_20170828_195909.jpg)
 
 [Here's a video of the simple "Blink" program using the analog inputs of the Arduino](https://www.youtube.com/watch?v=1fyEXJ2TXzA)
 
