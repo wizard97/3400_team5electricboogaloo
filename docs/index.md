@@ -9,7 +9,7 @@ Rajiv Kommareddy (rrk64), Adam Macioszek (amm452), Kelsey Nedd (kan54), David Va
 * [Lab 1](Lab1page.md)
 
 ## Meeting Minutes
-* [09/01/17](Minutes_Week_1.pdf)
+* [09/01/17](Minutes.pdf)
 
 ## Check out the team contract!
 * [Team Contract](Contract2.0.pdf)
