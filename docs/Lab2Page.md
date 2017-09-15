@@ -29,7 +29,7 @@ We found the materials needed for this lab
 
 #### Designing the filters
 We began by reading the the signal from the treasure board onto the oscilloscope, to get a sense of what the signal be need to be detecting is. We asjusted the oscilloscope's sensitivity and range until we got the reading shown below:
-![alt text](Lab2pics/7 kHz.png)
+![alt text](Lab2pics/7kHz.png)
 
 
 
