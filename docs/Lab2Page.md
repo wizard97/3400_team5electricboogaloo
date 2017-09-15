@@ -28,7 +28,7 @@ We found the materials needed for this lab
 ### Optical Team
 
 #### Designing the filters
-We began by reading the the signal from the treasure board onto the oscilloscope, to get a sense of what the signal be need to be detecting is. We adjusted the oscilloscope's sensitivity and range until we got the reading shown below:
+We began by reading the the signal from the treasure board onto the oscilloscope, to get a sense of what the signal be need to be detecting is. We adjusted the trasure's frequency oscilloscope's sensitivity and range until we got the reading shown below:
 ![alt text](Lab2pics/7kHz.png)
 
 
