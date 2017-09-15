@@ -59,6 +59,8 @@ By using this information, we found that the threshold we would need to impose o
 
 ### Results and Conclusion
 
+Upon completion of the lab, the optical team was able to successfully create a circuit which can detect an IR signal of kHz, and distinguish it from light in the room.
+
 
 
 
