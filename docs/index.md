@@ -7,6 +7,7 @@ Rajiv Kommareddy (rrk64), Adam Macioszek (amm452), Kelsey Nedd (kan54), David Va
 ## Labs
 
 * [Lab 1](Lab1page.md)
+* [Lab 2 (incomplete)](Lab2page.md)
 
 ## Meeting Minutes
 * [Last updated 09/15/17](Minutes.pdf)
