@@ -42,7 +42,7 @@ We connected various different resistor combinations and voltages until we found
 
 After seeing that we could get a decent-looking reading out from the oscilloscope with this circuit when the IR treasure was shined on it, we hooked it up to the Arduino. 
 
-![alt text](Lap2pics/Connectedtoarduino.JPG)
+![alt text](Lab2pics/Connectedtoarduino.JPG)
 
 After writing some code, shown below, we were able to read out the intensity of our signal to the computer:
 
