@@ -34,7 +34,7 @@ We began by reading the the signal from the treasure board onto the oscilloscope
 
 We noticed that the treasure had to be held very close to the phototransistor to get even a weak signal, so we decided that we would need to amplify the signal by using an OpAmp. In order to cut out all of the noise from the lights in the room, we needed to design a filter which would only be able to detect the signal from the treasure. After messing around with different ideas for bandpass filters, we decided that the best plan of action would be to create two filters, a high pass filter and a low pass filter. Using a computer aid and schematic (pictured below), we connected a high pass filter to our input signal and a low pass filter to our output signal (after the amplification).
 
-(PICTURE OF SCHEMATIC HERE)
+![alt text](Lab2pics/HighLowPassAmplifierFilterOptical.JPG)
 
 We connected various different resistor combinations and voltages until we found a gain that we would be able to use the AnalogRead on the Arduino with. Finally, we were left with a circuit that looked like this:
 
