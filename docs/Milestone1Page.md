@@ -22,4 +22,10 @@ We first connected all four line sensors to the Uno by soldering headers to each
 See [here](https://www.youtube.com/watch?v=ddbK3lsctK8) for a video demonstration of our robot's line-following functionality!
 
 #### Figure Eight Path
+The two "outer" line sensors are used for perpendicular line detection (i.e. for detecting an intersection). When the "outer" line sensors detect black, the robot registers that it has traveled one "block". Additionally, it can be commanded to turn either clockwise or counter-clockwise by speeding up the left servo in the forward direction and the right servo backwards, or the right servo in the forward direction and the left servo backwards, respectively.
+
+[CODE GOES HERE]
+
+As shown by our code above, our algorithm for the figure eight specifically first assumes that our robot does NOT start at an intersection, and then uses a counter (mod 8) to determine whether to turn clockwise, keep straight, or turn counter-clockwise.
+
 See [here](https://www.youtube.com/watch?v=XTS3uJ2DYwY) for a video demonstration of our robot following a figure eight path!
