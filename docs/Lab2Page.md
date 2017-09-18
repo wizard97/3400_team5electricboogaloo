@@ -169,6 +169,7 @@ Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial 
 * The ADC can be run in a variety of ways, we chose to use the ADC's free running mode
 
 Using this information, we were able to build off of code previously provided in the API, and plot the fourier transforms of the signals we picked up with the microphone. We began by running the sample script, fft_adc_serial, with an output from the function generator. We captured the transform data of many waveforms at various frequencies, and compared the outputs on a single excel graph.
+
 ![alt text](Lab2pics/Capture.JPG)
 
 
@@ -177,4 +178,5 @@ Using this information, we were able to build off of code previously provided in
 
 #### Running Microphone and 660 Hz tone through the ADC
 
-After learning the to use the fft sketch, we next hooked up the microphones output to the A0 pin and did an FFT of the 660 Hz output through the microphone. After graphin the data, we found that we were able to get a similar graph to that of the generated signal using the function generator. We got a signal at the 5th bin.  
+After learning the to use the fft sketch, we next hooked up the microphones output to the A0 pin and did an FFT of the 660 Hz output through the microphone. After graphin the data, we found that we were able to get a similar graph to that of the generated signal using the function generator. We got a signal at the 18th bin, which was the same bin number as our function generator.  
+![alt text](Lab2pics/Mic_FFT_capture.JPG)
