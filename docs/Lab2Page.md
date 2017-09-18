@@ -57,7 +57,7 @@ By using this information, we found that the threshold we would need to impose o
 [See it in action here!](https://www.youtube.com/watch?v=T8tgYlkvlMY)
 
 
-### Results and Conclusion
+#### Results and Conclusion
 
 Upon completion of the lab, the optical team was able to successfully create a circuit which can detect an IR signal of 7 kHz, and distinguish it from light in the room.
 
@@ -73,7 +73,7 @@ Here is an example of the output we got from playing the 660Hz tone into the adj
 ![alt text](Lab2pics/Mic_5Vwaveform.jpg)
 
 Additionally, here is a picture of our microphone circuit:
-![alt text](3400_team5electricboogaloo/docs/Lab2pics/microphone hookup.JPG)
+![alt text](Lab2pics/microphone_hookup.jpg)
 
 Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial sketch. With a bit of research on the [Atmega328 Data sheet](http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf), we were able to gather some useful info on the ADC starting on page 305. Some of the most important specs are
 * It has 10-bit Resolution
@@ -91,4 +91,4 @@ Using this information, we were able to build off of code previously provided in
 
 
 
-
+#### Running Microphone and 660 Hz tone through the ADC
