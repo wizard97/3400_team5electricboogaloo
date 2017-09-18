@@ -10,9 +10,6 @@ Since this lab was split into two major parts, we split into two teams. The acou
 
 #### Materials
 We found the materials needed for this lab
-*
-*
-*
 * Breadboard
 * Resistors
 * Wires
