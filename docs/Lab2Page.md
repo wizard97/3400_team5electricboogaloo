@@ -69,8 +69,9 @@ We started off by seeing the kind of output the microphone had by hooking it up 
 
 The microphone's own adujustable gain proved to be enough to get a large output for reading the frequency. We were able to adjust that gain by raising the pot on the back of the microphone to max. 
 [Microphone descrpition and datasheet on Adafruit](https://www.adafruit.com/product/1063)
-Here is an example of the output we got from playing the 660Hz tone into the adjusted mircrophone:
+
 ![alt text](Lab2pics/Mic_5Vwaveform.jpg)
+Here is an example of the output we got from playing the 660Hz tone into the adjusted mircrophone:
 
 Additionally, here is a picture of our microphone circuit:
 ![alt text](Lab2pics/microphone hookup.JPG)
