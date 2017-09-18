@@ -45,6 +45,8 @@ Here are the final values:
 
 | Component | Value |
 | ------------- |:-------------:|
+| OA1 | LM324N |
+| OA1 | LM324N  |
 | R1 | 10K Ohms |
 | R2 | 10K Ohms |
 | R3 | 1M Ohms |
