@@ -11,11 +11,11 @@
 
 typedef enum State
 {
-    STATE_LINE_FOLLOW,
-    STATE_INIT_TURN_LEFT,
-    STATE_TURNING_LEFT,
-    STATE_INIT_TURN_RIGHT,
-    STATE_TURNING_RIGHT,
+  STATE_LINE_FOLLOW,
+  STATE_INIT_TURN_LEFT,
+  STATE_TURNING_LEFT,
+  STATE_INIT_TURN_RIGHT,
+  STATE_TURNING_RIGHT,
 } state_t;
 
 typedef enum StateWideIR
@@ -31,7 +31,7 @@ Servo right_servo;
 
 static state_t state = STATE_LINE_FOLLOW;
 static state_wideir_t wideir_state = SWIR_NO_LINE;
-static int line_count=0;
+static int line_count = 0;
 
 int no_turn = 180;
 int full_left = 0;
@@ -59,38 +59,38 @@ void loop() {
   unsigned oright_ir = analogRead(OUT_RIGHT_IR);
   // put your main code here, to run repeatedly:
 
-   switch (wideir_state)
+  switch (wideir_state)
   {
-    case (SWIR_NO_LINE): default:
+  case (SWIR_NO_LINE): default:
       if (oleft_ir > THRESHOLD && oright_ir > THRESHOLD) {
         wideir_state = SWIR_ON_LINE;
       }
       break;
 
-     case (SWIR_ON_LINE):
+    case (SWIR_ON_LINE):
       if (oleft_ir < THRESHOLD && oright_ir < THRESHOLD) {
         wideir_state = SWIR_PASSED_LINE;
         line_count++;
       }
-        break;
+      break;
 
-     case (SWIR_PASSED_LINE):
-        wideir_state = SWIR_NO_LINE;
-        break;
+    case (SWIR_PASSED_LINE):
+      wideir_state = SWIR_NO_LINE;
+      break;
   }
 
   switch (state)
   {
-    case STATE_LINE_FOLLOW: default:
-      if (wideir_state == SWIR_PASSED_LINE && line_count%4) {
-        if (line_count%8 <= 3 ) {
+  case STATE_LINE_FOLLOW: default:
+      if (wideir_state == SWIR_PASSED_LINE && line_count % 4) {
+        if (line_count % 8 <= 3 ) {
           Serial.println("Turning right");
           turnRightIP();
-        } else if (line_count%8 > 4) {
+        } else if (line_count % 8 > 4) {
           Serial.println("Turning left");
-            turnLeftIP();
+          turnLeftIP();
         }
-      }else if(fleft_ir < THRESHOLD) { //left sensor on white
+      } else if (fleft_ir < THRESHOLD) { //left sensor on white
         //speed up left, and/or slow down right
         turnRight(10);
       } else if (fright_ir < THRESHOLD) { //right sensor on white
@@ -101,10 +101,10 @@ void loop() {
       break;
   }
 
- 
- 
 
-  
+
+
+
   Serial.print("IR Left: ");
   Serial.println(fleft_ir);
   Serial.print("IR Right: ");
@@ -124,7 +124,7 @@ void forward(uint8_t speed)
 
 void turnRight(uint8_t speed)
 {
-    int left = map(speed, 0, 100, 90, 180);
+  int left = map(speed, 0, 100, 90, 180);
   right_servo.write(90);
   left_servo.write(left);
 }
@@ -132,7 +132,7 @@ void turnRight(uint8_t speed)
 
 void turnLeft(uint8_t speed)
 {
-    int right = map(speed, 0, 100, 90, 0);
+  int right = map(speed, 0, 100, 90, 0);
   right_servo.write(right);
   left_servo.write(90);
 }
@@ -141,7 +141,7 @@ void turnLeft(uint8_t speed)
 void turnRightIP()
 {
   int speed = 50;
-   int val = map(speed, 0, 100, 90, 180);
+  int val = map(speed, 0, 100, 90, 180);
   right_servo.write(val);
   left_servo.write(val);
   delay(600);
@@ -161,7 +161,7 @@ void turnLeftIP()
 
 void stopMotors()
 {
-    right_servo.write(90);
+  right_servo.write(90);
   left_servo.write(90);
 }
 

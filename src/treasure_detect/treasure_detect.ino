@@ -26,11 +26,11 @@ void loop() {
 unsigned long getAvg()
 {
   unsigned long ret = 0;
-  for (int i=0; i < 1000; i++)
+  for (int i = 0; i < 1000; i++)
   {
     ret += analogRead(IR_PIN);
     delayMicroseconds(100);
   }
 
-  return ret /1000;
+  return ret / 1000;
 }
