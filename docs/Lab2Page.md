@@ -68,11 +68,15 @@ Upon completion of the lab, the optical team was able to successfully create a c
 We started off by seeing the kind of output the microphone had by hooking it up to the oscilloscope. Initially, it had a relatively small output. To address this problem we approached it two different ways. We created an non-inverting amplifier and  we also tried using the small circuitry attached to the microphone itself. 
 
 The microphone's own adujustable gain proved to be enough to get a large output for reading the frequency. We were able to adjust that gain by raising the pot on the back of the microphone to max. 
-[Microphone product on Adafruit contains details and datasheet](https://www.adafruit.com/product/1063)
-![alt text](Lab2pics/Mic_5Vwaveform.jpg)
+[Microphone product on Adafruit. contains details and datasheet](https://www.adafruit.com/product/1063)
+
 This is an example of the output we got from playing the 660Hz tone into the adjusted mircrophone
+
+![alt text](Lab2pics/Mic_5Vwaveform.jpg)
+
 Additionally, here is a picture of our microphone circuit:
-![alt text](Lab2pics/microphone hookup.JPG)
+
+![alt text](Lab2pics/op amp with microphonr.jpg)
 
 Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial sketch. With a bit of research on the [Atmega328 Data sheet](http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf), we were able to gather some useful info on the ADC starting on page 305. Some of the most important specs are
 * It has 10-bit Resolution
@@ -84,7 +88,9 @@ Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial 
 * The output is stored in ADCL and ADCH registers
 * The ADC can be run in a variety of ways, we chose to use the ADC's free running mode
 
-Using this information, we were able to build off of code previously provided in the API, and plot the fourier transforms of the signals we picked up with the microphone. We began by running the sample script, fft_adc_serial, with an output from the function generator. We captured the transform data of many waveforms at various frequencies, and compared the outputs on a single excel graph.
+Using this information, we were able to build off of code previously provided in the API, and plot the fourier transforms of the signals we picked up with the microphone. We began by running the sample script, fft_adc_serial, with an output from the function generator. We captured the transform data of many waveforms at various frequencies, and compared the outputs on a single excel graph. A composite of the graphs is shown here: 
+
+(ADD EXCEL GRAPH THAT ADAM HAS)
 
 
 
