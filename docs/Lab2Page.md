@@ -169,6 +169,7 @@ Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial 
 * The ADC can be run in a variety of ways, we chose to use the ADC's free running mode
 
 Using this information, we were able to build off of code previously provided in the API, and plot the fourier transforms of the signals we picked up with the microphone. We began by running the sample script, fft_adc_serial, with an output from the function generator. We captured the transform data of many waveforms at various frequencies, and compared the outputs on a single excel graph.
+![alt text](Lab2pics/Capture.JPG)
 
 
 
