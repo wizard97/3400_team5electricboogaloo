@@ -71,6 +71,10 @@ The microphone's own adujustable gain proved to be enough to get a large output 
 [Microphone product on Adafruit. contains details and datasheet](https://www.adafruit.com/product/1063)
 (insert picture of the us reading the 660 Hz frequency with just microphone 5V pk-pk) 
 
+Additionally, here is a picture of our microphone circuit:
+
+![alt text](Microphone_circuit.jpg)
+
 Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial sketch. With a bit of research on the [Atmega328 Data sheet](http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf), we were able to gather some useful info on the ADC starting on page 305. Some of the most important specs are
 * It has 10-bit Resolution
 * The ADC clock is dependent on the chosen prescaler which is set based on the last 3 bits of the ADCSRA register
@@ -81,7 +85,7 @@ Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial 
 * The output is stored in ADCL and ADCH registers
 * The ADC can be run in a variety of ways, we chose to use the ADC's free running mode
 
-In
+Using this information, we were able to build off of code previously provided in the API, and plot the fourier transforms of the signals we picked up with the microphone. We began by running the sample script, fft_adc_serial, with an output from the function generator. We captured the transform data of many waveforms at various frequencies, and compared the outputs on a single excel graph.
 
 
 
