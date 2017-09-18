@@ -73,12 +73,12 @@ Here is an example of the output we got from playing the 660Hz tone into the adj
 ![alt text](Lab2pics/Mic_5Vwaveform.jpg)
 
 Additionally, here is a picture of our microphone circuit:
-![alt text](Lab2pics/microphone_hookup.jpg)
+![alt text](3400_team5electricboogaloo/docs/Lab2pics/microphone hookup.JPG)
 
 Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial sketch. With a bit of research on the [Atmega328 Data sheet](http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf), we were able to gather some useful info on the ADC starting on page 305. Some of the most important specs are
 * It has 10-bit Resolution
 * The ADC clock is dependent on the chosen prescaler which is set based on the last 3 bits of the ADCSRA register
-* The default prescaler is 128 which maps to a clock of 125 kHz. A prescaler of 64 maps to 25 kHz and then so on and so forth accordingly 
+* The default prescaler is 128 which maps to a clock of 125 kHz. A prescaler of 64 maps to 250 kHz and then so on and so forth accordingly 
 * The arduino requires an input clock frequency between 50kHz and 200kHz to get maximum resolution
 * A normal conversion takes 13 ADC clock cycles
 * The sampling frequency is the clock rate divided by the amount of cycles, Fs=Clock rate/cycles.(Fs=125000/13=9615Hz) 
