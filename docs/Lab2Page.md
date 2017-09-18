@@ -65,7 +65,9 @@ Upon completion of the lab, the optical team was able to successfully create a c
 
 #### Testing the Microphone and FFT_ADC_Serial sketch
 
-We started off by seeing the kind of output the microphone had by hooking it up to the oscilloscope. Initially, it had a relatively small output. To address this problem we approached it two different ways. We created an non-inverting amplifier and then we used the small circuitry attached to the microphone itself. The microphone's own adujustable gain proved to be enough to get a large output for reading the frequency. We were able to adjust that gain by raising the pot on the back of the microphone to max. 
+We started off by seeing the kind of output the microphone had by hooking it up to the oscilloscope. Initially, it had a relatively small output. To address this problem we approached it two different ways. We created an non-inverting amplifier and  we also tried using the small circuitry attached to the microphone itself. 
+
+The microphone's own adujustable gain proved to be enough to get a large output for reading the frequency. We were able to adjust that gain by raising the pot on the back of the microphone to max. 
 [Microphone product on Adafruit. contains details and datasheet](https://www.adafruit.com/product/1063)
 (insert picture of the us reading the 660 Hz frequency with just microphone 5V pk-pk) 
 
@@ -79,7 +81,7 @@ Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial 
 * The output is stored in ADCL and ADCH registers
 * The ADC can be run in a variety of ways, we chose to use the ADC's free running mode
 
-
+In
 
 
 
