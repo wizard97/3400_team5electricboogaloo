@@ -92,3 +92,5 @@ Using this information, we were able to build off of code previously provided in
 
 
 #### Running Microphone and 660 Hz tone through the ADC
+
+After learning the to use the fft sketch, we next hooked up the microphones output to the A0 pin and did an FFT of the 600 Hz output through the microphone. After graphin the data, we found that we were able to get a similar graph to that of the generated signal using the function generator. We got a signal at the 5th bin.   
