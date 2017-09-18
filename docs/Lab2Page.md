@@ -75,7 +75,7 @@ unsigned long getAvg()
 
 [Here's a video of the light intensity values read out by the Arduino as the distance is varied](https://www.youtube.com/watch?v=5Cgi-F-WJ3k)
 
-By using this information, we found that the threshold we would need to impose on the readings should be 20, because there is some IR light in the room not from the treasure. Once this was done, we could confidently say that once the reading surpassed 20, then the IR light being detected must be coming from the treasure. To demonstrate this, we modified the previous code and hooked up an LED such that when the IR treasure has been detected, we LED will light up.
+By using this information, we found that the threshold we would need to impose on the readings should be 20, because there is some IR light in the room not from the treasure. Once this was done, we could confidently say that once the reading surpassed 20, then the IR light being detected must be coming from the treasure. To demonstrate this, we modified the previous code and hooked up an LED such that when the IR treasure has been detected, the LED would light up.
 
 ```c++
 #define IR_PIN A0
