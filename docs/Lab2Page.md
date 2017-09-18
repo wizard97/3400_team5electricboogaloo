@@ -73,7 +73,7 @@ The microphone's own adujustable gain proved to be enough to get a large output 
 
 Additionally, here is a picture of our microphone circuit:
 
-![alt text](Microphone_circuit.jpg)
+![alt text](Lab2pics/op amp with microphonr.JPG)
 
 Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial sketch. With a bit of research on the [Atmega328 Data sheet](http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf), we were able to gather some useful info on the ADC starting on page 305. Some of the most important specs are
 * It has 10-bit Resolution
