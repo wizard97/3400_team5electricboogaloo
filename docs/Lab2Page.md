@@ -68,11 +68,11 @@ Upon completion of the lab, the optical team was able to successfully create a c
 We started off by seeing the kind of output the microphone had by hooking it up to the oscilloscope. Initially, it had a relatively small output. To address this problem we approached it two different ways. We created an non-inverting amplifier and  we also tried using the small circuitry attached to the microphone itself. 
 
 The microphone's own adujustable gain proved to be enough to get a large output for reading the frequency. We were able to adjust that gain by raising the pot on the back of the microphone to max. 
-[Microphone product on Adafruit. contains details and datasheet](https://www.adafruit.com/product/1063)
+[Microphone product on Adafruit contains details and datasheet](https://www.adafruit.com/product/1063)
 ![alt text](Lab2pics/Mic_5Vwaveform.jpg)
 This is an example of the output we got from playing the 660Hz tone into the adjusted mircrophone
 Additionally, here is a picture of our microphone circuit:
-![alt text](Lab2pics/Microphone_circuit.jpg)
+![alt text](Lab2pics/microphone hookup.JPG)
 
 Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial sketch. With a bit of research on the [Atmega328 Data sheet](http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf), we were able to gather some useful info on the ADC starting on page 305. Some of the most important specs are
 * It has 10-bit Resolution
