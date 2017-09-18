@@ -36,7 +36,28 @@ We noticed that the treasure had to be held very close to the phototransistor to
 
 ![alt text](Lab2pics/HighLowPassAmplifierFilterOptical.JPG)
 
-We connected various different resistor combinations and voltages until we found a gain that we would be able to use the AnalogRead on the Arduino with. Finally, we were left with a circuit that looked like this:
+We calculated the values to meet the following criteria:
+    * The input impedance was much larger than the IR sensors output impedance
+    * Passband of filter must be over the frequencies of interest, 5KHz - 15KHz
+    * Gain of close to 1000
+
+Here are the final values:
+
+| Component | Value |
+| ------------- |:-------------:|
+| R1 | 10K Ohms |
+| R2 | 10K Ohms |
+| R3 | 1M Ohms |
+| R4 | 10K Ohms |
+| R5 | 100K Ohms |
+| R6 | 1K Ohms |
+| C1 | 4.7 nF |
+| C2 | 110 pF |
+
+The transfer function of the band of the amplifier looks as follows. The passband is roughly 2KHz - 20KHz.
+![alt text](Lab2pics/lab2_bandpass.png)
+
+We were left with a circuit that looked like this:
 
 ![alt text](Lab2pics/Opampwithfilters.JPG)
 
