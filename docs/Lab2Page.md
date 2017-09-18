@@ -40,19 +40,81 @@ We connected various different resistor combinations and voltages until we found
 
 ![alt text](Lab2pics/Opampwithfilters.JPG)
 
-After seeing that we could get a decent-looking reading out from the oscilloscope with this circuit when the IR treasure was shined on it, we hooked it up to the Arduino. 
+After seeing that we could get a decent-looking reading out from the oscilloscope with this circuit when the IR treasure was shined on it, we hooked it up to the Arduino.
 
 ![alt text](Lab2pics/Connectedtoarduino.JPG)
 
 After writing some code, shown below, we were able to read out the intensity of our signal to the computer:
 
-(CODE HERE)
+```c++
+#define IR_PIN A0
+
+void setup() {
+  pinMode(IR_PIN, INPUT);
+  Serial.begin(115200);
+}
+
+void loop() {
+  unsigned long res = getAvg();
+  Serial.println(res);
+}
+
+unsigned long getAvg()
+{
+  unsigned long ret = 0;
+  for (int i = 0; i < 1000; i++)
+  {
+    ret += analogRead(IR_PIN);
+    delayMicroseconds(100);
+  }
+
+  return ret / 1000;
+}
+
+```
 
 [Here's a video of the light intensity values read out by the Arduino as the distance is varied](https://www.youtube.com/watch?v=5Cgi-F-WJ3k)
 
-By using this information, we found that the threshold we would need to impose on the readings should be 20, because there is some IR light in the room not from the treasure. Once this was done, we could confidently say that once the reading surpassed 20, then the IR light being detected must be coming from the treasure. To demonstrate this, we wrote some code and hooked up an LED such that when the IR treasure has been detected, we LED will light up.
+By using this information, we found that the threshold we would need to impose on the readings should be 20, because there is some IR light in the room not from the treasure. Once this was done, we could confidently say that once the reading surpassed 20, then the IR light being detected must be coming from the treasure. To demonstrate this, we modified the previous code and hooked up an LED such that when the IR treasure has been detected, we LED will light up.
 
-(CODE HERE)
+```c++
+#define IR_PIN A0
+#define DETECT_THRESH 20
+#define LED_PIN 2
+
+void setup() {
+  pinMode(IR_PIN, INPUT);
+  pinMode(LED_PIN, OUTPUT);
+  Serial.begin(115200);
+}
+
+void loop() {
+  unsigned long res = getAvg();
+  if (res >= DETECT_THRESH) {
+    Serial.print("Detection! Value: ");
+    digitalWrite(LED_PIN, HIGH);
+  } else {
+    Serial.print("No detection! Value: ");
+    digitalWrite(LED_PIN, LOW);
+  }
+  Serial.println(res);
+
+  //delay(500);
+}
+
+
+unsigned long getAvg()
+{
+  unsigned long ret = 0;
+  for (int i = 0; i < 1000; i++)
+  {
+    ret += analogRead(IR_PIN);
+    delayMicroseconds(100);
+  }
+
+  return ret / 1000;
+}
+```
 
 [See it in action here!](https://www.youtube.com/watch?v=T8tgYlkvlMY)
 
@@ -65,9 +127,9 @@ Upon completion of the lab, the optical team was able to successfully create a c
 
 #### Testing the Microphone and FFT_ADC_Serial sketch
 
-We started off by seeing the kind of output the microphone had by hooking it up to the oscilloscope. Initially, it had a relatively small output. To address this problem we approached it two different ways. We created an non-inverting amplifier and  we also tried using the small circuitry attached to the microphone itself. 
+We started off by seeing the kind of output the microphone had by hooking it up to the oscilloscope. Initially, it had a relatively small output. To address this problem we approached it two different ways. We created an non-inverting amplifier and  we also tried using the small circuitry attached to the microphone itself.
 
-The microphone's own adujustable gain proved to be enough to get a large output for reading the frequency. We were able to adjust that gain by raising the pot on the back of the microphone to max. 
+The microphone's own adujustable gain proved to be enough to get a large output for reading the frequency. We were able to adjust that gain by raising the pot on the back of the microphone to max.
 [Microphone descrpition and datasheet on Adafruit](https://www.adafruit.com/product/1063)
 Here is an example of the output we got from playing the 660Hz tone into the adjusted mircrophone:
 ![alt text](Lab2pics/Mic_5Vwaveform.jpg)
@@ -78,10 +140,10 @@ Additionally, here is a picture of our microphone circuit:
 Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial sketch. With a bit of research on the [Atmega328 Data sheet](http://www.atmel.com/Images/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf), we were able to gather some useful info on the ADC starting on page 305. Some of the most important specs are
 * It has 10-bit Resolution
 * The ADC clock is dependent on the chosen prescaler which is set based on the last 3 bits of the ADCSRA register
-* The default prescaler is 128 which maps to a clock of 125 kHz. A prescaler of 64 maps to 250 kHz and then so on and so forth accordingly 
+* The default prescaler is 128 which maps to a clock of 125 kHz. A prescaler of 64 maps to 250 kHz and then so on and so forth accordingly
 * The arduino requires an input clock frequency between 50kHz and 200kHz to get maximum resolution
 * A normal conversion takes 13 ADC clock cycles
-* The sampling frequency is the clock rate divided by the amount of cycles, Fs=Clock rate/cycles.(Fs=125000/13=9615Hz) 
+* The sampling frequency is the clock rate divided by the amount of cycles, Fs=Clock rate/cycles.(Fs=125000/13=9615Hz)
 * The output is stored in ADCL and ADCH registers
 * The ADC can be run in a variety of ways, we chose to use the ADC's free running mode
 
@@ -93,4 +155,4 @@ Using this information, we were able to build off of code previously provided in
 
 #### Running Microphone and 660 Hz tone through the ADC
 
-After learning the to use the fft sketch, we next hooked up the microphones output to the A0 pin and did an FFT of the 600 Hz output through the microphone. After graphin the data, we found that we were able to get a similar graph to that of the generated signal using the function generator. We got a signal at the 5th bin.   
+After learning the to use the fft sketch, we next hooked up the microphones output to the A0 pin and did an FFT of the 600 Hz output through the microphone. After graphin the data, we found that we were able to get a similar graph to that of the generated signal using the function generator. We got a signal at the 5th bin.  
