@@ -12,12 +12,14 @@ The entire team worked on this milestone. While the acoustic team for Lab 2 -- A
 * Line sensors
 * 3-pin headers
 * Wires
+* Breadboard
 
 #### Line-Following
-We first connected all four line sensors to the Uno by soldering headers to each of the sensors and then connecting the headers to the board with wires. Once the line sensors were connected, we tested them (i.e. "rolled" over black tape on white paper several times) in order to obtain approximate threshold values above which our robot would be told to register the color black and below which our robot would be told to register the color white.
+We first connected all four line sensors to the Uno by soldering headers to each of the sensors and then connecting the headers to analog pins on the board with wires. Once the line sensors were connected, we tested them (i.e. "rolled" over black tape on white paper several times) in order to obtain approximate threshold values above which our robot would be told to register the color black and below which our robot would be told to register the color white. Only the two "inner" line sensors are used for line-following, as their placements on the robot correspond with being "on" the black line, given that the robot is centered on the line. Thus, if the left "inner" line sensor detects white, then our robot steers back towards the right; if, instead, the right "inner" line sensor detects black, then our robot steers back towards the left. See our code below for more clarification.
+
+[CODE GOES HERE]
+
+See [here](https://www.youtube.com/watch?v=ddbK3lsctK8) for a video demonstration of our robot's line-following functionality!
 
 #### Figure Eight Path
-
-[Straight Line](https://www.youtube.com/watch?v=ddbK3lsctK8)
-
-[Figure 8 Video](https://www.youtube.com/watch?v=XTS3uJ2DYwY)
+See [here](https://www.youtube.com/watch?v=XTS3uJ2DYwY) for a video demonstration of our robot following a figure eight path!
