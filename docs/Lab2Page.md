@@ -61,6 +61,12 @@ By using this information, we found that the threshold we would need to impose o
 
 Upon completion of the lab, the optical team was able to successfully create a circuit which can detect an IR signal of 7 kHz, and distinguish it from light in the room.
 
+### Acoustic Team
+
+#### Testing the Microphone and FFT_ADC_Serial sketch
+
+We started off by seeing the kind of output the microphone had by hooking it up to the oscilloscope. Initially, it had a relatively small output. To address this problem we approached it two different ways. We created an non-inverting amplifier and then we used the small circuitry attached to the microphone itself. 
+
 
 
 
