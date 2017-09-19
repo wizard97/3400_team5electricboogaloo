@@ -168,16 +168,51 @@ Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial 
 * The output is stored in ADCL and ADCH registers
 * The ADC can be run in a variety of ways, we chose to use the ADC's free running mode
 
+First, we had to alter our code a bit, in order to correct the prescaler. The original fft_adc_serial sketch placed the prescaler value at 32, which results in a clock of 500kHz. That would then decrease the accuracy of our readings. The register that set up the prescaler was the ADCSRA. The last 3 bits of the register are what determine the prescaler based on pages 319 and 320 in the ATmega328 datasheet.  The code originally read at
+```void setup() {
+  Serial.begin(9600); 
+  TIMSK0 = 0;
+  ADCSRA = 0xe5; // <---THIS LINE set the adc to free running mode and set the prescaler originally to 32
+  ADMUX = 0x40;
+  DIDR0 = 0x01; 
+}
+void loop() {
+  while(1) {
+    cli();  
+    byte freq = 0;
+    byte test = 0;
+    for (int i = 0 ; i < 512 ; i += 2) { 
+      while(!(ADCSRA & 0x10)); 
+      ADCSRA = 0xf5; // <------THIS LINE resets the ADC and also the precaler as well.
+```
+We ended up changing the first line to ADCSRA = 0xe7 and the second reset line to ADCSRA = 0xf7. This way the prescaler is 128 and the clock is at 125kHz.  
 Using this information, we were able to build off of code previously provided in the API, and plot the fourier transforms of the signals we picked up with the microphone. We began by running the sample script, fft_adc_serial, with an output from the function generator. We captured the transform data of many waveforms at various frequencies, and compared the outputs on a single excel graph.
 
 ![alt text](Lab2pics/Capture.JPG)
 
-
-
-
+This graph shows evenly spaced bins for multiples of a 660 Hz signal. We also know that our 660 Hz signal is in the correct bin based on our calculations. We, first, divided the sampling frequency of 9615Hz by the amount of samples, 256, to get the FFT bin width.(9615/256=37.6Hz) Next, we take the signal we want, 660HZ, and divide it by the bin width to get the bin number that our signal will fall into. (660/37.6=17.6) This predicts our signal will fall into the 18th bin if rounded up and that is what we see visually through our data.  
 
 #### Running Microphone and 660 Hz tone through the ADC
 
-After learning the to use the fft sketch, we next hooked up the microphones output to the A0 pin and did an FFT of the 660 Hz output through the microphone. After graphin the data, we found that we were able to get a similar graph to that of the generated signal using the function generator. We got a signal at the 18th bin, which was the same bin number as our function generator.  
+After learning the to use the fft sketch, we next hooked up the microphones output to the A0 pin and did an FFT of the 660 Hz output through the microphone. After graphin the data, we found that we were able to get a similar graph to that of the generated signal using the function generator. We got a signal at the 18th bin, which was the same bin number as our function generator proving that our sound detection is correct.  
 
 ![alt text](Lab2pics/Mic_FFT_capture.JPG)
+
+We also added a small code snippet that prints different statements when a 660Hz is detected.
+
+```
+byte freq=0;
+byte test = 0;
+...
+for (byte i = 0 ; i < FFT_N/2 ; i++) { 
+      Serial.println(fft_log_out[i]); // send out the data
+      if (fft_log_out[i] > test){
+        test = fft_log_out[i];
+        freq = i;  
+      }
+    }
+    if (freq == 18)
+      Serial.println("This is a 660 Hz tone");
+    else  Serial.println("This is NOT a 660 Hz tone"); 
+```
+It simply decides whether the signal is 660Hz or not by making sure the highest value is at the correct bin number.
