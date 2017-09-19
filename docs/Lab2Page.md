@@ -190,7 +190,7 @@ Using this information, we were able to build off of code previously provided in
 
 ![alt text](Lab2pics/Capture.JPG)
 
-This graph shows evenly spaced bins for multiples of a 660 Hz signal. We also know that our 660 Hz signal is in the correct bin based on our calculations. We, first, divided the sampling frequency of 9615Hz by the amount of samples, 256, to get the FFT bin width.(9615/256=37.6Hz) Next, we take the signal we want, 660HZ, and divide it by the bin width to get the bin number that our signal will fall into. (660/37.6=17.6) This predicts our signal will fall into the 18th bin if rounded up and that is what we see visually through our data.  
+This graph shows evenly spaced bins for multiples of a 660 Hz signal. We also know that our 660 Hz signal is in the correct bin based on our calculations. We, first, divided the sampling frequency of 9615Hz by the amount of samples, 256, to get the FFT bin width.(9615/256=37.6Hz) Next, we take the signal we want, 660Hz, and divide it by the bin width to get the bin number that our signal will fall into. (660/37.6=17.6) This predicts our signal will fall into the 18th bin, if rounded up, and that is what we see visually through our data.  
 
 #### Running Microphone and 660 Hz tone through the ADC
 
@@ -215,4 +215,4 @@ for (byte i = 0 ; i < FFT_N/2 ; i++) {
       Serial.println("This is a 660 Hz tone");
     else  Serial.println("This is NOT a 660 Hz tone"); 
 ```
-It simply decides whether the signal is 660Hz or not by making sure the highest value is at the correct bin number.
+It simply decides whether the signal is 660Hz or not by making sure the highest value is at the correct bin number. 
