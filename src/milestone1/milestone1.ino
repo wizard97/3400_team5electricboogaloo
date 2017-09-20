@@ -48,8 +48,6 @@ void setup() {
   pinMode(FRONT_RIGHT_IR, INPUT);
   pinMode(OUT_LEFT_IR, INPUT);
   pinMode(OUT_RIGHT_IR, INPUT);
-  //pinMode(LEFT_SERVO, OUTPUT);
-  //pinMode(RIGHT_SERVO, output);
 
   left_servo.attach(LEFT_SERVO);
   right_servo.attach(RIGHT_SERVO);
@@ -113,17 +111,7 @@ void loop() {
         
       }
       
-      
-      /*
-      if (fleft_ir < THRESHOLD) { //left sensor on white
-        //speed up left, and/or slow down right
-        turnRight(10);
-      } else if (fright_ir < THRESHOLD) { //right sensor on white
-        turnLeft(10);
-      } else {
-        forward(10);
-      }
-      */
+ 
       break;
   }
 
