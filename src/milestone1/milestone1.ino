@@ -1,4 +1,6 @@
 #include <Servo.h>
+
+
 // 950, black, 650 white
 #define FRONT_LEFT_IR A0
 #define FRONT_RIGHT_IR A1
@@ -7,7 +9,10 @@
 #define LEFT_SERVO 10
 #define RIGHT_SERVO 9
 
-#define THRESHOLD 800
+#define THRESHOLD 850
+
+#define LINE_FOLLOW_P 2
+#define FORWARD_SPEED 50 
 
 typedef enum State
 {
@@ -43,8 +48,6 @@ void setup() {
   pinMode(FRONT_RIGHT_IR, INPUT);
   pinMode(OUT_LEFT_IR, INPUT);
   pinMode(OUT_RIGHT_IR, INPUT);
-  //pinMode(LEFT_SERVO, OUTPUT);
-  //pinMode(RIGHT_SERVO, output);
 
   left_servo.attach(LEFT_SERVO);
   right_servo.attach(RIGHT_SERVO);
@@ -53,10 +56,12 @@ void setup() {
 }
 
 void loop() {
-  unsigned fleft_ir = analogRead(FRONT_LEFT_IR);
-  unsigned fright_ir = analogRead(FRONT_RIGHT_IR);
-  unsigned oleft_ir = analogRead(OUT_LEFT_IR);
-  unsigned oright_ir = analogRead(OUT_RIGHT_IR);
+  int fleft_ir = analogRead(FRONT_LEFT_IR);
+  int fright_ir = analogRead(FRONT_RIGHT_IR);
+
+  int dir = fleft_ir - fright_ir;
+  int oleft_ir = analogRead(OUT_LEFT_IR);
+  int oright_ir = analogRead(OUT_RIGHT_IR);
   // put your main code here, to run repeatedly:
 
   switch (wideir_state)
@@ -81,6 +86,7 @@ void loop() {
 
   switch (state)
   {
+    
   case STATE_LINE_FOLLOW: default:
       if (wideir_state == SWIR_PASSED_LINE && line_count % 4) {
         if (line_count % 8 <= 3 ) {
@@ -90,14 +96,22 @@ void loop() {
           Serial.println("Turning left");
           turnLeftIP();
         }
-      } else if (fleft_ir < THRESHOLD) { //left sensor on white
-        //speed up left, and/or slow down right
-        turnRight(10);
-      } else if (fright_ir < THRESHOLD) { //right sensor on white
-        turnLeft(10);
       } else {
-        forward(10);
+      // left-right, if dir goes negative left is off paper, so turn right
+      int maxs = map(FORWARD_SPEED, 0, 100, 90, 0);
+      
+      int right = (90-maxs) - dir/LINE_FOLLOW_P;
+      int left = (180-maxs) - dir/LINE_FOLLOW_P;
+
+      right = (right < 0) ? 0 : ((right > 90) ? 90 : right); 
+      left = left > 180 ? 180 : left < 90 ? 90 : left;
+       
+     right_servo.write(right);
+     left_servo.write(left);
+        
       }
+      
+ 
       break;
   }
 
