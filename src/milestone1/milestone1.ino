@@ -1,18 +1,34 @@
 #include <Servo.h>
 
-
-// 950, black, 650 white
+// IR sensors
 #define FRONT_LEFT_IR A0
 #define FRONT_RIGHT_IR A1
 #define OUT_LEFT_IR A2
 #define OUT_RIGHT_IR A3
+
+#define LEFT_WALL_IR A4
+
+//servos
 #define LEFT_SERVO 10
 #define RIGHT_SERVO 9
 
 #define THRESHOLD 850
 
 #define LINE_FOLLOW_P 2
-#define FORWARD_SPEED 50 
+#define FORWARD_SPEED 50
+
+typedef struct IRDistance
+{
+    // 0's represent unknown or errors
+    uint8_t left_dist;
+    uint8_t right_dist;
+    uint8_t front_dist;
+
+    uint8_t left_nwalls;
+    uint8_t right_nwalls;
+    uint8_t front_nwalls;
+} IRDistance_t;
+
 
 typedef enum State
 {
@@ -86,7 +102,7 @@ void loop() {
 
   switch (state)
   {
-    
+
   case STATE_LINE_FOLLOW: default:
       if (wideir_state == SWIR_PASSED_LINE && line_count % 4) {
         if (line_count % 8 <= 3 ) {
@@ -99,19 +115,19 @@ void loop() {
       } else {
       // left-right, if dir goes negative left is off paper, so turn right
       int maxs = map(FORWARD_SPEED, 0, 100, 90, 0);
-      
+
       int right = (90-maxs) - dir/LINE_FOLLOW_P;
       int left = (180-maxs) - dir/LINE_FOLLOW_P;
 
-      right = (right < 0) ? 0 : ((right > 90) ? 90 : right); 
+      right = (right < 0) ? 0 : ((right > 90) ? 90 : right);
       left = left > 180 ? 180 : left < 90 ? 90 : left;
-       
+
      right_servo.write(right);
      left_servo.write(left);
-        
+
       }
-      
- 
+
+
       break;
   }
 
@@ -127,6 +143,39 @@ void loop() {
 }
 
 
+//get distance from ir wall sensors
+IRDistance_t getIRDistance()
+{
+    IRDistance_t ret;
+    //maybe consider averaging?
+    int ileft = analogRead(LEFT_WALL_IR ); //TODO analog read
+    int iright = analogRead(LEFT_WALL_IR ); //TODO analog read
+    int ifront = analogRead(LEFT_WALL_IR ); //TODO analog read
+
+    ret.front_dist = mvtocm(map(ifront, 0, 1023, 0, 5000));
+    ret.right_dist = mvtocm(map(iright, 0, 1023, 0, 5000));
+    ret.left_dist = mvtocm(map(ileft, 0, 1023, 0, 5000));
+
+
+    ret.left_nwalls = (ret.left_dist + 6)/31 + 1;
+    ret.left_nwalls = ret.left_nwalls > 4 ? 0 :  ret.left_nwalls;
+    ret.right_nwalls = (ret.right_dist + 6)/31 + 1;
+    ret.right_nwalls = ret.right_nwalls > 4 ? 0 :  ret.right_nwalls;
+    ret.center_nwalls = 0;
+
+    return ret;
+}
+
+//Ir distance helper
+inline uint8_t mvtocm(unsigned mv)
+{
+    unsigned tmp = mv/5 -11;
+    return (2076 + tmp/2)/tmp; //hacky rounding to avoid floats
+}
+
+
+// Motor control helpers
+
 void forward(uint8_t speed)
 {
   int right = map(speed, 0, 100, 90, 0);
@@ -134,7 +183,6 @@ void forward(uint8_t speed)
   right_servo.write(right);
   left_servo.write(left);
 }
-
 
 void turnRight(uint8_t speed)
 {
@@ -178,4 +226,3 @@ void stopMotors()
   right_servo.write(90);
   left_servo.write(90);
 }
-
