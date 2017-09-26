@@ -21,4 +21,14 @@ The entire team worked together on this milestone.
 #### Wall Detection
 We began by testing both the short-range and the long-range wall sensors in order to determine which would be better for our robot in terms of how sensitive we would want to be in our wall detection. After determining that the short-range wall sensors would be better in the context of our maze, we tested our sensors again, this time to gauge a reasonable threshold at which to have our robot "register" the presence of a wall. For the purposes of this milestone, we used an external LED to indicate whether or not a wall is present. As shown in the code snippet below, when the analog input value from the wall sensor is above our measured threshold, the LED is turned on; when the input value is below the threshold, the LED is turned off.
 
+```c++
+int front_dist = analogRead(FRONT_WALL);
+
+if(front_dist > THRESHOLD) {
+  digitalWrite(FRONT_LED, HIGH);
+} else {
+  digitalWrite(FRONT_LED, LOW);
+}
+```
+
 See [here](https://www.youtube.com/watch?v=70y1C5KFJqg) for a video demonstration of our robot's wall detection functionality!
