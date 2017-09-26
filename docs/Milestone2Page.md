@@ -23,7 +23,7 @@ The entire team worked together on this milestone. Aaron, David, and Adam worked
 * treasures
 
 #### Varying Treasure Frequencies
-We began by using our circuit and code from lab 2 for detecting a 7kHz treasure. We modified several values of the circuit so that we could have a band pass filter with a range of about 2kHz-20kHz. We then modified the code by adding a similar FFT to the code for our microphone. We made it so that an FFT was done on the output from the IR sensor, so that we could calculate the specific bin numbers of the 3 treasure values and distinguish them. We used those bins to alter a frequency variable and based on the detection and change of the variable, the monitor will print the correct value of the different treasures.
+We began by using our circuit and code from lab 2 for detecting a 7kHz treasure. We modified several values of the circuit so that we could have a band pass filter with a range of about 2kHz-20kHz. We then modified our old treasure code by adding an FFT similar to the code for our microphone. An FFT transform was done on the output from the IR sensor, so that we could distinguish each separate treasure frequency based on its calculated, and then measured, bin number. We created a frequency variable based on those different bins and with each change of the variable, the monitor will print the correct value of the different treasures. Also the reading process of the frequencies only occurs when the average of the entire signal is over a base level that we decided based on the light in the room affecting our sensor. That way when no treasure was present, our code would not mistake the outside noise for a treasure.
 
 ``` if (res >= DETECT_THRESH) {
     Serial.print("Detection! freq: ");
@@ -40,7 +40,7 @@ We began by using our circuit and code from lab 2 for detecting a 7kHz treasure.
     Serial.println("No detection!");
 ```
 This snippet of code is the detection of a signal above the threshold and then the responding detection of different frequency treasures. 
-
+Useful hint: Despite losing some accuracy, the clock needs to be higher than 150kHz so that the each frequency will be in the range of the 128 bins. 
 
 See the video of our robot detecting the three distinct treasure frequencies [here](https://youtu.be/YPw5q0r0l5E)!
 
