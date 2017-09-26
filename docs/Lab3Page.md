@@ -8,11 +8,8 @@
 
 ### Lab Documentation
 
+#### Materials
+
 #### Graphics Team
 
-##### Materials
-Test
-
 #### Acoustic Team
-
-##### Materials
