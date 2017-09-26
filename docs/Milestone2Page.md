@@ -23,9 +23,9 @@ The entire team worked together on this milestone. Aaron, David, and Adam worked
 * treasures
 
 #### Varying Treasure Frequencies
-We began by using our circuit and code from lab 2 for detecting a 7kHz treasure:
+We began by using our circuit and code from lab 2 for detecting treasures. It has roughly 1000x amplification with a passband of roughly 2-20KHz:
 
-![alt text](Lab2pics/Opampwithfilters.JPG)
+![alt text](Lab2pics/HighLowPassAmplifierFilterOptical.JPG)
 
 | Component | Value |
 | ------------- |:-------------:|
@@ -40,13 +40,15 @@ We began by using our circuit and code from lab 2 for detecting a 7kHz treasure:
 | C1 | 4.7 nF |
 | C2 | 110 pF |
 
-The transfer function of the amplifier looks as follows. The passband is roughly 2KHz - 20KHz.
-![alt text](Lab2pics/lab2_bandpass.png)
+This is a picture of the actual amplifier circuit built on a breadboard. Note, the circuit below also includes a simple rectifier circuit that is not shown in the schematic above. The purpose of this addition is explained below.
 
 
-The output of the amplifier was then connected to analog input A0 of the Arduino. We basically reused the code from the microphone FFT detection and calculated the FFT bin location for 7, 12, and 17KHz. However, we quickly realized that using a simple threshold detector on each exptected bin, resulted in too many false positive detections. Our solution was to rectify the output of the amplifier above with a signal diode and feed it into a 0.68uF capacitor with a 51K resistor going to ground. The capactior's positive lead (the one not connected to ground) was connected to A1 on the arduino. 
+![alt text](IMG_20170925_223846.jpg)
 
-Thus, an IR signal in the passband of the amplifier will cause the rectifier capacitor to charge when the amplitude of the amplifier's output is above the Vth of the signal diode. The resistor capacitor combo acts as a low pass filter in regards to the duration of the signal. In order for the rectifier capacitor to charge, the output of the amplifier must continuously output an AC signal for a long enough duration. This technique blocks spurious background emissions that fall in passband of the amplifier that would cause a false positive if we only relied on the threshold FFT technique. Since, the treasure outputs a continuous AC signal, this will cause the rectifier capacitor to charge to a voltage far higher than what is possible from simple spurious background emission in our amplifiers passband. A treasure is then simply detected by looking for a voltage on the rectifier capacitor above a set threshold. 
+
+The output of the amplifier was then connected to analog input A0 of the Arduino. The code from the microphone FFT detection program was modified to perform the FFT and measure the magnitude of FFT bin locations for 7, 12, and 17KHz. However, we quickly realized that using a simple threshold detector on each expected bin, resulted in too many false positive detections. Our solution was to rectify the output of the amplifier above with a signal diode and feed it into a 0.68uF capacitor with a 51K resistor discharging the capacitor to ground. The capactior's positive lead (the one not connected to ground) was connected to A1 on the arduino. 
+
+Thus, an IR signal in the passband of the amplifier will cause the rectifier capacitor to charge when the amplitude of the amplifier's output is above the Vth of the signal diode. The resistor capacitor combo acts as a low pass filter in regards to the duration of the signal. In order for the rectifier capacitor to charge, the output of the amplifier must continuously output an AC signal for a long enough duration. This technique blocks spurious background emissions that fall in passband of the amplifier that would cause a false positive if we only relied on the threshold FFT technique mentioned above. Since the treasure outputs a continuous AC signal, this will cause the rectifier capacitor to charge to a voltage far higher than what is possible from simple spurious background IR emission in our amplifiers passband. A treasure is then simply detected by looking for a voltage on the rectifier capacitor above a set threshold. 
 
 After a tresure is detected using this technique, only then do we utilize the FFT bin threshold technique described above to determine what frequency this particular treasure is. Here is a code snippet, note that `res` is the voltage on the rectifer capacitor and `getFreq()` utilizes the FFT to try to classify whether it is a 7, 12, or 17KHz treasure. 
 
