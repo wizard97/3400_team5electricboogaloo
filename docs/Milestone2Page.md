@@ -1,7 +1,7 @@
 # __*Milestone 2*__
 
 ### Objective
-The objective of this milestone was to add treasure detection for varying frequencies and wall detection to our robot. We implemented treasure detection for 12 and 17 kHz frequencies in addition to the 7 kHz detection that was implemented in [Lab 2](https://wizard97.github.io/3400_team5electricboogaloo/Lab2Page.html). For the wall detection, we implemented a total of three short-range sensors (left, right, and front).
+The objective of this milestone was to add treasure detection for varying frequencies and wall detection to our robot. We implemented treasure detection for 12 and 17 kHz frequencies in addition to the 7 kHz detection that was implemented in [Lab 2](Lab2Page.md). For the wall detection, we implemented a total of three short-range sensors (left, right, and front).
 
 ### Work Distribution
 The entire team worked together on this milestone. Aaron, David, and Adam worked primarily on the treasure detection, while Christina, Kelsey, and Rajiv worked primarily on the wall detection.
