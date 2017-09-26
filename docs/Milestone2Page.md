@@ -23,9 +23,36 @@ The entire team worked together on this milestone. Aaron, David, and Adam worked
 * treasures
 
 #### Varying Treasure Frequencies
-We began by using our circuit and code from lab 2 for detecting a 7kHz treasure. We modified several values of the circuit so that we could have a band pass filter with a range of about 2kHz-20kHz. We then modified our old treasure code by adding an FFT similar to the code for our microphone. An FFT transform was done on the output from the IR sensor, so that we could distinguish each separate treasure frequency based on its calculated, and then measured, bin number. We created a frequency variable based on those different bins and with each change of the variable, the monitor will print the correct value of the different treasures. Also the reading process of the frequencies only occurs when the average of the entire signal is over a base level that we decided based on the light in the room affecting our sensor. That way when no treasure was present, our code would not mistake the outside noise for a treasure.
+We began by using our circuit and code from lab 2 for detecting a 7kHz treasure:
 
-``` if (res >= DETECT_THRESH) {
+![alt text](Lab2pics/Opampwithfilters.JPG)
+
+| Component | Value |
+| ------------- |:-------------:|
+| OA1 | LM324N |
+| OA1 | LM324N  |
+| R1 | 10K Ohms |
+| R2 | 10K Ohms |
+| R3 | 1M Ohms |
+| R4 | 10K Ohms |
+| R5 | 100K Ohms |
+| R6 | 1K Ohms |
+| C1 | 4.7 nF |
+| C2 | 110 pF |
+
+The transfer function of the amplifier looks as follows. The passband is roughly 2KHz - 20KHz.
+![alt text](Lab2pics/lab2_bandpass.png)
+
+
+The output of the amplifier was then connected to analog input A0 of the Arduino. We basically reused the code from the microphone FFT detection and calculated the FFT bin location for 7, 12, and 17KHz. However, we quickly realized that using a simple threshold detector on each exptected bin, resulted in too many false positive detections. Our solution was to rectify the output of the amplifier above with a signal diode and feed it into a 0.68uF capacitor with a 51K resistor going to ground. The capactior's positive lead (the one not connected to ground) was connected to A1 on the arduino. 
+
+Thus, an IR signal in the passband of the amplifier will cause the rectifier capacitor to charge when the amplitude of the amplifier's output is above the Vth of the signal diode. The resistor capacitor combo acts as a low pass filter in regards to the duration of the signal. In order for the rectifier capacitor to charge, the output of the amplifier must continuously output an AC signal for a long enough duration. This technique blocks spurious background emissions that fall in passband of the amplifier that would cause a false positive if we only relied on the threshold FFT technique. Since, the treasure outputs a continuous AC signal, this will cause the rectifier capacitor to charge to a voltage far higher than what is possible from simple spurious background emission in our amplifiers passband. A treasure is then simply detected by looking for a voltage on the rectifier capacitor above a set threshold. 
+
+After a tresure is detected using this technique, only then do we utilize the FFT bin threshold technique described above to determine what frequency this particular treasure is. Here is a code snippet, note that `res` is the voltage on the rectifer capacitor and `getFreq()` utilizes the FFT to try to classify whether it is a 7, 12, or 17KHz treasure. 
+
+
+```c++
+if (res >= DETECT_THRESH) {
     Serial.print("Detection! freq: ");
      uint8_t freq = getFreq();
 
@@ -39,8 +66,7 @@ We began by using our circuit and code from lab 2 for detecting a 7kHz treasure.
   } else {
     Serial.println("No detection!");
 ```
-This snippet of code is the detection of a signal above the threshold and then the responding detection of different frequency treasures. 
-Useful hint: Despite losing some accuracy, the clock needs to be higher than 150kHz so that the each frequency will be in the range of the 128 bins. 
+
 
 See the video of our robot detecting the three distinct treasure frequencies [here](https://youtu.be/YPw5q0r0l5E)!
 
