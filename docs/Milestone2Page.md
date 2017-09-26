@@ -15,8 +15,17 @@ The entire team worked together on this milestone. Aaron, David, and Adam worked
 #### Materials
 * Wall sensors
 * Wood block
+* Resistors
+* Capacitors
+* Op amp
+* 2 9-volt batteries
+* IR Sensor
+* treasures
 
 #### Varying Treasure Frequencies
+We began by using our circuit and code from lab 2 for detecting a 7kHz treasure. We modified several values of the circuit so that we could have a band pass filter with a range of about 2kHz-20kHz. We then modified the code by adding a similar FFT to the code for our microphone. We made it so that an FFT was done on the output from the IR sensor, so that we could calculate the specific bin numbers of the 3 treasure values and distinguish them.
+
+See the video of our robot detecting the three distinct treasure frequencies [here]()!
 
 #### Wall Detection
 We began by testing both the short-range and the long-range wall sensors in order to determine which would be better for our robot in terms of how sensitive we would want to be in our wall detection. After determining that the short-range wall sensors would be better in the context of our maze (the long-range sensors reach their "peak" detection further away from the wall, and the detected values closer than that "peak" point are inaccurate), we tested our sensors again, this time to gauge a reasonable threshold at which to have our robot "register" the presence of a wall. For the purposes of this milestone, we used an external LED to indicate whether or not a wall is present. As shown in the code snippet below, when the analog input value from the wall sensor is above our measured threshold, the LED is turned on; when the input value is below the threshold, the LED is turned off.
