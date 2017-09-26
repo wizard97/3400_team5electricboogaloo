@@ -42,7 +42,7 @@ We began by using our circuit and code from lab 2 for detecting a 7kHz treasure.
 This snippet of code is the detection of a signal above the threshold and then the responding detection of different frequency treasures. 
 
 
-See the video of our robot detecting the three distinct treasure frequencies [here]()!
+See the video of our robot detecting the three distinct treasure frequencies [here](https://youtu.be/YPw5q0r0l5E)!
 
 #### Wall Detection
 We began by testing both the short-range and the long-range wall sensors in order to determine which would be better for our robot in terms of how sensitive we would want to be in our wall detection. After determining that the short-range wall sensors would be better in the context of our maze (the long-range sensors reach their "peak" detection further away from the wall, and the detected values closer than that "peak" point are inaccurate), we tested our sensors again, this time to gauge a reasonable threshold at which to have our robot "register" the presence of a wall. For the purposes of this milestone, we used an external LED to indicate whether or not a wall is present. As shown in the code snippet below, when the analog input value from the wall sensor is above our measured threshold, the LED is turned on; when the input value is below the threshold, the LED is turned off.
