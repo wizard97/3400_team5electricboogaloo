@@ -4,7 +4,7 @@
 The objective of this milestone was to add treasure detection for varying frequencies and wall detection to our robot. We implemented treasure detection for 12 and 17 kHz frequencies in addition to the 7 kHz detection that was implemented in [Lab 2](https://wizard97.github.io/3400_team5electricboogaloo/Lab2Page.html). For the wall detection, we implemented a total of three short-range sensors (left, right, and front).
 
 ### Work Distribution
-The entire team worked together on this milestone.
+The entire team worked together on this milestone. Aaron, David, and Adam worked primarily on the treasure detection, while Christina, Kelsey, and Rajiv worked primarily on the wall detection.
 
 ### Helpful Links
 * [Datasheet for the short-range infrared sensor](http://www.sharp-world.com/products/device/lineup/data/pdf/datasheet/gp2y0a41sk_e.pdf)
