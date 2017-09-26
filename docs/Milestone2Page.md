@@ -23,7 +23,24 @@ The entire team worked together on this milestone. Aaron, David, and Adam worked
 * treasures
 
 #### Varying Treasure Frequencies
-We began by using our circuit and code from lab 2 for detecting a 7kHz treasure. We modified several values of the circuit so that we could have a band pass filter with a range of about 2kHz-20kHz. We then modified the code by adding a similar FFT to the code for our microphone. We made it so that an FFT was done on the output from the IR sensor, so that we could calculate the specific bin numbers of the 3 treasure values and distinguish them.
+We began by using our circuit and code from lab 2 for detecting a 7kHz treasure. We modified several values of the circuit so that we could have a band pass filter with a range of about 2kHz-20kHz. We then modified the code by adding a similar FFT to the code for our microphone. We made it so that an FFT was done on the output from the IR sensor, so that we could calculate the specific bin numbers of the 3 treasure values and distinguish them. We used those bins to alter a frequency variable and based on the detection and change of the variable, the monitor will print the correct value of the different treasures.
+
+``` if (res >= DETECT_THRESH) {
+    Serial.print("Detection! freq: ");
+     uint8_t freq = getFreq();
+
+    if (freq == 17) {
+      Serial.println("17KHz");
+    } else if (freq == 12) {
+       Serial.println("12KHz");
+    } else {
+      Serial.println("7KHz");
+    }
+  } else {
+    Serial.println("No detection!");
+```
+This snippet of code is the detection of a signal above the threshold and then the responding detection of different frequency treasures. 
+
 
 See the video of our robot detecting the three distinct treasure frequencies [here]()!
 
