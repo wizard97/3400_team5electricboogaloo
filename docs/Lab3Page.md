@@ -10,14 +10,14 @@ We split our lab group into two, with Adam, David and Aaron working on the VGA d
 ### Lab Documentation
 
 #### Materials
--Arduino Uno
--FPGA DEO_nano
--Breadboard
--Resistors
--4 Push Buttons
--VGA Screen
--VGA Connector
--1 VGA Switch
+* Arduino Uno
+* FPGA DEO_nano
+* Breadboard
+* Resistors
+* 4 Push Buttons
+* VGA Screen
+* VGA Connector
+* 1 VGA Switch
 
 
 
@@ -29,6 +29,6 @@ To send information to the FPGA we intially began implementing a parallel bus to
 
 We then mapped a 64 by 64 grid to the screen with a resolution of 448 X 448. Using a megafunction of a 2 port ram called the frame buffer we were able to hold the current color for each pixel in our display in the onboard ram of the FPGA. This also allowed us to quickly read the correct color of a pixel when the VGA driver requested it and to updated the contents of the frame buffer whenever the a successful SPI transaction occured.
 
-
+At the end of the lab we used our UNO to generate a square pixel and maneuver it around the screen using 4 push buttons.
 
 #### Acoustic Team
