@@ -24,6 +24,7 @@ public:
   VGAGraphics(uint16_t x=240, uint16_t y=240)
   : Adafruit_GFX(x, y)
   {
+    ENABLE_CS();
     CS_HIGH();
   }
 
