@@ -38,7 +38,8 @@ We began by producing our square wave by toggling a GPIO pin at a frequency 440H
 
 (INSERT RELEVANT CODE SNIPPET HERE)
 
-The output to the oscilloscope looked like this: ![alt text](Lab3pics/square_wave.png)
+The output to the oscilloscope looked like this: 
+![alt text](Lab3pics/square_wave.png)
 
 When hooked up to the speakers, this square wave sounded like [this](https://www.youtube.com/watch?v=5FbqoMoR8Ew)
 
