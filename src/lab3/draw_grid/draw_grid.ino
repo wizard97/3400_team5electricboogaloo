@@ -1,4 +1,5 @@
 #include <SPI.h>
+#include <VGAGraphics.h>
 
 #define VGA_SS 10
 
