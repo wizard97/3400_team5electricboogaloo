@@ -33,9 +33,21 @@ At the end of the lab we used our UNO to generate a square pixel and maneuver it
 
 #### Acoustic Team
 
-We began by producing our square wave by toggling a GPIO pin at a frequency 440 Hz, the code can be seen here:
+##### Square Wave
+We began by producing our square wave by toggling a GPIO pin at a frequency 440Hz, which corresponds to the note "A", the code can be seen here:
 
 (INSERT RELEVANT CODE SNIPPET HERE)
 
-The output to the oscilloscope looked like this:
+The output to the oscilloscope looked like this: ![alt text](Lab3pics/square_wave.png)
+
+When hooked up to the speakers, this square wave sounded like [this](https://www.youtube.com/watch?v=5FbqoMoR8Ew)
+
+##### Tune using DAC
+Next, we generated a sin table in MatLab to generate the 8-bit binary numbers to be passed into the DAC, the code can be seen here:
+
+(INSERT RELEVANT CODE SNIPPET HERE)
+
+Then, we configured the pins to receive the proper bits from the sin table, resulting in the following output to the oscilloscope: ![alt text](Lab3pics/sdfdf.png)
+
+We repeated this process for two other frequencies, 554.37Hz (C#), and 493.88Hz (B). Finally, we created a state machine to play each note for a half-second each to play the melody of [Mary Had a Little Lamb.](https://www.youtube.com/watch?v=XJbFZTgZO-0)
 
