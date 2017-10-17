@@ -1,8 +1,9 @@
 #include <SPI.h>
 
 #define VGA_SS 10
-#define XRES 120
-#define YRES 120
+
+#define XRES 240
+#define YRES 240
 
 // define pins for buttons to move block arround
 #define BUTTON_UP 3
@@ -20,10 +21,13 @@ void setup()
 {
   Serial.begin(115200);
   // set the slaveSelectPin as an output:
-  pinMode(VGA_SS, OUTPUT);
-  digitalWrite(VGA_SS, HIGH);
+  //pinMode(VGA_SS, OUTPUT);
+  DDRB |= B00000100; //set slave select output
+  //digitalWrite(VGA_SS, HIGH);
+  PORTB |= B00000100; // Set it high
   // initialize SPI:
   SPI.begin();
+  SPI.setClockDivider(SPI_CLOCK_DIV2); //faster 8mhz
 
   //init buttons, configure pull up
   /*
@@ -78,10 +82,15 @@ void loop()
  */
 void writePixel(uint8_t x, uint8_t y, uint8_t color) 
 {
-  digitalWrite(VGA_SS, LOW);
+  if (x >= XRES || y >= YRES)
+    return;
+    
+  //digitalWrite(VGA_SS, LOW);
+  PORTB &= ~B00000100; // This is faster!
   uint8_t data[] = {x, y, color};
   SPI.transfer(data, 3);
-  digitalWrite(VGA_SS, HIGH);
+  //digitalWrite(VGA_SS, HIGH);
+  PORTB |= B00000100;
 }
 
 
