@@ -1,8 +1,8 @@
 #include <SPI.h>
 
 #define VGA_SS 10
-#define XRES 64
-#define YRES 64
+#define XRES 120
+#define YRES 120
 
 // define pins for buttons to move block arround
 #define BUTTON_UP 3
@@ -37,66 +37,37 @@ void setup()
   pinMode(BUTTON_LEFT, INPUT);
   pinMode(BUTTON_RIGHT, INPUT);
 
-  //randScreen();
-
-  while(1) {
-    while(!digitalRead(BUTTON_UP));
-    randScreen();
-  }
+  clearScreen();
   
 }
-
+//64-36-
+//64-48=16
 void loop() 
 { 
-  static uint8_t b_x = 32;
-  static uint8_t b_y = 32;
-  static uint8_t color = BLOCK_COLOR;
-
-  uint8_t bup = digitalRead(BUTTON_UP);
-  uint8_t bdown = digitalRead(BUTTON_DOWN);
-  uint8_t bleft = digitalRead(BUTTON_LEFT);
-  uint8_t bright = digitalRead(BUTTON_RIGHT);
-
-  if (bup || bdown || bleft || bright) { 
-    if (bup && b_y < YRES) {
-       b_y +=1;
-    } if (bdown && b_y != 0) {
-      b_y -= 1;
-    } if (bleft && b_x != 0) {
-      b_x -= 1;
-    } if (bright && b_x < XRES) {
-      b_x += 1;
-    }
-    clearScreen();
-    writePixel(b_x, b_y, color);
+  /*
+  for (uint8_t i=0; i <= 5; i++) {
+    for (uint8_t j=10; j < 120; j++)
+      writePixel(10+20*i, j, 0xff);
   }
-  
-  //randScreen();
 
-  //writePixel(0, 0, 0b0000011);
 
-  // Change block color
-  while (Serial.available()) {
-    char c = Serial.read();
-
-    switch (c) {
-      case 'r':
-        color = genColor(7,0,0);
-        break;
-
-       case 'g':
-        color = genColor(0,7,0);
-        break;
-
-        case 'b':
-        color = genColor(0,0,3);
-        break;
-    }
+  for (uint8_t i=0; i <= 4; i++) {
+    for (uint8_t j=0; j < 120; j++)
+      writePixel(j, 20+20*i, 0xff);
   }
-  
-  
-
-  delay(100);
+*/
+/*
+  for (uint8_t i=0; i <= 5; i++) {
+    for (uint8_t j=0; j < 120; j++)
+      writePixel(10+20*i, j, 0xff);
+  }
+  */
+  writePixel(0, 0, 0xff);
+  writePixel(119, 0, 0xff);
+  writePixel(0, 119, 0xff);
+  writePixel(119, 119, 0xff);
+  //clearScreen();
+  delay(5000);
 }
 
 
