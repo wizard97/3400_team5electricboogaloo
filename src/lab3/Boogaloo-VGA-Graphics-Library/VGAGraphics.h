@@ -3,6 +3,7 @@
 
 #include "Adafruit_GFX.h"
 #include <Arduino.h>
+#include <SPI.h>
 
 #define VGA_SS 10
 
@@ -24,11 +25,20 @@ public:
   : Adafruit_GFX(x, y)
   {
     CS_HIGH();
+  }
+
+
+  // defer Spi.begin
+  void init()
+  {
+    CS_HIGH();
+    
     SPI.begin();
 #if defined (__AVR__) || (__avr__)
     SPI.setClockDivider(SPI_CLOCK_DIV2); //faster 8mhz
 #endif
   }
+
 
   virtual void drawPixel(int16_t x, int16_t y, uint16_t color) override
   {
