@@ -8,6 +8,7 @@ Rajiv Kommareddy (rrk64), Adam Macioszek (amm452), Kelsey Nedd (kan54), David Va
 
 * [Lab 1](Lab1page.md)
 * [Lab 2](Lab2Page.md)
+* [Lab 3](Lab3Page.md)
 
 ## Milestones
 * [Milestone 1](Milestone1Page.md)
