@@ -23,21 +23,21 @@ module DE0_NANO(
 	//SW,
 
 	//////////// GPIO_0, GPIO_0 connect to GPIO Default //////////
-	//GPIO_0_D,
+	GPIO_0_D,
 	//GPIO_0_IN,
 
 	//////////// GPIO_0, GPIO_1 connect to GPIO Default //////////
-	GPIO_1_D,
+	//GPIO_1_D,
 	//GPIO_1_IN,
 	
-	GPIO_2_IN,
-	GPIO_3_IN,
-	GPIO_4_IN,
-	GPIO_5_IN,
-	GPIO_6_IN,
-	GPIO_7_IN,
-	GPIO_8_IN,
-	GPIO_9_IN
+//	GPIO_2_IN,
+//	GPIO_3_IN,
+//	GPIO_4_IN,
+//	GPIO_5_IN,
+//	GPIO_6_IN,
+//	GPIO_7_IN,
+//	GPIO_8_IN,
+//	GPIO_9_IN
 );
 
 	  //=======================================================
@@ -63,21 +63,21 @@ module DE0_NANO(
 	 //input 		     [3:0]		SW;
 
 	 //////////// GPIO_0, GPIO_0 connect to GPIO Default //////////
-	 //inout 		    [33:0]		GPIO_0_D;
+	 inout 		    [33:0]		GPIO_0_D;
 	 //input 		     [1:0]		GPIO_0_IN;
 
 	 //////////// GPIO_0, GPIO_1 connect to GPIO Default //////////
-	 inout 		    [33:0]		GPIO_1_D;
+	 //inout 		    [33:0]		GPIO_1_D;
 	 //input 		     [1:0]		GPIO_1_IN;
 	 
-	 input			  [1:0]		GPIO_2_IN;
-	 input			  [1:0]		GPIO_3_IN;
-	 input			  [1:0]		GPIO_4_IN;
-	 input			  [1:0]		GPIO_5_IN;
-	 input			  [1:0]		GPIO_6_IN;
-	 input			  [1:0]		GPIO_7_IN;
-	 input			  [1:0]		GPIO_8_IN;
-	 input			  [1:0]		GPIO_9_IN;
+//	 input			  [1:0]		GPIO_2_IN;
+//	 input			  [1:0]		GPIO_3_IN;
+//	 input			  [1:0]		GPIO_4_IN;
+//	 input			  [1:0]		GPIO_5_IN;
+//	 input			  [1:0]		GPIO_6_IN;
+//	 input			  [1:0]		GPIO_7_IN;
+//	 input			  [1:0]		GPIO_8_IN;
+//	 input			  [1:0]		GPIO_9_IN;
 
     //=======================================================
 
@@ -94,10 +94,9 @@ module DE0_NANO(
 //	 reg [24:0] led_counter; // timer to keep track of when to toggle LED
 //	 reg 			led_state;   // 1 is on, 0 is off
 
-		reg [15:0] counter;
+		reg  [6:0] counter;
 		reg  [9:0] addr;
 		wire [7:0] q;
-		reg  [7:0] sine_wave;
 //	 
     // Module outputs coordinates of next pixel to be written onto screen
 //    VGA_DRIVER driver(
@@ -114,13 +113,20 @@ module DE0_NANO(
 
 		SINE_ROM sine_table(
 			.addr(addr),
-			.clk(clk),
+			.clk(CLOCK_25),
 			.q(q)
 		);
 		
-		assign GPIO_1_D[0] = sine_wave;
+		assign GPIO_0_D[0] = q[0];
+		assign GPIO_0_D[1] = q[1];
+		assign GPIO_0_D[2] = q[2];
+		assign GPIO_0_D[3] = q[3];
+		assign GPIO_0_D[4] = q[4];
+		assign GPIO_0_D[5] = q[5];
+		assign GPIO_0_D[6] = q[6];
+		assign GPIO_0_D[7] = q[7];
 		
-//	 assign reset = ~KEY[0]; // reset when KEY0 is pressed
+	 assign reset = ~KEY[0]; // reset when KEY0 is pressed
 //	 
 //	 assign PIXEL_COLOR = 8'b000_111_00; // Green
 //	 assign LED[0] = led_state;
@@ -139,13 +145,16 @@ module DE0_NANO(
 		  if (reset) begin
 				counter   <= 90;
 				addr      <= 0;
-				sine_wave <= q;
 		  end
 		  
 		  else if (counter == 0) begin
 				counter   <= 90;
-				addr      <= addr + 1;
-				sine_wave <= q;
+				if (addr == 632) begin
+					addr <= 0;
+				end
+				else begin
+					addr      <= addr + 1;
+				end
 		  end
 		  /*if (led_counter == ONE_SEC) begin
 				led_state   <= ~led_state;
