@@ -19,7 +19,10 @@ module VGA_DRIVER (
 	PIXEL_Y,
 	PIXEL_COLOR_OUT,
 	H_SYNC_NEG,
-	V_SYNC_NEG
+	V_SYNC_NEG,
+	// Added:
+	PIXEL_X_NEXT,
+	PIXEL_Y_NEXT
 );
 
 /******
@@ -36,6 +39,10 @@ output [9:0] PIXEL_Y; //VERTICLE POSITION OF THE NEXT PIXEL;
 output [7:0] PIXEL_COLOR_OUT; //COLOR TO BE DISPLAYED
 output       H_SYNC_NEG; //THE REVERSE POLARITY HORIZONTAL SYNC SIGNAL
 output       V_SYNC_NEG; //THE REVERSE POLARITY VERTICAL SYNC SIGNAL
+
+//next
+output reg [9:0] PIXEL_X_NEXT; //HORIZONTAL POSITION OF THE NEXT PIXEL;
+output reg [9:0] PIXEL_Y_NEXT; //VERTICLE POSITION OF THE NEXT PIXEL;
 
 /****************************
 * MEMORY AND INTERNAL WIRES *
@@ -74,6 +81,25 @@ always @(posedge CLOCK) begin
 	else begin
 		pixel_count <= pixel_count + 1;
 		line_count <= line_count;
+	end
+	
+	// Added for next state
+	if (RESET) begin
+		PIXEL_X_NEXT <= 10'b1;
+		PIXEL_Y_NEXT <= 10'b0;
+	end
+	else if (pixel_count+1 == (`TOTAL_SCREEN_WIDTH-1)) begin
+		PIXEL_X_NEXT <= 0;
+		if (line_count == (`TOTAL_SCREEN_HEIGHT-1)) begin
+		PIXEL_Y_NEXT <= 0;
+		end 
+		else begin
+		PIXEL_Y_NEXT <= line_count + 1;
+		end
+	end 
+	else begin
+		PIXEL_X_NEXT <= pixel_count + 1 + 1;
+		PIXEL_Y_NEXT <= line_count;
 	end
 end
 

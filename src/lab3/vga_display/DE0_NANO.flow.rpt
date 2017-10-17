@@ -1,5 +1,5 @@
 Flow report for DE0_NANO
-Sun Oct 15 03:53:48 2017
+Mon Oct 16 20:35:37 2017
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -41,20 +41,20 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Sun Oct 15 03:53:46 2017       ;
+; Flow Status                        ; Successful - Mon Oct 16 20:35:35 2017       ;
 ; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; DE0_NANO                                    ;
 ; Top-level Entity Name              ; DE0_NANO                                    ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE22F17C6                                ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 244 / 22,320 ( 1 % )                        ;
-;     Total combinational functions  ; 240 / 22,320 ( 1 % )                        ;
-;     Dedicated logic registers      ; 98 / 22,320 ( < 1 % )                       ;
-; Total registers                    ; 98                                          ;
+; Total logic elements               ; 338 / 22,320 ( 2 % )                        ;
+;     Total combinational functions  ; 334 / 22,320 ( 1 % )                        ;
+;     Dedicated logic registers      ; 128 / 22,320 ( < 1 % )                      ;
+; Total registers                    ; 128                                         ;
 ; Total pins                         ; 87 / 154 ( 56 % )                           ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 32,768 / 608,256 ( 5 % )                    ;
+; Total memory bits                  ; 524,288 / 608,256 ( 86 % )                  ;
 ; Embedded Multiplier 9-bit elements ; 0 / 132 ( 0 % )                             ;
 ; Total PLLs                         ; 0 / 4 ( 0 % )                               ;
 +------------------------------------+---------------------------------------------+
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/15/2017 03:53:29 ;
+; Start date & time ; 10/16/2017 20:35:18 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DE0_NANO            ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 163683358063678.150806480910360        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 163683358063678.150821131814252        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -92,10 +92,10 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:10     ; 1.0                     ; 658 MB              ; 00:00:21                           ;
-; Fitter                    ; 00:00:04     ; 1.0                     ; 1398 MB             ; 00:00:05                           ;
-; Assembler                 ; 00:00:01     ; 1.0                     ; 562 MB              ; 00:00:01                           ;
-; TimeQuest Timing Analyzer ; 00:00:01     ; 1.0                     ; 677 MB              ; 00:00:01                           ;
+; Analysis & Synthesis      ; 00:00:10     ; 1.0                     ; 664 MB              ; 00:00:19                           ;
+; Fitter                    ; 00:00:04     ; 1.0                     ; 1413 MB             ; 00:00:06                           ;
+; Assembler                 ; 00:00:01     ; 1.0                     ; 568 MB              ; 00:00:01                           ;
+; TimeQuest Timing Analyzer ; 00:00:01     ; 1.1                     ; 684 MB              ; 00:00:02                           ;
 ; Total                     ; 00:00:16     ; --                      ; --                  ; 00:00:28                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 

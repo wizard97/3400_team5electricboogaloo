@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE0_NANO
-Sun Oct 15 03:53:39 2017
+Mon Oct 16 20:35:27 2017
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -14,11 +14,11 @@ Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis RAM Summary
-  9. General Register Statistics
- 10. Multiplexer Restructuring Statistics (Restructuring Performed)
- 11. Source assignments for VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_6ep1:auto_generated
- 12. Parameter Settings for User Entity Instance: VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component
- 13. Parameter Settings for Inferred Entity Instance: lpm_divide:Div0
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Source assignments for VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_qhp1:auto_generated
+ 13. Parameter Settings for User Entity Instance: VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component
  14. altsyncram Parameter Settings by Entity Instance
  15. Port Connectivity Checks: "spi_slave:arduino"
  16. Post-Synthesis Netlist Statistics for Top Partition
@@ -50,18 +50,18 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Oct 15 03:53:39 2017       ;
+; Analysis & Synthesis Status        ; Successful - Mon Oct 16 20:35:27 2017       ;
 ; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; DE0_NANO                                    ;
 ; Top-level Entity Name              ; DE0_NANO                                    ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 244                                         ;
-;     Total combinational functions  ; 240                                         ;
-;     Dedicated logic registers      ; 98                                          ;
-; Total registers                    ; 98                                          ;
+; Total logic elements               ; 341                                         ;
+;     Total combinational functions  ; 334                                         ;
+;     Dedicated logic registers      ; 128                                         ;
+; Total registers                    ; 128                                         ;
 ; Total pins                         ; 87                                          ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 32,768                                      ;
+; Total memory bits                  ; 524,288                                     ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
 ; Total PLLs                         ; 0                                           ;
 +------------------------------------+---------------------------------------------+
@@ -170,34 +170,28 @@ agreement for further details.
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                          ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                      ; Library ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------+---------+
-; VGA_FRAMEBUFFER.v                ; yes             ; User Wizard-Generated File   ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/VGA_FRAMEBUFFER.v          ;         ;
-; SPI_SLAVE.v                      ; yes             ; User Verilog HDL File        ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/SPI_SLAVE.v                ;         ;
-; VGA_DRIVER.v                     ; yes             ; User Verilog HDL File        ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/VGA_DRIVER.v               ;         ;
-; DE0_NANO.v                       ; yes             ; User Verilog HDL File        ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v                 ;         ;
-; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altsyncram.tdf                                             ;         ;
-; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/stratix_ram_block.inc                                      ;         ;
-; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/lpm_mux.inc                                                ;         ;
-; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/lpm_decode.inc                                             ;         ;
-; aglobal170.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/aglobal170.inc                                             ;         ;
-; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/a_rdenreg.inc                                              ;         ;
-; altrom.inc                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altrom.inc                                                 ;         ;
-; altram.inc                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altram.inc                                                 ;         ;
-; altdpram.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altdpram.inc                                               ;         ;
-; db/altsyncram_6ep1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/altsyncram_6ep1.tdf     ;         ;
-; lpm_divide.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/lpm_divide.tdf                                             ;         ;
-; abs_divider.inc                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/abs_divider.inc                                            ;         ;
-; sign_div_unsign.inc              ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/sign_div_unsign.inc                                        ;         ;
-; db/lpm_divide_rim.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/lpm_divide_rim.tdf      ;         ;
-; db/sign_div_unsign_jlh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/sign_div_unsign_jlh.tdf ;         ;
-; db/alt_u_div_q6f.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/alt_u_div_q6f.tdf       ;         ;
-; db/add_sub_7pc.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/add_sub_7pc.tdf         ;         ;
-; db/add_sub_8pc.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/add_sub_8pc.tdf         ;         ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                      ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                  ; Library ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------------+---------+
+; VGA_FRAMEBUFFER.v                ; yes             ; User Wizard-Generated File   ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/VGA_FRAMEBUFFER.v      ;         ;
+; SPI_SLAVE.v                      ; yes             ; User Verilog HDL File        ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/SPI_SLAVE.v            ;         ;
+; VGA_DRIVER.v                     ; yes             ; User Verilog HDL File        ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/VGA_DRIVER.v           ;         ;
+; DE0_NANO.v                       ; yes             ; User Verilog HDL File        ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v             ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altsyncram.tdf                                         ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/stratix_ram_block.inc                                  ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/lpm_mux.inc                                            ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/lpm_decode.inc                                         ;         ;
+; aglobal170.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/aglobal170.inc                                         ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/a_rdenreg.inc                                          ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altrom.inc                                             ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altram.inc                                             ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altdpram.inc                                           ;         ;
+; db/altsyncram_qhp1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/altsyncram_qhp1.tdf ;         ;
+; db/decode_rsa.tdf                ; yes             ; Auto-Generated Megafunction  ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/decode_rsa.tdf      ;         ;
+; db/mux_bnb.tdf                   ; yes             ; Auto-Generated Megafunction  ; C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/mux_bnb.tdf         ;         ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------------+---------+
 
 
 +--------------------------------------------------------+
@@ -205,60 +199,69 @@ agreement for further details.
 +---------------------------------------------+----------+
 ; Resource                                    ; Usage    ;
 +---------------------------------------------+----------+
-; Estimated Total logic elements              ; 244      ;
+; Estimated Total logic elements              ; 341      ;
 ;                                             ;          ;
-; Total combinational functions               ; 240      ;
+; Total combinational functions               ; 334      ;
 ; Logic element usage by number of LUT inputs ;          ;
-;     -- 4 input functions                    ; 74       ;
-;     -- 3 input functions                    ; 31       ;
-;     -- <=2 input functions                  ; 135      ;
+;     -- 4 input functions                    ; 103      ;
+;     -- 3 input functions                    ; 67       ;
+;     -- <=2 input functions                  ; 164      ;
 ;                                             ;          ;
 ; Logic elements by mode                      ;          ;
-;     -- normal mode                          ; 159      ;
-;     -- arithmetic mode                      ; 81       ;
+;     -- normal mode                          ; 219      ;
+;     -- arithmetic mode                      ; 115      ;
 ;                                             ;          ;
-; Total registers                             ; 98       ;
-;     -- Dedicated logic registers            ; 98       ;
+; Total registers                             ; 128      ;
+;     -- Dedicated logic registers            ; 128      ;
 ;     -- I/O registers                        ; 0        ;
 ;                                             ;          ;
 ; I/O pins                                    ; 87       ;
-; Total memory bits                           ; 32768    ;
+; Total memory bits                           ; 524288   ;
 ;                                             ;          ;
 ; Embedded Multiplier 9-bit elements          ; 0        ;
 ;                                             ;          ;
 ; Maximum fan-out node                        ; CLOCK_25 ;
-; Maximum fan-out                             ; 106      ;
-; Total fan-out                               ; 1297     ;
-; Average fan-out                             ; 2.21     ;
+; Maximum fan-out                             ; 192      ;
+; Total fan-out                               ; 3288     ;
+; Average fan-out                             ; 4.28     ;
 +---------------------------------------------+----------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                   ;
-+-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                       ; Entity Name         ; Library Name ;
-+-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |DE0_NANO                                 ; 240 (66)            ; 98 (27)                   ; 32768       ; 0            ; 0       ; 0         ; 87   ; 0            ; |DE0_NANO                                                                                                 ; DE0_NANO            ; work         ;
-;    |VGA_DRIVER:driver|                    ; 42 (42)             ; 20 (20)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|VGA_DRIVER:driver                                                                               ; VGA_DRIVER          ; work         ;
-;    |VGA_FRAMEBUFFER:framebuf|             ; 0 (0)               ; 0 (0)                     ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|VGA_FRAMEBUFFER:framebuf                                                                        ; VGA_FRAMEBUFFER     ; work         ;
-;       |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component                                        ; altsyncram          ; work         ;
-;          |altsyncram_6ep1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_6ep1:auto_generated         ; altsyncram_6ep1     ; work         ;
-;    |lpm_divide:Div0|                      ; 79 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|lpm_divide:Div0                                                                                 ; lpm_divide          ; work         ;
-;       |lpm_divide_rim:auto_generated|     ; 79 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|lpm_divide:Div0|lpm_divide_rim:auto_generated                                                   ; lpm_divide_rim      ; work         ;
-;          |sign_div_unsign_jlh:divider|    ; 79 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|lpm_divide:Div0|lpm_divide_rim:auto_generated|sign_div_unsign_jlh:divider                       ; sign_div_unsign_jlh ; work         ;
-;             |alt_u_div_q6f:divider|       ; 79 (79)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|lpm_divide:Div0|lpm_divide_rim:auto_generated|sign_div_unsign_jlh:divider|alt_u_div_q6f:divider ; alt_u_div_q6f       ; work         ;
-;    |spi_slave:arduino|                    ; 53 (53)             ; 51 (51)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|spi_slave:arduino                                                                               ; spi_slave           ; work         ;
-+-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------+---------------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                          ;
++-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                  ; Entity Name     ; Library Name ;
++-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; |DE0_NANO                                 ; 334 (147)           ; 128 (27)                  ; 524288      ; 0            ; 0       ; 0         ; 87   ; 0            ; |DE0_NANO                                                                                                            ; DE0_NANO        ; work         ;
+;    |VGA_DRIVER:driver|                    ; 78 (78)             ; 38 (38)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|VGA_DRIVER:driver                                                                                          ; VGA_DRIVER      ; work         ;
+;    |VGA_FRAMEBUFFER:framebuf|             ; 50 (0)              ; 6 (0)                     ; 524288      ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|VGA_FRAMEBUFFER:framebuf                                                                                   ; VGA_FRAMEBUFFER ; work         ;
+;       |altsyncram:altsyncram_component|   ; 50 (0)              ; 6 (0)                     ; 524288      ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component                                                   ; altsyncram      ; work         ;
+;          |altsyncram_qhp1:auto_generated| ; 50 (0)              ; 6 (6)                     ; 524288      ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_qhp1:auto_generated                    ; altsyncram_qhp1 ; work         ;
+;             |decode_rsa:decode2|          ; 10 (10)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_qhp1:auto_generated|decode_rsa:decode2 ; decode_rsa      ; work         ;
+;             |mux_bnb:mux3|                ; 40 (40)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_qhp1:auto_generated|mux_bnb:mux3       ; mux_bnb         ; work         ;
+;    |spi_slave:arduino|                    ; 59 (59)             ; 57 (57)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |DE0_NANO|spi_slave:arduino                                                                                          ; spi_slave       ; work         ;
++-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------+-----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis RAM Summary                                                                                                                                                                        ;
-+----------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
-; Name                                                                                               ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF  ;
-+----------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
-; VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_6ep1:auto_generated|ALTSYNCRAM ; M9K  ; Simple Dual Port ; 4096         ; 8            ; 4096         ; 8            ; 32768 ; None ;
-+----------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                         ;
++----------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
+; Name                                                                                               ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size   ; MIF  ;
++----------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
+; VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_qhp1:auto_generated|ALTSYNCRAM ; M9K  ; Simple Dual Port ; 65536        ; 8            ; 65536        ; 8            ; 524288 ; None ;
++----------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
+
+
++------------------------------------------------------------+
+; Registers Removed During Synthesis                         ;
++---------------------------------------+--------------------+
+; Register name                         ; Reason for Removal ;
++---------------------------------------+--------------------+
+; VGA_DRIVER:driver|PIXEL_X_NEXT[0]     ; Lost fanout        ;
+; VGA_DRIVER:driver|PIXEL_Y_NEXT[0]     ; Lost fanout        ;
+; Total Number of Removed Registers = 2 ;                    ;
++---------------------------------------+--------------------+
 
 
 +------------------------------------------------------+
@@ -266,12 +269,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 98    ;
-; Number of registers using Synchronous Clear  ; 26    ;
+; Total registers                              ; 128   ;
+; Number of registers using Synchronous Clear  ; 24    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 56    ;
+; Number of registers using Clock Enable       ; 61    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -281,17 +284,19 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                     ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |DE0_NANO|VGA_DRIVER:driver|line_count[4]      ;
 ; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE0_NANO|VGA_DRIVER:driver|pixel_count[5]     ;
-; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |DE0_NANO|spi_slave:arduino|dout_q[20]         ;
-; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |DE0_NANO|VGA_DRIVER:driver|line_count[1]      ;
-; 4:1                ; 21 bits   ; 42 LEs        ; 21 LEs               ; 21 LEs                 ; Yes        ; |DE0_NANO|spi_slave:arduino|data_q[14]         ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |DE0_NANO|spi_slave:arduino|dout_q[18]         ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |DE0_NANO|VGA_DRIVER:driver|PIXEL_X_NEXT[9]    ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; Yes        ; |DE0_NANO|VGA_DRIVER:driver|PIXEL_Y_NEXT[7]    ;
 ; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE0_NANO|spi_slave:arduino|bit_ct_q[1]        ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |DE0_NANO|VGA_DRIVER:driver|PIXEL_COLOR_OUT[6] ;
+; 4:1                ; 23 bits   ; 46 LEs        ; 23 LEs               ; 23 LEs                 ; Yes        ; |DE0_NANO|spi_slave:arduino|data_q[5]          ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE0_NANO|VGA_DRIVER:driver|PIXEL_COLOR_OUT[4] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------+
-; Source assignments for VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_6ep1:auto_generated ;
+; Source assignments for VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_qhp1:auto_generated ;
 +---------------------------------+--------------------+------+--------------------------------------------------+
 ; Assignment                      ; Value              ; From ; To                                               ;
 +---------------------------------+--------------------+------+--------------------------------------------------+
@@ -312,8 +317,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; WIDTH_BYTEENA                      ; 1                    ; Untyped                                   ;
 ; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                   ;
 ; WIDTH_A                            ; 8                    ; Signed Integer                            ;
-; WIDTHAD_A                          ; 12                   ; Signed Integer                            ;
-; NUMWORDS_A                         ; 4096                 ; Signed Integer                            ;
+; WIDTHAD_A                          ; 16                   ; Signed Integer                            ;
+; NUMWORDS_A                         ; 65536                ; Signed Integer                            ;
 ; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                   ;
 ; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                   ;
 ; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                   ;
@@ -321,8 +326,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; INDATA_ACLR_A                      ; NONE                 ; Untyped                                   ;
 ; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                   ;
 ; WIDTH_B                            ; 8                    ; Signed Integer                            ;
-; WIDTHAD_B                          ; 12                   ; Signed Integer                            ;
-; NUMWORDS_B                         ; 4096                 ; Signed Integer                            ;
+; WIDTHAD_B                          ; 16                   ; Signed Integer                            ;
+; NUMWORDS_B                         ; 65536                ; Signed Integer                            ;
 ; INDATA_REG_B                       ; CLOCK1               ; Untyped                                   ;
 ; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                   ;
 ; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                   ;
@@ -355,31 +360,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                   ;
 ; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                   ;
 ; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                                   ;
-; CBXI_PARAMETER                     ; altsyncram_6ep1      ; Untyped                                   ;
+; CBXI_PARAMETER                     ; altsyncram_qhp1      ; Untyped                                   ;
 +------------------------------------+----------------------+-------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: lpm_divide:Div0 ;
-+------------------------+----------------+------------------------+
-; Parameter Name         ; Value          ; Type                   ;
-+------------------------+----------------+------------------------+
-; LPM_WIDTHN             ; 10             ; Untyped                ;
-; LPM_WIDTHD             ; 3              ; Untyped                ;
-; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                ;
-; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                ;
-; LPM_PIPELINE           ; 0              ; Untyped                ;
-; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                ;
-; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
-; CBXI_PARAMETER         ; lpm_divide_rim ; Untyped                ;
-; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
-; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
-; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
-; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
-; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
-; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
-+------------------------+----------------+------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -392,10 +374,10 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Entity Instance                           ; VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component ;
 ;     -- OPERATION_MODE                     ; DUAL_PORT                                                ;
 ;     -- WIDTH_A                            ; 8                                                        ;
-;     -- NUMWORDS_A                         ; 4096                                                     ;
+;     -- NUMWORDS_A                         ; 65536                                                    ;
 ;     -- OUTDATA_REG_A                      ; UNREGISTERED                                             ;
 ;     -- WIDTH_B                            ; 8                                                        ;
-;     -- NUMWORDS_B                         ; 4096                                                     ;
+;     -- NUMWORDS_B                         ; 65536                                                    ;
 ;     -- ADDRESS_REG_B                      ; CLOCK0                                                   ;
 ;     -- OUTDATA_REG_B                      ; CLOCK0                                                   ;
 ;     -- RAM_BLOCK_TYPE                     ; M9K                                                      ;
@@ -403,17 +385,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------------------+----------------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "spi_slave:arduino"                                                                                                                                                                         ;
-+--------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port         ; Type   ; Severity ; Details                                                                                                                                                                            ;
-+--------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; miso         ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                ;
-; din          ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (24 bits) it drives.  The 8 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
-; din[23..0]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; dout[23..22] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                ;
-; dout[15..14] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                ;
-+--------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "spi_slave:arduino"                                                                                                                                                                       ;
++------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                                                                                                                            ;
++------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; miso       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                ;
+; din        ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (24 bits) it drives.  The 8 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; din[23..0] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                       ;
++------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -422,26 +402,27 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 87                          ;
-; cycloneiii_ff         ; 98                          ;
-;     ENA               ; 41                          ;
-;     ENA SCLR          ; 15                          ;
-;     SCLR              ; 11                          ;
-;     plain             ; 31                          ;
+; cycloneiii_ff         ; 128                         ;
+;     ENA               ; 56                          ;
+;     ENA SCLR          ; 5                           ;
+;     SCLR              ; 19                          ;
+;     plain             ; 48                          ;
 ; cycloneiii_io_obuf    ; 68                          ;
-; cycloneiii_lcell_comb ; 241                         ;
-;     arith             ; 81                          ;
-;         2 data inputs ; 56                          ;
-;         3 data inputs ; 25                          ;
-;     normal            ; 160                         ;
-;         0 data inputs ; 9                           ;
-;         1 data inputs ; 6                           ;
-;         2 data inputs ; 65                          ;
-;         3 data inputs ; 6                           ;
-;         4 data inputs ; 74                          ;
-; cycloneiii_ram_block  ; 8                           ;
+; cycloneiii_lcell_comb ; 335                         ;
+;     arith             ; 115                         ;
+;         1 data inputs ; 2                           ;
+;         2 data inputs ; 84                          ;
+;         3 data inputs ; 29                          ;
+;     normal            ; 220                         ;
+;         0 data inputs ; 4                           ;
+;         1 data inputs ; 8                           ;
+;         2 data inputs ; 67                          ;
+;         3 data inputs ; 38                          ;
+;         4 data inputs ; 103                         ;
+; cycloneiii_ram_block  ; 64                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 19.90                       ;
-; Average LUT depth     ; 6.07                        ;
+; Max LUT depth         ; 6.30                        ;
+; Average LUT depth     ; 3.11                        ;
 +-----------------------+-----------------------------+
 
 
@@ -460,7 +441,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Sun Oct 15 03:53:29 2017
+    Info: Processing started: Mon Oct 16 20:35:17 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE0_NANO -c DE0_NANO
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -474,14 +455,17 @@ Warning (10238): Verilog Module Declaration warning at DE0_NANO.v(32): ignored a
 Info (12021): Found 1 design units, including 1 entities, in source file de0_nano.v
     Info (12023): Found entity 1: DE0_NANO File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 11
 Info (12127): Elaborating entity "DE0_NANO" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at DE0_NANO.v(116): truncated value with size 32 to match size of target (12) File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 116
-Warning (10230): Verilog HDL assignment warning at DE0_NANO.v(127): truncated value with size 32 to match size of target (12) File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 127
+Warning (10230): Verilog HDL assignment warning at DE0_NANO.v(132): truncated value with size 32 to match size of target (16) File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 132
+Warning (10230): Verilog HDL assignment warning at DE0_NANO.v(141): truncated value with size 32 to match size of target (16) File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 141
+Warning (10230): Verilog HDL assignment warning at DE0_NANO.v(145): truncated value with size 32 to match size of target (8) File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 145
 Warning (10034): Output port "LED[7..1]" at DE0_NANO.v(48) has no driver File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 48
-Info (12128): Elaborating entity "VGA_DRIVER" for hierarchy "VGA_DRIVER:driver" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 87
-Warning (10230): Verilog HDL assignment warning at VGA_DRIVER.v(71): truncated value with size 32 to match size of target (10) File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/VGA_DRIVER.v Line: 71
-Warning (10230): Verilog HDL assignment warning at VGA_DRIVER.v(75): truncated value with size 32 to match size of target (10) File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/VGA_DRIVER.v Line: 75
-Info (12128): Elaborating entity "spi_slave" for hierarchy "spi_slave:arduino" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 107
-Info (12128): Elaborating entity "VGA_FRAMEBUFFER" for hierarchy "VGA_FRAMEBUFFER:framebuf" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 143
+Info (12128): Elaborating entity "VGA_DRIVER" for hierarchy "VGA_DRIVER:driver" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 101
+Warning (10230): Verilog HDL assignment warning at VGA_DRIVER.v(78): truncated value with size 32 to match size of target (10) File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/VGA_DRIVER.v Line: 78
+Warning (10230): Verilog HDL assignment warning at VGA_DRIVER.v(82): truncated value with size 32 to match size of target (10) File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/VGA_DRIVER.v Line: 82
+Warning (10230): Verilog HDL assignment warning at VGA_DRIVER.v(97): truncated value with size 32 to match size of target (10) File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/VGA_DRIVER.v Line: 97
+Warning (10230): Verilog HDL assignment warning at VGA_DRIVER.v(101): truncated value with size 32 to match size of target (10) File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/VGA_DRIVER.v Line: 101
+Info (12128): Elaborating entity "spi_slave" for hierarchy "spi_slave:arduino" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 120
+Info (12128): Elaborating entity "VGA_FRAMEBUFFER" for hierarchy "VGA_FRAMEBUFFER:framebuf" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 176
 Info (12128): Elaborating entity "altsyncram" for hierarchy "VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/VGA_FRAMEBUFFER.v Line: 89
 Info (12130): Elaborated megafunction instantiation "VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/VGA_FRAMEBUFFER.v Line: 89
 Info (12133): Instantiated megafunction "VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/VGA_FRAMEBUFFER.v Line: 89
@@ -492,40 +476,28 @@ Info (12133): Instantiated megafunction "VGA_FRAMEBUFFER:framebuf|altsyncram:alt
     Info (12134): Parameter "clock_enable_output_b" = "BYPASS"
     Info (12134): Parameter "intended_device_family" = "Cyclone IV E"
     Info (12134): Parameter "lpm_type" = "altsyncram"
-    Info (12134): Parameter "numwords_a" = "4096"
-    Info (12134): Parameter "numwords_b" = "4096"
+    Info (12134): Parameter "numwords_a" = "65536"
+    Info (12134): Parameter "numwords_b" = "65536"
     Info (12134): Parameter "operation_mode" = "DUAL_PORT"
     Info (12134): Parameter "outdata_aclr_b" = "NONE"
     Info (12134): Parameter "outdata_reg_b" = "CLOCK0"
     Info (12134): Parameter "power_up_uninitialized" = "FALSE"
     Info (12134): Parameter "ram_block_type" = "M9K"
     Info (12134): Parameter "read_during_write_mode_mixed_ports" = "OLD_DATA"
-    Info (12134): Parameter "widthad_a" = "12"
-    Info (12134): Parameter "widthad_b" = "12"
+    Info (12134): Parameter "widthad_a" = "16"
+    Info (12134): Parameter "widthad_b" = "16"
     Info (12134): Parameter "width_a" = "8"
     Info (12134): Parameter "width_b" = "8"
     Info (12134): Parameter "width_byteena_a" = "1"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_6ep1.tdf
-    Info (12023): Found entity 1: altsyncram_6ep1 File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/altsyncram_6ep1.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_6ep1" for hierarchy "VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_6ep1:auto_generated" File: c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (278001): Inferred 1 megafunctions from design logic
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div0" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 127
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Div0" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 127
-Info (12133): Instantiated megafunction "lpm_divide:Div0" with the following parameter: File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 127
-    Info (12134): Parameter "LPM_WIDTHN" = "10"
-    Info (12134): Parameter "LPM_WIDTHD" = "3"
-    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
-    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_rim.tdf
-    Info (12023): Found entity 1: lpm_divide_rim File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/lpm_divide_rim.tdf Line: 25
-Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_jlh.tdf
-    Info (12023): Found entity 1: sign_div_unsign_jlh File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/sign_div_unsign_jlh.tdf Line: 25
-Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_q6f.tdf
-    Info (12023): Found entity 1: alt_u_div_q6f File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/alt_u_div_q6f.tdf Line: 27
-Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_7pc.tdf
-    Info (12023): Found entity 1: add_sub_7pc File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/add_sub_7pc.tdf Line: 23
-Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_8pc.tdf
-    Info (12023): Found entity 1: add_sub_8pc File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/add_sub_8pc.tdf Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_qhp1.tdf
+    Info (12023): Found entity 1: altsyncram_qhp1 File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/altsyncram_qhp1.tdf Line: 32
+Info (12128): Elaborating entity "altsyncram_qhp1" for hierarchy "VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_qhp1:auto_generated" File: c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_rsa.tdf
+    Info (12023): Found entity 1: decode_rsa File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/decode_rsa.tdf Line: 23
+Info (12128): Elaborating entity "decode_rsa" for hierarchy "VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_qhp1:auto_generated|decode_rsa:decode2" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/altsyncram_qhp1.tdf Line: 44
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_bnb.tdf
+    Info (12023): Found entity 1: mux_bnb File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/mux_bnb.tdf Line: 23
+Info (12128): Elaborating entity "mux_bnb" for hierarchy "VGA_FRAMEBUFFER:framebuf|altsyncram:altsyncram_component|altsyncram_qhp1:auto_generated|mux_bnb:mux3" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/db/altsyncram_qhp1.tdf Line: 45
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13034): The following nodes have both tri-state and non-tri-state drivers
     Warning (13035): Inserted always-enabled tri-state buffer between "GPIO_0_D[5]" and its non-tri-state driver. File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 57
@@ -617,6 +589,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LED[6]" is stuck at GND File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 48
     Warning (13410): Pin "LED[7]" is stuck at GND File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 48
 Info (286030): Timing-Driven Synthesis is running
+Info (17049): 2 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 9 input pin(s) that do not drive logic
@@ -629,16 +602,16 @@ Warning (21074): Design contains 9 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "GPIO_0_IN[1]" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 58
     Warning (15610): No output dependent on input pin "GPIO_1_IN[0]" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 62
     Warning (15610): No output dependent on input pin "GPIO_1_IN[1]" File: C:/Users/Aaron Wisner/Documents/GitHub/3400_team5electricboogaloo/src/lab3/vga_display/DE0_NANO.v Line: 62
-Info (21057): Implemented 339 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 492 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 11 input pins
     Info (21059): Implemented 8 output pins
     Info (21060): Implemented 68 bidirectional pins
-    Info (21061): Implemented 244 logic cells
-    Info (21064): Implemented 8 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 107 warnings
-    Info: Peak virtual memory: 658 megabytes
-    Info: Processing ended: Sun Oct 15 03:53:39 2017
+    Info (21061): Implemented 341 logic cells
+    Info (21064): Implemented 64 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 110 warnings
+    Info: Peak virtual memory: 664 megabytes
+    Info: Processing ended: Mon Oct 16 20:35:27 2017
     Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:22
+    Info: Total CPU time (on all processors): 00:00:19
 
 

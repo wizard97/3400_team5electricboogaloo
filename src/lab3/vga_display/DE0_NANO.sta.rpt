@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for DE0_NANO
-Sun Oct 15 03:53:48 2017
+Mon Oct 16 20:35:37 2017
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -100,12 +100,12 @@ agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.02        ;
+; Average used               ; 1.07        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.6%      ;
+;     Processors 2-4         ;   2.2%      ;
 +----------------------------+-------------+
 
 
@@ -114,7 +114,7 @@ agreement for further details.
 +---------------+--------+--------------------------+
 ; SDC File Path ; Status ; Read at                  ;
 +---------------+--------+--------------------------+
-; DE0_NANO.SDC  ; OK     ; Sun Oct 15 03:53:47 2017 ;
+; DE0_NANO.SDC  ; OK     ; Mon Oct 16 20:35:36 2017 ;
 +---------------+--------+--------------------------+
 
 
@@ -178,7 +178,7 @@ No paths to report.
 +----------+-------+--------------------------------+
 ; Clock    ; Slack ; End Point TNS                  ;
 +----------+-------+--------------------------------+
-; CLOCK_50 ; 9.569 ; 0.000                          ;
+; CLOCK_50 ; 9.594 ; 0.000                          ;
 +----------+-------+--------------------------------+
 
 
@@ -251,7 +251,7 @@ No paths to report.
 +----------+-------+-------------------------------+
 ; Clock    ; Slack ; End Point TNS                 ;
 +----------+-------+-------------------------------+
-; CLOCK_50 ; 9.563 ; 0.000                         ;
+; CLOCK_50 ; 9.585 ; 0.000                         ;
 +----------+-------+-------------------------------+
 
 
@@ -314,7 +314,7 @@ No paths to report.
 +----------+-------+-------------------------------+
 ; Clock    ; Slack ; End Point TNS                 ;
 +----------+-------+-------------------------------+
-; CLOCK_50 ; 9.297 ; 0.000                         ;
+; CLOCK_50 ; 9.322 ; 0.000                         ;
 +----------+-------+-------------------------------+
 
 
@@ -347,8 +347,8 @@ No synchronizer chains to report.
 +------------------+--------+-------+----------+---------+---------------------+
 ; Clock            ; Setup  ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
 +------------------+--------+-------+----------+---------+---------------------+
-; Worst-case Slack ; 19.318 ; 0.208 ; N/A      ; N/A     ; 9.297               ;
-;  CLOCK_50        ; 19.318 ; 0.208 ; N/A      ; N/A     ; 9.297               ;
+; Worst-case Slack ; 19.318 ; 0.208 ; N/A      ; N/A     ; 9.322               ;
+;  CLOCK_50        ; 19.318 ; 0.208 ; N/A      ; N/A     ; 9.322               ;
 ; Design-wide TNS  ; 0.0    ; 0.0   ; 0.0      ; 0.0     ; 0.0                 ;
 ;  CLOCK_50        ; 0.000  ; 0.000 ; N/A      ; N/A     ; 0.000               ;
 +------------------+--------+-------+----------+---------+---------------------+
@@ -817,9 +817,9 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 1     ; 1    ;
 ; Unconstrained Input Ports       ; 4     ; 4    ;
-; Unconstrained Input Port Paths  ; 49    ; 49   ;
+; Unconstrained Input Port Paths  ; 71    ; 71   ;
 ; Unconstrained Output Ports      ; 11    ; 11   ;
-; Unconstrained Output Port Paths ; 88    ; 88   ;
+; Unconstrained Output Port Paths ; 192   ; 192  ;
 +---------------------------------+-------+------+
 
 
@@ -901,7 +901,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime TimeQuest Timing Analyzer
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Sun Oct 15 03:53:47 2017
+    Info: Processing started: Mon Oct 16 20:35:36 2017
 Info: Command: quartus_sta DE0_NANO -c DE0_NANO
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -925,10 +925,10 @@ Info (332146): Worst-case hold slack is 0.385
     Info (332119):     0.385               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is 9.569
+Info (332146): Worst-case minimum pulse width slack is 9.594
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     9.569               0.000 CLOCK_50 
+    Info (332119):     9.594               0.000 CLOCK_50 
 Warning (18330): Ignoring Synchronizer Identification setting Off, and using Auto instead.
 Info: Analyzing Slow 1200mV 0C Model
 Info (334003): Started post-fitting delay annotation
@@ -946,10 +946,10 @@ Info (332146): Worst-case hold slack is 0.341
     Info (332119):     0.341               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is 9.563
+Info (332146): Worst-case minimum pulse width slack is 9.585
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     9.563               0.000 CLOCK_50 
+    Info (332119):     9.585               0.000 CLOCK_50 
 Warning (18330): Ignoring Synchronizer Identification setting Off, and using Auto instead.
 Info: Analyzing Fast 1200mV 0C Model
 Warning (332060): Node: CLOCK_25 was determined to be a clock but was found without an associated clock assignment.
@@ -965,16 +965,16 @@ Info (332146): Worst-case hold slack is 0.208
     Info (332119):     0.208               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is 9.297
+Info (332146): Worst-case minimum pulse width slack is 9.322
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     9.297               0.000 CLOCK_50 
+    Info (332119):     9.322               0.000 CLOCK_50 
 Warning (18330): Ignoring Synchronizer Identification setting Off, and using Auto instead.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 7 warnings
-    Info: Peak virtual memory: 677 megabytes
-    Info: Processing ended: Sun Oct 15 03:53:48 2017
+    Info: Peak virtual memory: 684 megabytes
+    Info: Processing ended: Mon Oct 16 20:35:37 2017
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:02
 

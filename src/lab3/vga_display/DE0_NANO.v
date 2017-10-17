@@ -69,10 +69,21 @@ module DE0_NANO(
 
     wire [9:0]  PIXEL_COORD_X; // current x-coord from VGA driver
     wire [9:0]  PIXEL_COORD_Y; // current y-coord from VGA driver
-    reg [7:0]  PIXEL_COLOR;   // input 8-bit pixel color for current coords
+    wire [7:0]  PIXEL_COLOR;   // input 8-bit pixel color for current coords
 	 
 	 reg [24:0] led_counter; // timer to keep track of when to toggle LED
 	 reg 			led_state;   // 1 is on, 0 is off
+	 
+	 wire [9:0]  PIXEL_COORD_NEXT_X; // current x-coord from VGA driver
+    wire [9:0]  PIXEL_COORD_NEXT_Y; // current y-coord from VGA driver
+	 
+	 
+	 wire [9:0]  PIXEL_COORD_SHIFT_X;
+	 wire [9:0]  PIXEL_COORD_NEXT_SHIFT_X;
+	 
+	 // Shift to middle of screen
+	 assign PIXEL_COORD_SHIFT_X =  PIXEL_COORD_X - 10'd80;
+	 assign PIXEL_COORD_NEXT_SHIFT_X =  PIXEL_COORD_NEXT_X - 10'd80;
 	 
     // Module outputs coordinates of next pixel to be written onto screen
     VGA_DRIVER driver(
@@ -83,12 +94,14 @@ module DE0_NANO(
         .PIXEL_Y(PIXEL_COORD_Y),
         .PIXEL_COLOR_OUT({GPIO_0_D[9],GPIO_0_D[11],GPIO_0_D[13],GPIO_0_D[15],GPIO_0_D[17],GPIO_0_D[19],GPIO_0_D[21],GPIO_0_D[23]}),
         .H_SYNC_NEG(GPIO_0_D[7]),
-        .V_SYNC_NEG(GPIO_0_D[5])
+        .V_SYNC_NEG(GPIO_0_D[5]),
+		  
+		  .PIXEL_X_NEXT(PIXEL_COORD_NEXT_X),
+		  .PIXEL_Y_NEXT(PIXEL_COORD_NEXT_Y)
     );
 	 
 	 // Spi driver for communication
 	 wire [23:0] arduino_data;
-
 	 
 	 wire dummy;
 	 wire spi_done;
@@ -106,31 +119,51 @@ module DE0_NANO(
     .dout(arduino_data)
 	);
 	
-	wire [11:0] spi_cord_addr;
+	wire [15:0] spi_cord_addr;
 	wire [7:0] spi_cord_x;
 	wire [7:0] spi_cord_y;
 	wire [7:0] spi_color;
+	wire spi_valid;
 	
-	assign spi_cord_x = arduino_data[23:16] & 8'h3f;
-	assign spi_cord_y = arduino_data[15:8] & 8'h3f;
-	assign spi_cord_addr = spi_cord_x*64 + spi_cord_y; //generate the mem address to store
+	
+	
+	assign spi_cord_x = arduino_data[23:16];
+	assign spi_cord_y = arduino_data[15:8];
+	assign spi_cord_addr = spi_cord_x*240 + spi_cord_y; //generate the mem address to store
 	assign spi_color = arduino_data[7:0];
+	assign spi_valid = spi_done && spi_cord_x < 240 && spi_cord_y < 240;
+	
+	
+	wire [15:0] memreq_addr;
+	wire [7:0] memresp;
 
 	
+	assign memreq_addr = (PIXEL_COORD_NEXT_SHIFT_X < 480 && PIXEL_COORD_NEXT_Y < 480) ? 
+										(PIXEL_COORD_NEXT_SHIFT_X/2)*240 + (PIXEL_COORD_NEXT_Y/2) : 0;
+										
+										
+	assign PIXEL_COLOR = (PIXEL_COORD_SHIFT_X < 480 && PIXEL_COORD_Y < 480) ? memresp : 0;
 	
-	reg [11:0] memreq_addr;
-	wire [7:0] memresp;
-	
-	// Determine the correct address to read from framebuf
-	always @ (*) begin
-		if (PIXEL_COORD_X < 448 && PIXEL_COORD_Y < 448) begin //64*7=448
-			memreq_addr = (PIXEL_COORD_X/7)*64 + PIXEL_COORD_Y; // framebuf[x_cord][y_cord]
-			PIXEL_COLOR = memresp;
-		end else begin
-			memreq_addr = 0;
+	/* Test
+
+	always @(*) begin
+
+		if (PIXEL_COORD_X == 0 && PIXEL_COORD_Y == 0)
+			PIXEL_COLOR = 8'b11100000;
+		else if (PIXEL_COORD_X == 475 && PIXEL_COORD_Y == 475)
+			PIXEL_COLOR = 8'b11100000;
+		else if (PIXEL_COORD_X == 0 && PIXEL_COORD_Y == 475)
+			PIXEL_COLOR = 8'b11100000;
+		else if (PIXEL_COORD_X == 475 && PIXEL_COORD_Y == 0)
+			PIXEL_COLOR = 8'b11100000;
+		else
 			PIXEL_COLOR = 0;
-		end
+			
+		
 	end
+	
+	*/
+
 
 	
 		// framebuffer
@@ -139,7 +172,7 @@ module DE0_NANO(
 	.data(spi_color),
 	.rdaddress(memreq_addr),
 	.wraddress(spi_cord_addr),
-	.wren(spi_done),
+	.wren(spi_valid),
 	.q(memresp));
 
 
