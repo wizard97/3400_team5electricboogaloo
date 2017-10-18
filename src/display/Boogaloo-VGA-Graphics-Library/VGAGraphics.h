@@ -33,7 +33,7 @@ public:
   void init()
   {
     CS_HIGH();
-    
+
     SPI.begin();
 #if defined (__AVR__) || (__avr__)
     SPI.setClockDivider(SPI_CLOCK_DIV2); //faster 8mhz
@@ -55,6 +55,25 @@ public:
     SPI.transfer(data, 3);
     CS_HIGH();
   }
+
+  // Draw a PROGMEM-resident 8-bit image (RGB 3/3/2) at the specified (x,y)
+// position.  For 16-bit display devices; no color reduction performed.
+void drawRGB8Bitmap(int16_t x, int16_t y,
+  const uint8_t bitmap[], int16_t w, int16_t h)
+ {
+    startWrite();
+    for(int16_t j=0; j<h; j++, y++) {
+        for(int16_t i=0; i<w; i++ ) {
+            uint8_t cbm = pgm_read_byte(&bitmap[j * w + i]);
+            uint8_t c_red = (cbm & 0xe0) >> 5;
+            uint8_t c_green = (cbm & 0x1c) >> 2;
+            uint8_t c_blue = (cbm & 0x03);
+            uint16_t color = c_red << 13 | c_green << 8 | c_blue << 3;
+            writePixel(x+i, y, color);
+        }
+    }
+    endWrite();
+}
 
 
 };
