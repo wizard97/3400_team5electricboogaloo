@@ -98,7 +98,6 @@ void randScreen()
 
 Here are the [results](https://www.youtube.com/edit?o=U&video_id=wE0rzPj_1_8):
 
-![alt text](Lab3pics/parrallel_bus.jpg)
 
 At the end of the lab we used our UNO to generate a square pixel and maneuver it around the screen using 4 push buttons.
 
