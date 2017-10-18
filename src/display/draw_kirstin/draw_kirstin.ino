@@ -147,7 +147,7 @@ void loop() {
   lcd.setCursor(5, 190);
   lcd.setTextColor(random(0, 0xffff)); 
   lcd.setTextSize(2);
-  lcd.println("My name is Kristin!");
+  lcd.println("My name is Kirstin!");
   delay(2000);
 
 }
