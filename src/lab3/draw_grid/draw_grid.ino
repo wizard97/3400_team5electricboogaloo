@@ -67,12 +67,17 @@ void loop()
       writePixel(10+20*i, j, 0xff);
   }
   */
+  /*
   writePixel(0, 0, 0xff);
   writePixel(119, 0, 0xff);
   writePixel(0, 119, 0xff);
   writePixel(119, 119, 0xff);
+  */
+  randScreen();
   //clearScreen();
-  delay(5000);
+  delay(2000);
+  clearScreen();
+  delay(2000); 
 }
 
 
