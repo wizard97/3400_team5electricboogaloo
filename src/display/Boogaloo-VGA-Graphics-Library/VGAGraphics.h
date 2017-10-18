@@ -75,6 +75,11 @@ void drawRGB8Bitmap(int16_t x, int16_t y,
     endWrite();
 }
 
+void clear()
+{
+    fillScreen(0);
+}
+
 
 };
 
