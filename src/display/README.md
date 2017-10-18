@@ -6,6 +6,7 @@ Our screen resolution is 240x240. Look at the `display_demo` which is a modified
 
 Look at the draw_kirstin demo to see how to draw bitmaps. The bitmap was generated with http://www.digole.com/tools/PicturetoC_Hex_converter.php.
 
+Any of the public methods in this class are valid and you can use https://github.com/wizard97/3400_team5electricboogaloo/blob/master/src/display/Adafruit-GFX-Library-master/Adafruit_GFX.h
 
 # Installing all the crap
 Drop both the `Boogaloo-VGA-Graphics-Library` and `Adafruit-GFX-Library-master` folder into Documents/Arduino/libraries/ to install the
