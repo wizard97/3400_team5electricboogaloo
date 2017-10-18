@@ -64,7 +64,12 @@ To send information to the FPGA we intially began implementing a parallel bus to
 
 ![alt text](Lab3pics/parrallel_bus.jpg)
 
-See our video demo on YouTube: [Random Colored Rectangles](https://youtu.be/jNI8C6o3gCc).
+See our video demo on YouTube
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=jNI8C6o3gCc
+" target="_blank"><img src="http://img.youtube.com/vi/jNI8C6o3gCc/0.jpg" 
+alt="Random Colored Rectangles" width="240" height="180" border="10" /></a>
+
 
 We decided to use a SPI driver to send the data. We found a verilog template for a SPI slave [online](embeddedmicro.com/tutorials/mojo/serial-peripheral-interface-spi) and modified it to accept three byte payloads with the first byte being the x-coordinate, the second being the y-coordinate, and the thrid being the 8-bit color. Since the AVR microcontroller has hardware SPI, the hardware SPI clock can run at up to 8 MHz, allowing us to send pixel updates 10's of thousands of times per second.  Now we only needed 3 wires from the Arduino UNO (CLK, MOSI, and SS) to communicate with the FPGA. Furthermore, due to the high speed of SPI, we could support a high resolution 120x120 display resolution.
 
@@ -96,12 +101,19 @@ void randScreen()
 }
 ```
 
-Here are the [results](https://www.youtube.com/edit?o=U&video_id=wE0rzPj_1_8):
+See our video demo on YouTube:
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=wE0rzPj_1_8
+" target="_blank"><img src="http://img.youtube.com/vi/wE0rzPj_1_8/0.jpg" 
+alt="Random Colored Rectangles" width="240" height="180" border="10" /></a>
+
 
 
 At the end of the lab we used our UNO to generate a square pixel and maneuver it around the screen using 4 push buttons.
 
-Here are the [results](https://youtu.be/wE0rzPj_1_8):
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=sc6XzsbKd0E
+" target="_blank"><img src="http://img.youtube.com/vi/sc6XzsbKd0E/0.jpg" 
+alt="Random Colored Rectangles" width="240" height="180" border="10" /></a>
 #### Acoustic Team
 
 ##### Square Wave
