@@ -61,14 +61,48 @@ Outputs Blue DAC
 
 ##### Implementation
 To send information to the FPGA we intially began implementing a parallel bus to send the data, but we realized this was not an ideal solution because it required way too many pins, requiring us to individually toggle the pins to update the values. It also required us to have a valid bit to avoid race conditions where the FPGA read an update midway through toggling pins. Here is our initial demo using 10 bits to select from 4 rectangles on the screen (2-bits), each with a particular color (8-bits).
-[Random Colored Rectangles](https://youtu.be/jNI8C6o3gCc)
 
-We decided to use a SPI driver to send the data. We found a template for a SPI online and modified it to accept three byte payloads with the first byte being the x-coordinate, the second being the y-coordinate, and the thrid being the color. The SPI gave us a significant performace increase over our parallel bus because we could use a 4 MHz clock to send information over it. The UNO has built in SPI hardware and operates on a 4 MHz clock so this gave us optimal speed while also minimizing the amount of wires we needed.
+![alt text](Lab3pics/parrallel_bus.jpg)
 
-We then mapped a 120 by 120 grid to the screen with a resolution of 448 X 448. Using a megafunction of a 2 port ram called the frame buffer we were able to hold the current color for each pixel in our display in the onboard ram of the FPGA. This also allowed us to quickly read the correct color of a pixel when the VGA driver requested it and to updated the contents of the frame buffer whenever the a successful SPI transaction occured.
+See our video demo on YouTube: [Random Colored Rectangles](https://youtu.be/jNI8C6o3gCc).
+
+We decided to use a SPI driver to send the data. We found a verilog template for a SPI slave [online](embeddedmicro.com/tutorials/mojo/serial-peripheral-interface-spi) and modified it to accept three byte payloads with the first byte being the x-coordinate, the second being the y-coordinate, and the thrid being the 8-bit color. Since the AVR microcontroller has hardware SPI, the hardware SPI clock can run at up to 8 MHz, allowing us to send pixel updates 10's of thousands of times per second.  Now we only needed 3 wires from the Arduino UNO (CLK, MOSI, and SS) to communicate with the FPGA. Furthermore, due to the high speed of SPI would could support a high resolution 120x120 display resolution.
+
+We then mapped a 120 by 120 grid to scale to a 480x480 box in the middle of the display. On the FPGA, we used a megafunction to create 2 port ram for a frame buffer, that would hold the current 8-bit color for each pixel. Whenever the FPGA received a SPI pixel update, it would update the corresponding pixel in RAM. Whenever the VGA_DRIVER requested the color at a particular cordinate, the FPGA would look up the color in RAM. However, some slight modifications were required of the provided FPGA driver, since the RAM was synchronous the memory lookup request had to be sent on the previous clock cycle.
+
+Updating a pixel from the Arduino side was now super easy. Note that the Slave Select line was enabled directly with port manipulation (instead of digitalWrite()) to make SPI transfers even faster:
+```c++
+void writePixel(uint8_t x, uint8_t y, uint8_t color) 
+{
+  if (x >= XRES || y >= YRES)
+    return;
+    
+  PORTB &= ~B00000100; // SS, use direct port manipulation to be even faster!
+  uint8_t data[] = {x, y, color};
+  SPI.transfer(data, 3);
+  PORTB |= B00000100;
+}
+```
+
+As a quick test, we made a random grid of colors using the code below:
+```c++
+void randScreen()
+{
+  for (uint8_t i=0; i < XRES; i++) {
+    for (uint8_t j=0; j < YRES; j++) {
+      writePixel(i, j, random(0, 255));
+    }
+  }
+}
+```
+
+Here are the [results](https://www.youtube.com/edit?o=U&video_id=wE0rzPj_1_8):
+
+![alt text](Lab3pics/parrallel_bus.jpg)
 
 At the end of the lab we used our UNO to generate a square pixel and maneuver it around the screen using 4 push buttons.
 
+Here are the [results](https://youtu.be/wE0rzPj_1_8):
 #### Acoustic Team
 
 ##### Square Wave
@@ -79,7 +113,7 @@ We began by producing our square wave by toggling a GPIO pin at a frequency 440H
 The output to the oscilloscope looked like this: 
 ![alt text](Lab3pics/square_wave.png)
 
-When hooked up to the speakers, this square wave sounded like [this](https://www.youtube.com/watch?v=5FbqoMoR8Ew)
+When hooked up to the speakers, this square wave sounded like [this](https://youtu.be/sc6XzsbKd0E)
 
 ##### Tune using DAC
 Next, we generated a sin table in MatLab to generate the 8-bit binary numbers to be passed into the DAC, the code can be seen here:
