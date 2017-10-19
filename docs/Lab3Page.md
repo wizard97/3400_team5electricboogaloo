@@ -34,8 +34,6 @@ This creates a crude ADC for each color channel controlled by a parallel bus. No
 
 The resistors are chosen in such a way that that each digital step is as close to linear as possible.
 
-TODO ONE OF YOU FINISH THESE!!!
-
 Outputs Red and Green DAC
 
 | Digital Value | Expected Analog Voltage (x GPIO_LOGIC_LEVEL V) | Actual Voltage (x GPIO_LOGIC_LEVEL V) |
