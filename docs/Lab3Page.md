@@ -43,18 +43,19 @@ Outputs Red and Green DAC
 | 0x0 | 0 | 0 |
 | 0x1 | 0.143 | 0.146 |
 | 0x2 | 0.286 | 0.308 |
-| 0x3 | | |
-| 0x4 | | |
-| 0x5 | | |
-| 0x6 | | |
-| 0x7 | | |
+| 0x3 | | 0.454 |
+| 0x4 | | 0.546 |
+| 0x5 | | 0.692 |
+| 0x6 | | 0.854 |
+| 0x7 | |  |
 
 Outputs Blue DAC
 
 | Digital Value | Expected Analog Voltage (x GPIO_LOGIC_LEVEL V) | Actual Voltage (x GPIO_LOGIC_LEVEL V) |
 | ------ |:------:| -----:|
 | 0x0 | 0 | 0 |
-| 0x2 | | |
+| 0x1 | | 0.353 |
+| 0x2 | | 0.647 |
 | 0x3 | | |
 
 
