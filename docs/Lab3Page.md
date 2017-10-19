@@ -47,7 +47,7 @@ Outputs Red and Green DAC
 | 0x4 | | 0.546 |
 | 0x5 | | 0.692 |
 | 0x6 | | 0.854 |
-| 0x7 | |  |
+| 0x7 | |  1    |
 
 Outputs Blue DAC
 
@@ -56,7 +56,7 @@ Outputs Blue DAC
 | 0x0 | 0 | 0 |
 | 0x1 | | 0.353 |
 | 0x2 | | 0.647 |
-| 0x3 | | |
+| 0x3 | | 1     |
 
 
 
