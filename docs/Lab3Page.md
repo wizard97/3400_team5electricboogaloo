@@ -7,6 +7,8 @@ The objective of this lab was to configure an FPGA to (1) display graphics on a 
 We split our lab group into two, with Adam, David and Aaron working on the VGA display portion and Kelsey, Rajiv and Christina working on the acoustic portion.
 
 ### Helpful Links
+* [8-bit R2R DAC datasheet](http://www.bourns.com/docs/Product-Datasheets/R2R.pdf)
+* [DE0-Nano user manual](https://www.altera.com/en_US/pdfs/literature/ug/DE0_Nano_User_Manual_v1.9.pdf)
 
 ### Lab Documentation
 
@@ -214,30 +216,6 @@ end
 Our state machine for the entire melody also became more complicated. Our modified code is shown below.
 
 ```c++
-A_440_ROM a_rom(
-  .addr(tone_counter),
-  .clk(CLOCK_25),
-  .q(a_q)
- );
-
-B_493_ROM b_rom(
-  .addr(tone_counter),
-  .clk(CLOCK_25),
-  .q(b_q)
-);
-
-CSHARP_554_ROM c_rom(
-  .addr(tone_counter),
-  .clk(CLOCK_25),
-  .q(csharp_q)
-);
-
-MELODY_ROM mel_rom(
-  .addr(addr),
-  .clk(CLOCK_25),
-  .q(q)
-);
-
 always @ (posedge CLOCK_25) begin
   if (counter == 0) begin
     counter     <= HALF_SEC;
@@ -279,4 +257,4 @@ always @ (posedge CLOCK_25) begin
   end
 ```
 
-[See here to listen to Mary Had a Little Lamb!](https://www.youtube.com/watch?v=XJbFZTgZO-0)
+See [here](https://www.youtube.com/watch?v=XJbFZTgZO-0) to listen to Mary Had a Little Lamb!
