@@ -6,8 +6,8 @@
 #define FRONT_RIGHT_IR A1
 #define OUT_LEFT_IR A2
 #define OUT_RIGHT_IR A3
-#define LEFT_SERVO 10
-#define RIGHT_SERVO 9
+#define LEFT_SERVO 7
+#define RIGHT_SERVO 6
 
 #define THRESHOLD 850
 
