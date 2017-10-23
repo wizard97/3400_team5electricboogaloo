@@ -25,7 +25,7 @@ As in the previous labs, we split into two sub-teams for this lab; Kelsey, Rajiv
 ##### Setup
 
 ##### Implementation
-[Here's a demonstration of the communication between the Arduinos](https://www.youtube.com/watch?v=0cg3QgOLpR0)
+[Here's a demonstration of the communication between the two Arduinos!](https://www.youtube.com/watch?v=0cg3QgOLpR0)
 
 #### FPGA Team
 
