@@ -1,4 +1,4 @@
-# __*Lab 3*__
+# __*Lab 4*__
 
 ### Objective
 
@@ -15,6 +15,8 @@
 ##### Setup
 
 ##### Implementation
+
+[Here's a demonstration of the communication between the FPGAs](https://www.youtube.com/watch?v=0cg3QgOLpR0)
 
 #### FPGA Team
 
