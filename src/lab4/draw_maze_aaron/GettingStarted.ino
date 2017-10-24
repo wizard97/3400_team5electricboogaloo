@@ -141,71 +141,52 @@ void loop(void)
 
   if (role == role_ping_out)
   {
-    unsigned char x_coord = 4;
-    unsigned char y_coord = 4;
-    unsigned char pos_data = 3;
-    
-    // Use bit shifting to pack the bits
-    // For deployment with a robot, something like this should be factored out into
-    // a function, along with the code to unpack the bits
-    new_data = x_coord << 5 | y_coord << 2 | pos_data;
-    // For the test case of (5, 5, 3) the byte shoud look like: 10010011
-    // In decimal this is 147
-    
+    // First, stop listening so we can talk.
     radio.stopListening();
-    
+
     // Take the time, and send it.  This will block until complete
-    printf("Now sending new map data\n");
-    bool ok = radio.write( &new_data, sizeof(unsigned char) );
-    
+    //unsigned long time = millis();
+    unsigned char data;
+
+    unsigned char test_x = 2;
+    unsigned char test_y = 2;
+    unsigned char pos_state = 1;
+
+    data = test_x << 5 | test_y << 2 | pos_state;
+    //printf("Now sending %lu...",time);
+    printf("Now sending position and state data.\n");
+    //bool ok = radio.write( &time, sizeof(unsigned long) );
+    bool ok = radio.write( &data, sizeof(data) );
+
     if (ok)
-      printf("ok...");
+      printf("ok...sent payload %d, suck it trebek ",data);
     else
       printf("failed.\n\r");
-    
+
     // Now, continue listening
     radio.startListening();
 
-    
-    // First, stop listening so we can talk.
-//    radio.stopListening();
-//
-//    // Take the time, and send it.  This will block until complete
-//    unsigned long time = millis();
-//    //printf("Now sending %lu...",time);
-//    printf("Now sending maze information.\n");
-//    //bool ok = radio.write( &time, sizeof(unsigned long) );
-//    bool ok = radio.write( maze, sizeof(maze) );
-//
-//    if (ok)
-//      printf("ok...");
-//    else
-//      printf("failed.\n\r");
-//
-//    // Now, continue listening
-//    radio.startListening();
-//
-//    // Wait here until we get a response, or timeout (250ms)
-//    unsigned long started_waiting_at = millis();
-//    bool timeout = false;
-//    while ( ! radio.available() && ! timeout )
-//      if (millis() - started_waiting_at > 200 )
-//        timeout = true;
-//
-//    // Describe the results
-//    if ( timeout )
-//    {
-//      printf("Failed, response timed out.\n\r");
-//    }
-//    else
-//    {
-//      // Grab the response, compare, and send to debugging spew
-//      unsigned long got_time;
-//      radio.read( &got_time, sizeof(unsigned long) );
-//
-//      // Spew it
-//      printf("Got response %lu, round-trip delay: %lu\n\r",got_time,millis()-got_time);
-//    }
+    // Wait here until we get a response, or timeout (250ms)
+    unsigned long started_waiting_at = millis();
+    bool timeout = false;
+    while ( ! radio.available() && ! timeout )
+      if (millis() - started_waiting_at > 200 )
+        timeout = true;
+
+    // Describe the results
+    if ( timeout )
+    {
+      printf("Failed, response timed out.\n\r");
+    }
+    else
+    {
+      // Grab the response, compare, and send to debugging spew
+      unsigned long got_time;
+      radio.read( &got_time, sizeof(unsigned long) );
+
+      // Spew it
+      printf("Got response %lu, round-trip delay: %lu\n\r",got_time,millis()-got_time);
+    }
 
     // Try again 1s later
     delay(1000);
