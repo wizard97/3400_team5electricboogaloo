@@ -58,9 +58,9 @@ After both these performance improvements, the entire 240x240 display could be u
 ##### Extending the Adafruit GFX Library
 Now that it was easy to draw pixels directly from the microcontroller, the hard part was mapping objects we wanted to draw to actual pixels to set on the screen.
 The easy solution we came up with was inheriting from the [Adafruit GFX Library](https://learn.adafruit.com/adafruit-gfx-graphics-library) which is an open source library for drawing graphics with microcontrollers. The library provides an `Adafruit_GFX` class that is an abstract base class with a `virtual void drawPixel(int16_t x, int16_t y, uint16_t color)` method. By inheriting from this class and overriding the `drawPixel()` method to hook into our FPGA SPI interface. Our new derived class
-has access to easy drawing primitives defined in the `Adafruit_GFX` base class that include methods for drawing lines, rectangles, text, and bitmaps.
+has access to easy drawing primitives defined in the `Adafruit_GFX` base class that include methods for drawing lines, rectangles, text, and bitmaps. Some small additional conversions were needed to be compatible with the `Adafruit_GFX` Library, such as converting our 8-bit color representation to the libraries 16-bit representation and vice-versa.
 
-Our inherited C++ class is defined as follows: 
+Our inherited C++ class is defined as follows, notice the override of the `drawPixel()` method as well as some additional helper methods such as drawing an 8-bit color bitmap:
 
 ```c++
 #ifndef BOOGALOO_VGA_GRAPHICS_H
