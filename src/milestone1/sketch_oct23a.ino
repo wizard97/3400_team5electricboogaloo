@@ -169,39 +169,36 @@ void update_coord(int lr) // 0 = left, 1 = right
   switch (compass_dir) {
     case (STATE_NORTH): default:
       if(lr) {
-        x_coord += 1;
         compass_dir = STATE_EAST;
       } else {
-        x_coord -= 1;
         compass_dir = STATE_WEST;
       }
+      y += 1;
       break;
     case (STATE_SOUTH):
       if(lr) {
-        x_coord -= 1;
         compass_dir = STATE_WEST;
       } else {
-        x_coord += 1;
         compass_dir = STATE_EAST;
       }
+      y -= 1;
       break;
     case (STATE_EAST):
       if(lr) {
-        y_coord -= 1;
         compass_dir = STATE_SOUTH;
       } else {
-        y_coord += 1;
         compass_dir = STATE_NORTH;
       }
+      x -= 1;
       break;
     case (STATE_WEST):
       if(lr) {
-        y_coord += 1;
         compass_dir = STATE_NORTH;
       } else {
-        y_coord -= 1;
         compass_dir = STATE_SOUTH;
       }
+      x += 1;
+      break;
   }
 }
 
