@@ -104,8 +104,6 @@ void setup(void)
   }
 
   lcd.drawRect(0, y_off, lcd.width(),llength , RED);
-  draw_update(0, 4); 
-  while(1);
 
   // optionally, increase the delay between retries & # of retries
   radio.setRetries(15,15);
