@@ -48,7 +48,7 @@ This came out to seven bits, which we then padded with zeros to the default data
     pos_x = bot_data>>5 & 0b11;
     pos_y = bot_data>>2 & 0b111;
 ```
-This allowed us to then update our maze with specific values for x and y as well as the state value. We displayed the maze in a similar manner as before and were able to update values for position on the fly during the demo.
+This allowed us to then update our maze with specific values for x and y as well as the state value. We displayed the maze in a similar manner as before and were able to update values for position on the fly during the demo. As a sidenote, the payload number is just the conversion of the 7 bits together to decimal. 
 
 The rest of the receive code is shown below:
 ```
