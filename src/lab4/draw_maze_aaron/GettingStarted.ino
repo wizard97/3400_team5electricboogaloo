@@ -282,9 +282,6 @@ void loop(void)
       // First, stop listening so we can talk
       radio.stopListening();
 
-      // First, stop listening so we can talk
-      radio.stopListening();
-
       // Send the final one back.
       radio.write( &got_time, sizeof(unsigned long) );
       printf("Sent response.\n\r");
