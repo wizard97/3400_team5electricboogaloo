@@ -40,19 +40,29 @@ Once we ensured that we could configure the transmit and receive code segments t
 The format for our data is as follows:
 
 
-x position(2 bits) | y position(3 bits) | state(2 bits)
+x position | y position | state
 
 This came out to seven bits, which we then padded with zeros to the default data packet size of 32 bytes, and sent it across the radio using radio.write(). To parse the data into its constituent parts, we used the following three lines of code.
-/*KELSEYadd the following from our code:
-unsigned char p = got_data & 0b11;
-        unsigned char x = got_data >> 5 & 0b11;
-        unsigned char y = got_data >> 2 & 0b111;
-**
+``` 
+    stat = bot_data & 0b11;
+    pos_x = bot_data>>5 & 0b11;
+    pos_y = bot_data>>2 & 0b111;
+```
 This allowed us to then update our maze with specific values for x and y as well as the state value. We displayed the maze in a similar manner as before and were able to update values for position on the fly during the demo.
 
 The rest of the receive code is shown below:
+```
+maze[pos_x][pos_y] = stat; 
+         
+        for (int i=0; i < 4; i++) {
+          for (int j=0; j < 5; j++) {
+            printf("%d ", maze[i][j]);
+          }
+          printf("\n");
+        }
+```
 
-*KELSEY//rest of the receive code***
+[Here's the video of our final implementation!](https://www.youtube.com/watch?v=uxZKYiWlVOM)
 
 #### FPGA Team
 
