@@ -5,12 +5,12 @@
 #include <Arduino.h>
 #include <SPI.h>
 
-#define VGA_SS 10
+#define VGA_SS 9
 
 #if defined (__AVR__) || (__avr__)
-  #define ENABLE_CS() do { DDRB |= B00000100; } while(0)
-  #define CS_HIGH() do { PORTB |= B00000100; } while(0)
-  #define CS_LOW() do { PORTB &= ~B00000100; } while(0)
+  #define ENABLE_CS() do { DDRB |= B00000010; } while(0)
+  #define CS_HIGH() do { PORTB |= B00000010; } while(0)
+  #define CS_LOW() do { PORTB &= ~B00000010; } while(0)
 #else
   #define ENABLE_CS() do { pinMode(VGA_SS, OUTPUT); } while(0)
   #define CS_HIGH() do { digitalWrite(VGA_SS, HIGH); } while(0)
