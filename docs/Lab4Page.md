@@ -40,7 +40,7 @@ Once we ensured that we could configure the transmit and receive code segments t
 The format for our data is as follows:
 
 
-x position | y position | state
+x position(2 bits) | y position(3 bits) | state(2 bits)
 
 This came out to seven bits, which we then padded with zeros to the default data packet size of 32 bytes, and sent it across the radio using radio.write(). To parse the data into its constituent parts, we used the following three lines of code.
 /*KELSEYadd the following from our code:
