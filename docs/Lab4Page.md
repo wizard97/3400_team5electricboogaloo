@@ -24,6 +24,7 @@ As in the previous labs, we split into two sub-teams for this lab; Kelsey, Rajiv
 #### Radio Team
 
 ##### Setup
+For setup, we first connected the two Nordic transceivers to each of our Arduinos in the correct SPI pins. After that we downloaded the specified RF24 Arduino library into the Arduino folder. As an extra note, we also had to move a printf.h function from a nested folder out into the main RF24 folder so that the example code, GettingStarted, could run. From here we were able to start working on our goals for lab 4.
 
 ##### Implementation
 To implement the radio transmission, there were approximately two segments of code we had to configure: the transmit code and the receive code. Provided in the initial code downloaded from the sample library was a skeleton for the transmission and receive protocols. In the initial code, all it did was send a garbage value and verify that it was received by displaying “ok” on the serial monitor. It was very basic, however provided a rigid structure for adding more complex functionality.
@@ -58,7 +59,7 @@ The rest of the receive code is shown below:
 
 ##### Implementation
 To draw the maze we took advantage of the Adafruit GTX library. We created a white rectangle first to represented the entire poster board and then ontop of that we placed a 4 X 5 grid of lines to represent the black tape. We then placed a red rectangle ontop to denote the edge of the board.
-
+![alt text](Lab4pics/code_snippet_maze_creation.jpg)
 
 See [here](https://www.youtube.com/watch?v=G8H8aAYuhPc) for a video demonstration of our extended display!
 
