@@ -183,8 +183,30 @@ The rest of the receive code is shown below:
 
 ##### Implementation
 To draw the maze we took advantage of the Adafruit GTX library. We created a white rectangle first to represented the entire poster board and then ontop of that we placed a 4 X 5 grid of lines to represent the black tape. We then placed a red rectangle ontop to denote the edge of the board.
-![alt text](Lab4pics/code_snippet_maze_creation.jpg)
+```c++
+ lcd.init();
+   int lwidth = 3;
+  int bwidth = (lcd.width()-5*lwidth)/5;
+  int idx = bwidth/2;
+  int llength = (bwidth+lwidth)*4;
 
+  int y_off = (lcd.height()-llength)/2;
+
+  lcd.clear();
+  lcd.fillRect(0, y_off, lcd.width(), (lcd.height()-2*y_off), WHITE);
+  for (int i=0; i < 5; i++) {
+    lcd.fillRect(idx, y_off, lwidth, llength, BLACK);
+    idx += lwidth+bwidth;
+  }
+
+  int idy = bwidth/2;
+   for (int i=0; i < 4; i++) {
+    lcd.fillRect(0, y_off+idy, lcd.width(), lwidth, BLACK);
+    idy += lwidth+bwidth;
+  }
+
+  lcd.drawRect(0, y_off, lcd.width(),llength , RED);
+```
 See [here](https://www.youtube.com/watch?v=G8H8aAYuhPc) for a video demonstration of our extended display!
 
 In [this](https://www.youtube.com/watch?v=aIYxe3nmHjY) video, you can see a demonstration of how we transmitted randomly generated coordinates from the transmitter radio to the receiver radio and then used this data to update our maze grid.
