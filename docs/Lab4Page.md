@@ -31,6 +31,31 @@ To implement the radio transmission, there were approximately two segments of co
 
 [Here's a demonstration of the communication between the two Arduinos!](https://www.youtube.com/watch?v=0cg3QgOLpR0)
 
+Our first step was to transmit our own unique values. This amounted to sending a custom maze, similar in format to the one sent by Team Alpha in their demo. We did this by initializing a char maze as a global variable, ensuring that the maze data was less than the default data packet size, 32-bytes. Our 4x5 maze of chars, as you can see, is significantly less than this, so there was no errors in this regard.
+
+In the transmit code, we merely had to change a single line of code, so that now it would transmit the maze structure via the radio.write() function. On the receive side as well, we merely had to save this data into a separate local variable got_maze which we then displayed to the serial monitor via a for-loop that iterated through the individual positions in the maze and displayed the data.
+
+Once we ensured that we could configure the transmit and receive code segments to run unique values, we worked on sending varying data packets that were encoded with specific information about certain x and y positions in the maze and state values for those positions. Similar to the example, we encoded all this information into a single byte. We used 2 bits for the x position, 3 bits for the y position, and 2 bits for the state value. In our demo, we only considered one value for the state position: visited.
+
+The format for our data is as follows:
+
+
+x position | y position | state
+
+This came out to seven bits, which we then padded with zeros to the default data packet size of 32 bytes, and sent it across the radio using radio.write(). To parse the data into its constituent parts, we used the following three lines of code.
+/*KELSEYadd the following from our code:
+unsigned char p = got_data & 0b11;
+        unsigned char x = got_data >> 5 & 0b11;
+        unsigned char y = got_data >> 2 & 0b111;
+**
+This allowed us to then update our maze with specific values for x and y as well as the state value. We displayed the maze in a similar manner as before and were able to update values for position on the fly during the demo.
+
+The rest of the receive code is shown below:
+
+*KELSEY//rest of the receive code***
+
+#### FPGA Team
+
 ##### FPGA Communication Protocol Modifications
 The FPGA code was for the most part unchanged from the previous lab. The only change was updating the resolution sent over SPI from 120x120 to 240x240, which would
 be mapped to a 480x480 box in the middle of the display. Our SPI protocol was also unchanged from the previous lab, the first byte sent is the x-coordinate (0-240), the second the y-coordinate (0-240), and the last byte the color.
@@ -153,35 +178,6 @@ void clear()
 ```
 
 ##### Drawing the Maze
-
-Our first step was to transmit our own unique values. This amounted to sending a custom maze, similar in format to the one sent by Team Alpha in their demo. We did this by initializing a char maze as a global variable, ensuring that the maze data was less than the default data packet size, 32-bytes. Our 4x5 maze of chars, as you can see, is significantly less than this, so there was no errors in this regard.
-
-In the transmit code, we merely had to change a single line of code, so that now it would transmit the maze structure via the radio.write() function. On the receive side as well, we merely had to save this data into a separate local variable got_maze which we then displayed to the serial monitor via a for-loop that iterated through the individual positions in the maze and displayed the data.
-
-Once we ensured that we could configure the transmit and receive code segments to run unique values, we worked on sending varying data packets that were encoded with specific information about certain x and y positions in the maze and state values for those positions. Similar to the example, we encoded all this information into a single byte. We used 2 bits for the x position, 3 bits for the y position, and 2 bits for the state value. In our demo, we only considered one value for the state position: visited.
-
-The format for our data is as follows:
-
-
-x position | y position | state
-
-This came out to seven bits, which we then padded with zeros to the default data packet size of 32 bytes, and sent it across the radio using radio.write(). To parse the data into its constituent parts, we used the following three lines of code.
-/*KELSEYadd the following from our code:
-unsigned char p = got_data & 0b11;
-        unsigned char x = got_data >> 5 & 0b11;
-        unsigned char y = got_data >> 2 & 0b111;
-**
-This allowed us to then update our maze with specific values for x and y as well as the state value. We displayed the maze in a similar manner as before and were able to update values for position on the fly during the demo.
-
-The rest of the receive code is shown below:
-
-*KELSEY//rest of the receive code***
-
-#### FPGA Team
-
-##### Setup
-
-##### Implementation
 To draw the maze we took advantage of the Adafruit GTX library. We created a white rectangle first to represented the entire poster board and then ontop of that we placed a 4 X 5 grid of lines to represent the black tape. We then placed a red rectangle ontop to denote the edge of the board.
 ```c++
  lcd.init();
@@ -206,7 +202,11 @@ To draw the maze we took advantage of the Adafruit GTX library. We created a whi
   }
 
   lcd.drawRect(0, y_off, lcd.width(),llength , RED);
-```
+  ```
+
+##### Setup
+
+
 See [here](https://www.youtube.com/watch?v=G8H8aAYuhPc) for a video demonstration of our extended display!
 
 In [this](https://www.youtube.com/watch?v=aIYxe3nmHjY) video, you can see a demonstration of how we transmitted randomly generated coordinates from the transmitter radio to the receiver radio and then used this data to update our maze grid.
