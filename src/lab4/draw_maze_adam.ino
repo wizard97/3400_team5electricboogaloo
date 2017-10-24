@@ -49,8 +49,23 @@ void loop() {
   int idx = bwidth/2;
   int llength = (bwidth+lwidth)*4;
 
-  int y_off = (lcd.height()-llength)/2;
-lcd.fillRect(0, y_off, lcd.width(), (lcd.height()-2*y_off), WHITE);
+  
+
+
+  for (int k=2; k < 9; k++){
+
+  int lwidth = 3;
+  int bwidth = (lcd.width()-5*lwidth)/5;
+  int idx = bwidth/2;
+  int llength = (bwidth+lwidth)*4;
+ int y_off = (lcd.height()-llength)/2;
+  
+     lcd.fillCircle(y_off, k*y_off, 10, 0x6969);
+     delay(2000);
+     
+     
+      
+      lcd.fillRect(0, y_off, lcd.width(), (lcd.height()-2*y_off), WHITE);
   for (int i=0; i < 5; i++) {
     lcd.fillRect(idx, y_off, lwidth, llength, BLACK);
     idx += lwidth+bwidth;
@@ -60,13 +75,8 @@ lcd.fillRect(0, y_off, lcd.width(), (lcd.height()-2*y_off), WHITE);
    for (int i=0; i < 4; i++) {
     lcd.fillRect(0, y_off+idy, lcd.width(), lwidth, BLACK);
     idy += lwidth+bwidth;
-  }
-
-
-  for (int k=2; k < 9; k++){
     
-     lcd.fillCircle(y_off, k*y_off, 10, 0x6969);
-     delay(2000);
+  }
     }
 
   
