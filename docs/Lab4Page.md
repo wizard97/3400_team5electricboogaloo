@@ -82,7 +82,7 @@ To draw the maze we took advantage of the Adafruit GTX library. We created a whi
   }
 
   lcd.drawRect(0, y_off, lcd.width(),llength , RED);
-
+```
 See [here](https://www.youtube.com/watch?v=G8H8aAYuhPc) for a video demonstration of our extended display!
 
 In [this](https://www.youtube.com/watch?v=aIYxe3nmHjY) video, you can see a demonstration of how we transmitted randomly generated coordinates from the transmitter radio to the receiver radio and then used this data to update our maze grid.
