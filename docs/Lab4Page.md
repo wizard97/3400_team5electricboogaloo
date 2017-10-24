@@ -59,7 +59,7 @@ The rest of the receive code is shown below:
 
 ##### Implementation
 To draw the maze we took advantage of the Adafruit GTX library. We created a white rectangle first to represented the entire poster board and then ontop of that we placed a 4 X 5 grid of lines to represent the black tape. We then placed a red rectangle ontop to denote the edge of the board.
-\\c++
+```c++
  lcd.init();
    int lwidth = 3;
   int bwidth = (lcd.width()-5*lwidth)/5;
