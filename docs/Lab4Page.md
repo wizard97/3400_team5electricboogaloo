@@ -34,6 +34,7 @@ As in the previous labs, we split into two sub-teams for this lab; Kelsey, Rajiv
 
 ##### Implementation
 To draw the maze we took advantage of the Adafruit GTX library. We created a white rectangle first to represented the entire poster board and then ontop of that we placed a 4 X 5 grid of lines to represent the black tape. We then placed a red rectangle ontop to denote the edge of the board.
+![alt text](Lab4pics/code_snippet_maze_creation.jpg)
 
 See [here](https://www.youtube.com/watch?v=G8H8aAYuhPc) for a video demonstration of our extended display!
 
