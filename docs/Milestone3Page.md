@@ -36,6 +36,20 @@ typedef struct Node
 
 
 #### Simulation
+For our simulation, we implemented a very basic Depth-first search to demonstrate how our robot would explore the maze in real time. Because our maze is very small, the possibilities for DFS paths are quite limited, and most paths of exploration are quite predictable merely by inspection. Such is mostly the case for our own demonstration, however we attempt to create a maze with enough variability as to demonstrate the nature of our algorithm.
+
+We began by designing the maze. For this, we first looked on the main website for a sample maze that would fit the depth first search algorithm. We used something very similar to Team Alpha’s maze, and in fact modeled our maze in a similar manner, using various of the paint, line, imagesc, caxis, etc. and various other native graphical functions for drawing purposes. Using imagesc, we were able to very simply represent the current position of our robot in the process of exploration. While the graphical interface will look very different in our real-world implementation using the fpga, this representation serves to demonstrate the algorithm in a real-time environment.
+
+For the actual algorithm, we found an implementation of the DFS queue and stack in matlab online, and tried to incorporate it into our own design, in a fashion similar to Team Alpha’s. There were various issues we found with integrating the stack and queue found online with our own graphical representation of the maze, and so we made significant modifications to essentially strip the online implementation down to make it more manageable given the small scale of our maze.
+
+Parts of our algorithm are shown below, in arduino:
+
+ADD SOME CODE SNIPPETS HERE
+
+A video of our DFS simulation is shown here:
+
+ADD VIDEO HERE
+
 
 #### Real Life
 Despite the bugs in our algorithm, our robot successfully completed maze exploration; see [here]() for the video demonstration!
