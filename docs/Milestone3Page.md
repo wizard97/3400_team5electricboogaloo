@@ -9,20 +9,33 @@ The entire team developed the algorithm together. Adam and David worked on the i
 ### Lab Documentation
 
 #### Algorithm
-The team decided to implement a random-search algorithm to facilitate maze exploration. At each "node", the algorithm uses data about on its left, front, and right sides (i.e. whether or not a wall is present) to determine the nodes that are "available" to visit next. Our algorithm then randomly chooses one of the available nodes to visit. See below for an explanatory snippet of our code.
+The team decided to implement a random-search algorithm to facilitate maze exploration. At each "node", the algorithm uses data about on its left, front, and right sides (i.e. whether or not a wall is present) to determine the nodes that are "available" to visit next. Our algorithm then randomly chooses one of the available nodes
 
 ```c++
 ```
 
-As for determining when we are finished with maze exploration, //TYPE MORE HERE!!
+##### Finish Detection
+Detecting that the robot should stop was the most complicated part of the algorithm. Each time a new node was visited, the visited field would be set and each edge_t would be updated to reflect the border, if a wall was detected the associated isWall would be set to true. To determine that every possible node was visited, a simple DFS algorithm would run and check to make sure no nodes had the visited field unset. Our function that checks this was recursive, and would stop recursing once isWall was set or node was NULL. We intend to eventually make this function non-recursive to make sure we don't blow out the stack on the microcontroller. If the recursive DFS function could not find a node that was not visited it would return true. To make our robot stop where we started, we had an x-offset-counter and y-offset-counter that was initilized to zero. Each black line the robot passed would increment or decrement the appropriate counter. Once our DFS algorithm detected that we visited all the nodes, and that our offset counters were both 0 (the robot is in the starting position), the robot would stop and light up the done LED.
 
 ```c++
+typedef struct Edge
+{
+  bool isWall;
+  node_t *node;
+} edge_t;
+
+typedef struct Node
+{
+  bool visited;
+  edge_t left;
+  edge_t right;
+  edge_t up;
+  edge_t down;
+} node_t;
 ```
+
 
 #### Simulation
-See [here](https://www.youtube.com/watch?v=aSKotqTZXnc&index=2&list=PLpzyLEaV2FZwIKaHse5H3hJURWajDci3Z) for a video demonstration of our simulation!
 
 #### Real Life
-To run our algorithm on our robot, we integrated our line detection and wall-sensing code from [Milestone 1](Milestone1Page.md) and [Milestone 2](Milestone2Page.md), respectively, for moving through the maze.
-
-Despite the bugs in our algorithm, our robot successfully completed maze exploration; see [here](https://www.youtube.com/watch?v=RCDYiQO79UA&index=1&list=PLpzyLEaV2FZwIKaHse5H3hJURWajDci3Z) for the video demonstration!
+Despite the bugs in our algorithm, our robot successfully completed maze exploration; see [here]() for the video demonstration!
