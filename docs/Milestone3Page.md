@@ -20,6 +20,7 @@ As for determining when we are finished with maze exploration, //TYPE MORE HERE!
 ```
 
 #### Simulation
+See [here](https://www.youtube.com/watch?v=aSKotqTZXnc&index=2&list=PLpzyLEaV2FZwIKaHse5H3hJURWajDci3Z) for a video demonstration of our simulation!
 
 #### Real Life
 To run our algorithm on our robot, we integrated our line detection and wall-sensing code from [Milestone 1](Milestone1Page.md) and [Milestone 2](Milestone2Page.md), respectively, for moving through the maze.
