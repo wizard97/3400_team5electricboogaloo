@@ -21,7 +21,7 @@ if(!left_wall && checkLegal(left_node)) {
 if(!front_wall && checkLegal(front_node)) {
   add(front_node, frontier);
 }
-if(!right_wall && checkLega(right_node)) {
+if(!right_wall && checkLegal(right_node)) {
   add(right_node, frontier);
 }
 
