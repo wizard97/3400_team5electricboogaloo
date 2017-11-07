@@ -30,24 +30,49 @@ visit(random);
 ```
 
 ##### Finish Detection
-Detecting that the robot should stop was the most complicated part of the algorithm. Each time a new node was visited, the visited field would be set and each edge_t would be updated to reflect the border, if a wall was detected the associated isWall would be set to true. To determine that every possible node was visited, a simple DFS algorithm would run and check to make sure no nodes had the visited field unset. Our function that checks this was recursive, and would stop recursing once isWall was set or node was NULL. We intend to eventually make this function non-recursive to make sure we don't blow out the stack on the microcontroller. If the recursive DFS function could not find a node that was not visited it would return true. To make our robot stop where we started, we had an x-offset-counter and y-offset-counter that was initilized to zero. Each black line the robot passed would increment or decrement the appropriate counter. Once our DFS algorithm detected that we visited all the nodes, and that our offset counters were both 0 (the robot is in the starting position), the robot would stop and light up the done LED.
+
+##### Finish Detection
+Detecting that the robot should stop was the most complicated part of the algorithm. Each time a new node was visited, the visited array would be set, if a wall was detected the associated wall_grid element would be set. To determine that every possible node was visited, a simple DFS algorithm would run and check to make sure no reachable nodes were unvisited. Our function that checks this was recursive, and would stop recursing once all the neighboring nodes had already been visited by the algorithm or a wall was detected on that particular edge. We intend to eventually make this function non-recursive to make sure we don't blow out the stack on the microcontroller. If the recursive DFS function could not find a node that was not visited it would return false. To make our robot stop where we started, we had an x-offset-counter and y-offset-counter that was initilized to zero. Each black line the robot passed would increment or decrement the appropriate counter. Once our DFS algorithm detected that we visited all the nodes, and that our offset counters were both 0 (the robot is in the starting position), the robot would stop and light up the done LED. This function would be called every time a new node was visited.
 
 ```c++
-typedef struct Edge
-{
-  bool isWall;
-  node_t *node;
-} edge_t;
+bool wall_grid[4][5];
+bool visited[4][5];
 
-typedef struct Node
+bool findUnvisited(uint8_t x, uint8_t y, bool checked[4][5])
 {
-  bool visited;
-  edge_t left;
-  edge_t right;
-  edge_t up;
-  edge_t down;
-} node_t;
-```
+  if (checked[x][y]) //base case
+    return false;
+    
+  checked[x][y] = true; // mark node as visited
+  
+  if (!visited[x][y]) //check if visited
+    return true; //unvisited found
+  
+  bool unvisited = false;
+  if (x-1 >= 0 && !wall_grid[x-1][y]) { //check left
+    unvisited |= isDoneHelper(x-1,y, checked);
+  }
+  
+  if (x+1 < 4 && !wall_grid[x+1][y]) {
+    unvisited |= isDoneHelper(x+1,y, checked);
+  }
+  
+  if (y-1 >= 0 && !wall_grid[x][y-1]) {
+    unvisited |= isDoneHelper(x,y-1, checked);
+  }
+  
+  if (y+1 < 5 && !wall_grid[x][y+1]) {
+    unvisited |= isDoneHelper(x,y+1, checked);
+  }
+  
+  return unvisited;
+}
+
+bool isDone()
+{
+  bool to_check[4][5] = {false};
+  return !findUnvisited(0, 0, to_check)
+}
 
 
 #### Simulation
