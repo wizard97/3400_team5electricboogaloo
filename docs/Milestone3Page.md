@@ -8,10 +8,25 @@ The entire team developed the algorithm together. Adam and David worked on the i
 
 ### Lab Documentation
 
-#### Algorithm
-The team decided to implement a random-search algorithm to facilitate maze exploration. At each "node", the algorithm uses data about on its left, front, and right sides (i.e. whether or not a wall is present) to determine the nodes that are "available" to visit next. Our algorithm then randomly chooses one of the available nodes to visit.
+#### Searching Algorithm
+The team decided to implement a random-search algorithm to facilitate maze exploration. At each "node", the algorithm uses data about on its left, front, and right sides (i.e. whether or not a wall is present) to determine the nodes that are "available" to visit next. Our algorithm then randomly chooses one of the available nodes to visit. See below for the pseudo-code for the bulk of our algorithm.
 
 ```c++
+#define MAX_AVAILABLE 3
+
+node frontier[MAX_AVAILABLE] = {NULL};
+if(!left_wall && checkLegal(left_node)) {
+  add(left_node, frontier);
+}
+if(!front_wall && checkLegal(front_node)) {
+  add(front_node, frontier);
+}
+if(!right_wall && checkLega(right_node)) {
+  add(right_node, frontier);
+}
+
+node random = random(frontier);
+visit(random);
 ```
 
 ##### Finish Detection
@@ -42,10 +57,9 @@ We began by designing the maze. For this, we first looked on the main website fo
 
 For the actual algorithm, we found an implementation of the DFS queue and stack in matlab online, and tried to incorporate it into our own design, in a fashion similar to Team Alpha’s. There were various issues we found with integrating the stack and queue found online with our own graphical representation of the maze, and so we made significant modifications to essentially strip the online implementation down to make it more manageable given the small scale of our maze.
 
-A video of our DFS simulation is shown here:
-
-ADD VIDEO HERE
-
+See [here](https://www.youtube.com/watch?v=aSKotqTZXnc&list=PLpzyLEaV2FZwIKaHse5H3hJURWajDci3Z&index=2) for a video demonstration of our simulation!
 
 #### Real Life
-Despite the bugs in our algorithm, our robot successfully completed maze exploration; see [here]() for the video demonstration!
+To apply our algorithm on our robot, we integrated our line detection and wall-sensing code from [Milestone 1](Milestone1Page.md) and [Milestone 2](Milestone2Page.md), respectively.
+
+Despite the bugs in our algorithm, our robot successfully completed maze exploration; see [here](https://www.youtube.com/watch?v=RCDYiQO79UA&list=PLpzyLEaV2FZwIKaHse5H3hJURWajDci3Z&index=1) for the video demonstration!
