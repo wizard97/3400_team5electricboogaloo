@@ -42,10 +42,6 @@ We began by designing the maze. For this, we first looked on the main website fo
 
 For the actual algorithm, we found an implementation of the DFS queue and stack in matlab online, and tried to incorporate it into our own design, in a fashion similar to Team Alpha’s. There were various issues we found with integrating the stack and queue found online with our own graphical representation of the maze, and so we made significant modifications to essentially strip the online implementation down to make it more manageable given the small scale of our maze.
 
-Parts of our algorithm are shown below, in arduino:
-
-ADD SOME CODE SNIPPETS HERE
-
 A video of our DFS simulation is shown here:
 
 ADD VIDEO HERE
