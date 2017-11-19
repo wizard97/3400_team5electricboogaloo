@@ -17,8 +17,8 @@ void setup() {
   lcd.init();
   lcd.clear();
   
-  int lwidth = 3;
-  int bwidth = (lcd.width()-5*lwidth)/5;
+  int lwidth = 3; //line width
+  int bwidth = (lcd.width()-5*lwidth)/5; //box width
   int idx = bwidth/2;
   int llength = (bwidth+lwidth)*4;
 
