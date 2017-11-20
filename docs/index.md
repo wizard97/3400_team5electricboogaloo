@@ -22,5 +22,7 @@ Rajiv Kommareddy (rrk64), Adam Macioszek (amm452), Kelsey Nedd (kan54), David Va
 ## Check out the team contract!
 * [Team Contract](Contract2.0.pdf)
 
+## Our Ethics HW assignment can be found [here](Ethics.pdf)
+
 ## PUBLIC SHAME LIST
 * Nobody, currently
