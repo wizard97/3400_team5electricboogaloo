@@ -6,5 +6,6 @@ The objective of this milestone was to have a fully running robot that can trave
 ### Work Distribution
 The entire team worked on the robot together. 
 
-### Mapping the maze
-
+### Mapping The Maze
+* First, we fixed the errors in our DFS algorithm from milestone 3. We were able to stop the robot from traversing back to the beginning to finish. 
+* Next, we had to fuse our current code with the radio transmission code from lab 4. The ping out code would be fused with the algorithm code and the receiving code with our graphics display. 
