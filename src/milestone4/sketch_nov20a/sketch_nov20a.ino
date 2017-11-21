@@ -93,20 +93,12 @@ void setup() {
 
   gridInit();
 
-  //
-  // Print preamble
-  //
-
   Serial.begin(115200);
   //Serial.begin(57600);
   printf_begin();
   printf("\n\rRF24/examples/GettingStarted/\n\r");
   printf("ROLE: %s\n\r",role_friendly_name[role]);
   printf("*** PRESS 'T' to begin transmitting to the other node\n\r");
-
-  //
-  // Setup and configure rf radio
-  //
 
   radio.begin();
 
@@ -121,40 +113,19 @@ void setup() {
   //RF24_250KBPS for 250kbs, RF24_1MBPS for 1Mbps, or RF24_2MBPS for 2Mbps
   radio.setDataRate(RF24_250KBPS);
 
-  // optionally, reduce the payload size.  seems to
-  // improve reliability
-  //radio.setPayloadSize(8);
-
-  //
-  // Open pipes to other nodes for communication
-  //
-
   // This simple sketch opens two pipes for these two nodes to communicate
   // back and forth.
   // Open 'our' pipe for writing
   // Open the 'other' pipe for reading, in position #1 (we can have up to 5 pipes open for reading)
-
-  if ( role == role_ping_out )
-  {
+  if( role == role_ping_out ) {
     radio.openWritingPipe(pipes[0]);
     radio.openReadingPipe(1,pipes[1]);
-  }
-  else
-  {
+  } else {
     radio.openWritingPipe(pipes[1]);
     radio.openReadingPipe(1,pipes[0]);
   }
 
-  //
-  // Start listening
-  //
-
   radio.startListening();
-
-  //
-  // Dump the configuration of the rf unit for debugging
-  //
-
   radio.printDetails();
 
   //Serial.begin(115200);
@@ -281,52 +252,38 @@ void loop() {
 }
 
 // Radio helper functions
-void transmit(x, y, next_dir)
-{
-  //
-  // Ping out role.  Repeatedly send the current time
-  //
-
-  if (role == role_ping_out)
-  {
-    // First, stop listening so we can talk.
+void transmit(x, y, next_dir) {
+  if(role == role_ping_out) {
     radio.stopListening();
 
     // Take the time, and send it.  This will block until complete
-    //unsigned long time = millis();
     unsigned char data;
 
     unsigned char transmit_x = x;
     unsigned char transmit_y = y;
     unsigned char transmit_dir = next_dir;
-    //unsigned char pos_state = 1;
     unsigned char negX_bound = grid[y][x].negX;
     unsigned char posX_bound = grid[y][x].posX;
     unsigned char negY_bound = grid[y][x].negY;
     unsigned char posY_bound = grid[y][x].posY;
 
-    //data = test_x << 5 | test_y << 2 | pos_state;
-    coord_data = transmit_dir << 5 | transmit_x << 2 | transmit_y;
-    bound_data = negX_bound << 16 | posX_bound << 13 | negY_bound << 10 | posY_bound << 7;
-    //printf("Now sending %lu...",time);
+    data = negX_bound << 16 | posX_bound << 13 | negY_bound << 10 | posY_bound << 7 | transmit_dir << 5 | transmit_x << 2 | transmit_y;
+    //bound_data = negX_bound << 16 | posX_bound << 13 | negY_bound << 10 | posY_bound << 7;
     printf("Now sending position and state data.\n");
-    //bool ok = radio.write( &time, sizeof(unsigned long) );
     bool ok = radio.write( &data, sizeof(data) );
 
-    if (ok)
-      printf("ok...sent payload %d, suck it trebek ",data);
-    else
-      printf("failed.\n\r");
+    if(ok) printf("ok...sent payload %d, suck it trebek ",data);
+    else printf("failed.\n\r");
 
-    // Now, continue listening
     radio.startListening();
 
     // Wait here until we get a response, or timeout (250ms)
     unsigned long started_waiting_at = millis();
     bool timeout = false;
-    while ( ! radio.available() && ! timeout )
+    while( ! radio.available() && ! timeout ) {
       if (millis() - started_waiting_at > 200 )
         timeout = true;
+    }
 
     // Describe the results
     if ( timeout )
