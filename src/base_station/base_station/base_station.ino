@@ -2,7 +2,31 @@
 #include <SPI.h>
 #include "nRF24L01.h"
 #include "RF24.h"
-#include "printf.h"
+//#include "printf.h"
+#define S_BEGIN 5
+
+// Enums
+typedef enum State {
+  NO_LINE,
+  ON_LINE,
+  PASSED_LINE,
+} state_t;
+
+typedef enum StateDir {
+  NEGX = 0,
+  NEGY = 1,
+  POSX = 2,
+  POSY = 3
+} state_dir_t;
+
+typedef enum Boundary {
+  LOW_TREASURE = 5,
+  MID_TREASURE = 4,
+  HIGH_TREASURE = 3,
+  WALL = 2,
+  NOTHING = 1,
+  UNKNOWN = 0
+} boundary_t;
 
 #define  BLACK   0x0000
 #define BLUE    0x001F
@@ -21,6 +45,13 @@
 #define MASK_POSX 0x2
 #define MASK_NEGY 0x4
 #define MASK_NEGX 0x8
+
+typedef struct DataString {
+  unsigned char x, y, next_dir, negX_bound, posX_bound, negY_bound, posY_bound;
+  bool treasure7, treasure12, treasure17;
+  bool done;
+} data_string_t;
+
 
 PROGMEM const char kir[] =
 {
@@ -66,11 +97,29 @@ int y_off;
 // we use entire length of X
 // 240x240
 
+RF24 radio(9,10);
+
+// Radio pipe addresses for the 2 nodes to communicate.
+const uint64_t pipes[2] = { 0x0000000010LL, 0x0000000011LL };
+
+// The various roles supported by this sketch
+typedef enum { role_ping_out = 1, role_pong_back } role_e;
+
+// The debug-friendly names of those roles
+const char* role_friendly_name[] = { "invalid", "Ping out", "Pong back"};
+
+// The role of the current running sketch
+role_e role = role_pong_back;
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
   lcd.init();
   lcd.clear();
+
+  pinMode(S_BEGIN, OUTPUT);
+  digitalWrite(S_BEGIN, LOW);
+  
 
   bwidth = (lcd.width()-DIMX*LWIDTH)/DIMX; //box width
   llengthx = (bwidth+LWIDTH)*DIMX; //grid line length in X
@@ -93,12 +142,12 @@ void setup() {
   
 
   // y boundary
-  lcd.fillRect(0, y_off, llengthx, LWIDTH, BLUE);
-  lcd.fillRect(0, y_off + llengthy-LWIDTH, llengthx, LWIDTH, BLUE);
+  lcd.fillRect(0, y_off, llengthx, LWIDTH, RED);
+  lcd.fillRect(0, y_off + llengthy-LWIDTH, llengthx, LWIDTH, RED);
 
   //x boundary
-  lcd.fillRect(0, y_off, LWIDTH, llengthy, BLUE);
-  lcd.fillRect(llengthx-LWIDTH, y_off, LWIDTH, llengthy, BLUE);
+  lcd.fillRect(0, y_off, LWIDTH, llengthy, RED);
+  lcd.fillRect(llengthx-LWIDTH, y_off, LWIDTH, llengthy, RED);
 
 
   lcd.setCursor(2,3);
@@ -107,30 +156,33 @@ void setup() {
   lcd.print("Team 5 is the best!");
   //lcd.drawRGB8Bitmap(50, 50, kir, 30, 30);
   lcd.setCursor(0,0);
-  
-  addWall(2,2, MASK_NEGX | MASK_POSX | MASK_POSY | MASK_NEGY, 7); //should draw at 2, 1
+
+  //addWall(2,2, MASK_NEGX | MASK_POSX | MASK_POSY | MASK_NEGY, 7); //should draw at 2, 1
 
   ///////// RADIO////////
   // Print preamble
 
   //Serial.begin(57600);
-  printf_begin();
-  printf("\n\rRF24/examples/GettingStarted/\n\r");
-  printf("ROLE: %s\n\r",role_friendly_name[role]);
-  printf("*** PRESS 'T' to begin transmitting to the other node\n\r");
+  //Serial.print_begin();
+  Serial.print("\n\rRF24/examples/GettingStarted/\n\r");
+  Serial.print("ROLE: %s\n\r");
+  Serial.print(role_friendly_name[role]);
+  Serial.print("*** PRESS 'T' to begin transmitting to the other node\n\r");
 
   // Setup and configure rf radio
   radio.begin();
   // optionally, increase the delay between retries & # of retries
-  radio.setRetries(15,15);
+  radio.setRetries(30,30);
   radio.setAutoAck(true);
   // set the channel
   radio.setChannel(0x50);
   // set the power
   // RF24_PA_MIN=-18dBm, RF24_PA_LOW=-12dBm, RF24_PA_MED=-6dBM, and RF24_PA_HIGH=0dBm.
-  radio.setPALevel(RF24_PA_MIN);
+  radio.setPALevel(RF24_PA_HIGH);
   //RF24_250KBPS for 250kbs, RF24_1MBPS for 1Mbps, or RF24_2MBPS for 2Mbps
   radio.setDataRate(RF24_250KBPS);
+
+  radio.setPayloadSize(sizeof(data_string_t));
 
   if ( role == role_ping_out ) {
     radio.openWritingPipe(pipes[0]);
@@ -150,49 +202,61 @@ if( role == role_pong_back ) {
     // if there is data ready
     if ( radio.available() ) {
       // Dump the payloads until we've gotten everything
-      unsigned char got_maze[5][5];
-      bool done = false;
 
-      unsigned char data;
-      int x, y, next_dir, negX_bound, posX_bound, negY_bound, posY_bound;
-      while (!done) {
-        // Fetch the payload, and see if this was the last one.
-        done = radio.read( &bot_data, sizeof(unsigned char) );
+      data_string_t data;
+
+      // Fetch the payload, and see if this was the last one.
+      if(radio.read( &data, sizeof(data) )) {
+        
+        
       
         // Print the received data as a decimal
-        printf("Got payload %d... suck it trebek \n",bot_data);
+        Serial.print("Got payload %d... suck it trebek \n");
+    
 
-        x = (data >> 2) & 0b111;
-        y = data & 0b11;
-        next_dir = (data >> 5) & 0b11;
-        negX_bound = (data >> 16) & 0b111;
-        posX_bound = (data >> 13) & 0b111;
-        negY_bound = (data >> 10) & 0b111;
-        posY_bound = (data >> 7) & 0b111;
-
-         /*draw_update(pos_x, pos_y); 
-        for (int i=0; i < 4; i++) {
-          for (int j=0; j < 5; j++) {
-            //printf("%d ", maze[i][j]);
-          }
-          printf("\n");
-        }*/
         // Delay just a little bit to let the other unit
         // make the transition to receiver
         delay(20);
-      }
-      
-      // First, stop listening so we can talk
-      radio.stopListening();
+     
+        // First, stop listening so we can talk
+        radio.stopListening();
+        uint8_t walls = 0;
+        walls |= data.posX_bound == WALL ? MASK_POSX : 0;
+        walls |= data.posY_bound == WALL ? MASK_POSY : 0;
+        walls |= data.negX_bound == WALL? MASK_NEGX : 0;
+        walls |= data.negY_bound == WALL? MASK_NEGY : 0;
+
+        uint8_t treas = 0;
+        if (data.treasure17)
+          treas = 17;
+        else if (data.treasure12)
+          treas = 12;
+        else if (data.treasure17)
+          treas = 7;
+          
+        addWall(data.x, data.y, walls, treas);
+         
+
+        if (data.done) {
+          digitalWrite(S_BEGIN, HIGH);
+
+              lcd.setCursor(15,100);
+            lcd.setTextColor(MAGENTA);
+            lcd.setTextSize(7);
+            lcd.print("DONE!");
+        }
+     }
 
       // Send the final one back.
-      radio.write( &got_time, sizeof(unsigned long) );
-      printf("Sent response.\n\r");
+      //radio.write( &got_time, sizeof(unsigned long) );
+      Serial.print("Sent response.\n\r");
 
       // Now, resume listening so we catch the next packets.
       radio.startListening();
     }
   }
+
+  delay(100);
 
 }
 
@@ -221,6 +285,8 @@ void addWall(uint8_t x, uint8_t y, uint8_t walls, uint8_t tfreq)
   if (walls & MASK_POSY) {
      lcd.fillRect(xcent - hbw, ycent + hbw, bwidth+LWIDTH, LWIDTH, RED);  
   }
+
+  lcd.fillCircle(xcent+lw2, ycent+lw2, 5, GREEN);
 
   if (tfreq) {
     //char s[] = (tfreq == 17) ? "17" : (tfreq == 12) ? "12" : " 7";
