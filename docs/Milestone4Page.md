@@ -6,5 +6,5 @@ The objective of this milestone was to have a fully running robot that can trave
 ### Work Distribution
 The entire team worked on the robot together. 
 
-### Lab Documentation
+### Mapping the maze
 
