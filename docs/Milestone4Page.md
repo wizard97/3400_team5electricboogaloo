@@ -18,3 +18,5 @@ To signal done, we needed to both play a sound upon completion of the maze and d
 ### Treasure detection
 For this milestone, we had to revamp our treasure detection slightly. For one, due to all of our analog pin needs, we created a mux. This mux would allow us tohave extra connections. We ended up connection our wall sensors to it as this seemed to be the easiest option. We also used the same circuit from our original treasure detection in lab 2 and used fft so that we could read each different frequency of treasure. The problem, however, is that the treasure detection cannot work while the wall sensors are on, so we attempted to create a transistor switch so that we could toggle power to the wall detectors as needed when we need to use the treasure detection. 
 
+[Here is our final run with everything we have working!]( https://www.youtube.com/watch?v=L3i7wGP85Tk&list=PLpzyLEaV2FZxSMh2tX_jOB1oMLZa60V4L&index=3)
+[Here is the same run with sound to here our done tone](https://www.youtube.com/watch?v=_FmDJLEa9xo&list=PLpzyLEaV2FZxSMh2tX_jOB1oMLZa60V4L&index=2)
