@@ -15,6 +15,7 @@ Rajiv Kommareddy (rrk64), Adam Macioszek (amm452), Kelsey Nedd (kan54), David Va
 * [Milestone 1](Milestone1Page.md)
 * [Milestone 2](Milestone2Page.md)
 * [Milestone 3](Milestone3Page.md)
+* [Milestone 4](Milestone4Page.md)
 
 ## Meeting Minutes
 * [Last updated 11/15/17](Minutes.pdf)
