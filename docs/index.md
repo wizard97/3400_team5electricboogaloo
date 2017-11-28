@@ -26,4 +26,4 @@ Rajiv Kommareddy (rrk64), Adam Macioszek (amm452), Kelsey Nedd (kan54), David Va
 ## Our Ethics HW assignment can be found [here](Ethics.pdf)
 
 ## PUBLIC SHAME LIST
-* Nobody, currently
+* Adam (thought he could beat a cheetah and kangaroo in a fight[not at the same time])
