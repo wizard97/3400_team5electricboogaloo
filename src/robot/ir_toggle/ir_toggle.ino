@@ -94,13 +94,14 @@ void setup() {
   pinMode(MUX_S1, OUTPUT);
   pinMode(MUX_S2, OUTPUT);
   pinMode(POW_SWITCH, OUTPUT);
+  digitalWrite(POW_SWITCH, HIGH);
 
   gridInit();
 
   Serial.begin(115200);
   radio.begin();
   Serial.println("Radio started");
-  delay(100);
+  delay(10);
   
   radio.setRetries(30,30);
   radio.setAutoAck(true);
@@ -120,25 +121,40 @@ void setup() {
   radio.startListening();
 
   Serial.println("Starting loop");
+
+
+  while (1)
+  {
+    state_dir_t dir;
+    transmit(0, 0, dir, 0);
+    delay(100);
+  }
 }
 
 void loop() {
   int ileft_ir = analogRead(IN_LEFT_IR);
   int iright_ir = analogRead(IN_RIGHT_IR);
   int oleft_ir = analogRead(OUT_LEFT_IR);
-  digitalWrite(POW_SWITCH, HIGH);
+  digitalWrite(POW_SWITCH, LOW);
+  delay(2);
   digitalWrite(MUX_S2, LOW);
   digitalWrite(MUX_S1, LOW);
   digitalWrite(MUX_S0, LOW);
+  
+  delay(2);
   int front_dist = analogRead(MUX_OUT);
+  Serial.println(front_dist);
   digitalWrite(MUX_S2, LOW);
   digitalWrite(MUX_S1, LOW);
   digitalWrite(MUX_S0, HIGH);
+  delay(2);
   int left_dist = analogRead(MUX_OUT);
   digitalWrite(MUX_S2, LOW);
   digitalWrite(MUX_S1, HIGH);
   digitalWrite(MUX_S0, LOW);
+  delay(2);
   int right_dist = analogRead(MUX_OUT);
+  digitalWrite(POW_SWITCH, HIGH);
   
   int maxs = map(FORWARD_SPEED, 0, 100, 90, 0);
   int delta_dir = ileft_ir - iright_ir;
@@ -243,7 +259,7 @@ void loop() {
       Serial.println("testin123");
       state = NO_LINE;
       break;
-  } delay(50);
+  } 
 }
 
 // Radio helper functions
@@ -254,6 +270,7 @@ void transmit(int x, int y, state_dir_t next_dir, bool done) {
   if (res >= DETECT_THRESH) {
     Serial.print("Detection! freq: ");
     uint8_t freq = getFreq();
+    Serial.println(freq);
 
     if (freq == 17) {
       data.treasure17 = true;
@@ -312,6 +329,7 @@ void transmit(int x, int y, state_dir_t next_dir, bool done) {
     // Try again 1s later
     delay(1000);
   }
+  delay(1);
 }
 
 // Setup helper functions
@@ -500,7 +518,7 @@ uint8_t getFreq() {
   cli(); // UDRE interrupt slows this way down on arduino1.0
   byte freq = 0;
   byte test = 0;
-  for (int i = 0 ; i < 512 ; i += 2) { // save 256 samples
+  for (int i = 0 ; i < FFT_N ; i += 2) { // save 256 samples
     while(!(ADCSRA & 0x10)); // wait for adc to be ready
     ADCSRA = 0xf5; // restart adc
     byte m = ADCL; // fetch adc data
