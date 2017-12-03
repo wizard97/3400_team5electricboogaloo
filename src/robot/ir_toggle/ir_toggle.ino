@@ -6,8 +6,8 @@
 
 // Parameters
 #define MAX_STACK_SIZE 20
-#define X_DIM 5
-#define Y_DIM 4
+#define X_DIM 4
+#define Y_DIM 5
 
 #define LEFT_SERVO 6
 #define RIGHT_SERVO 5
@@ -498,7 +498,7 @@ walls_t checkWalls(int front_dist, int left_dist, int right_dist) {
 }
 
 bool checkOpen(int x, int y) {
-  if(x < 0 or x > 4 or y < 0 or y > 3) return false;
+  if(x < 0 or x > 3 or y < 0 or y > 4) return false;
   if(grid[y][x].visited) return false;
   return true;
 }
