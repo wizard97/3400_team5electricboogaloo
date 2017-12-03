@@ -107,7 +107,7 @@ void setup() {
   radio.setAutoAck(true);
   radio.setChannel(0x50);
   radio.setPALevel(RF24_PA_HIGH);
-  radio.setDataRate(RF24_250KBPS);
+  radio.setDataRate(RF24_1MBPS);
   radio.setPayloadSize(sizeof(data_string_t));
 
   if( role == role_ping_out ) {
