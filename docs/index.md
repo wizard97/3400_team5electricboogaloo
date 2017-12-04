@@ -2,7 +2,7 @@
 
 Monday Night Lab Section 403:
 
-![alt text](https://github.com/wizard97/3400_team5electricboogaloo/blob/master/docs/GroupPhoto.JPG)
+![alt text](GroupPhoto.JPG)
 
 Rajiv Kommareddy (rrk64), Adam Macioszek (amm452), Kelsey Nedd (kan54), David Valley (drv34), Aaron Wisner (daw286), and Christina Xu (chx3)
 
