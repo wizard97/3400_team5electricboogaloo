@@ -221,20 +221,22 @@ if( role == role_pong_back ) {
         // First, stop listening so we can talk
         radio.stopListening();
         uint8_t walls = 0;
-        walls |= data.posX_bound == WALL ? MASK_POSX : 0;
-        walls |= data.posY_bound == WALL ? MASK_POSY : 0;
-        walls |= data.negX_bound == WALL? MASK_NEGX : 0;
-        walls |= data.negY_bound == WALL? MASK_NEGY : 0;
+        // POsx is right horz
+        walls |= data.posX_bound == WALL ? MASK_NEGY : 0;
+        walls |= data.negX_bound == WALL ? MASK_POSY : 0;
+        walls |= data.posY_bound == WALL ? MASK_POSX : 0;
+        walls |= data.negY_bound == WALL ? MASK_NEGX : 0;
+        
 
         uint8_t treas = 0;
         if (data.treasure17)
           treas = 17;
         else if (data.treasure12)
           treas = 12;
-        else if (data.treasure17)
+        else if (data.treasure7)
           treas = 7;
           
-        addWall(data.x, data.y, walls, treas);
+        addWall(data.y, (DIMY-1) - data.x, walls, treas);
          
 
         if (data.done) {
@@ -295,7 +297,12 @@ void addWall(uint8_t x, uint8_t y, uint8_t walls, uint8_t tfreq)
     lcd.setTextColor(MAGENTA);
     lcd.setCursor(xcent+lw2-rad/2,ycent+lw2-rad/2);
     lcd.setTextSize(2);
-    lcd.print("7");
+    if (tfreq == 17)
+      lcd.print("17");
+     else if (tfreq == 12)
+      lcd.print("12");
+     else
+      lcd.print("7");
   }
 }
     

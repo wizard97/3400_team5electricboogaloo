@@ -29,7 +29,7 @@
 
 // IR stuff
 #define IR_PIN A5
-#define DETECT_THRESH 110
+#define DETECT_THRESH 500
 #define LOG_OUT 1 // use the log output function
 #define FFT_N 128 // set to 256 point fft
 #define KHZ_7_START 47
@@ -107,7 +107,7 @@ void setup() {
   radio.setAutoAck(true);
   radio.setChannel(0x50);
   radio.setPALevel(RF24_PA_HIGH);
-  radio.setDataRate(RF24_1MBPS);
+  radio.setDataRate(RF24_250KBPS);
   radio.setPayloadSize(sizeof(data_string_t));
 
   if( role == role_ping_out ) {
@@ -259,7 +259,7 @@ void loop() {
 // Radio helper functions
 void transmit(int x, int y, state_dir_t next_dir, bool done) {
   data_string_t data;
-  digitalWrite(POW_SWITCH, LOW);
+  digitalWrite(POW_SWITCH, HIGH);
   unsigned long res = getAvg();
   if (res >= DETECT_THRESH) {
     Serial.print("Detection! freq: ");
@@ -492,7 +492,7 @@ walls_t checkWalls(int front_dist, int left_dist, int right_dist) {
 }
 
 bool checkOpen(int x, int y) {
-  if(x < 0 or x > 3 or y < 0 or y > 4) return false;
+  if(x < 0 or x > 3 or y < 0 or  y > 4) return false;
   if(grid[y][x].visited) return false;
   return true;
 }
