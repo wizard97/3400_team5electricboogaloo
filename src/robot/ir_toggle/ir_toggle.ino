@@ -11,7 +11,7 @@
 
 #define LEFT_SERVO 6
 #define RIGHT_SERVO 5
-#define IN_LEFT_IR A4
+#define IN_LEFT_IR A4 
 #define IN_RIGHT_IR A1
 #define OUT_LEFT_IR A2
 #define LINE_THRESHOLD 850 // white = 650, black = 950
@@ -123,12 +123,6 @@ void setup() {
   Serial.println("Starting loop");
 
 
-  while (1)
-  {
-    state_dir_t dir;
-    transmit(0, 0, dir, 0);
-    delay(100);
-  }
 }
 
 void loop() {
