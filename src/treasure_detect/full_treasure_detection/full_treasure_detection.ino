@@ -7,11 +7,11 @@ with the fft. the data is sent out over the serial
 port at 115.2kb.
 */
 
-#define IR_PIN A1
-#define DETECT_THRESH 110
+#define IR_PIN A5
+#define DETECT_THRESH 300
 
 #define LOG_OUT 1 // use the log output function
-#define FFT_N 256 // set to 256 point fft
+#define FFT_N 128 // set to 256 point fft
 #define FREQ_BIN 146
 #define KHZ_7_START 47
 #define KHZ_12_START 80
@@ -35,7 +35,8 @@ void setup() {
 
 void loop() {
   unsigned long res = getAvg();
-  //Serial.println(res);
+  Serial.println(res);
+  uint8_t freq = getFreq();
   if (res >= DETECT_THRESH) {
     Serial.print("Detection! freq: ");
      uint8_t freq = getFreq();
@@ -72,7 +73,7 @@ uint8_t getFreq()
    cli();  // UDRE interrupt slows this way down on arduino1.0
     byte freq = 0;
     byte test = 0;
-    for (int i = 0 ; i < 512 ; i += 2) { // save 256 samples
+    for (int i = 0 ; i < 256 ; i += 2) { // save 256 samples
       while(!(ADCSRA & 0x10)); // wait for adc to be ready
       ADCSRA = 0xf5; // restart adc
       byte m = ADCL; // fetch adc data
@@ -105,6 +106,14 @@ uint8_t getFreq()
   ADMUX = admux_old; // use adc0
   DIDR0 = didr_old; 
 
+  
+        Serial.println("start");
+    for (byte i = 0 ; i < FFT_N/2 ; i++) { 
+      Serial.print(i);
+      Serial.print(": ");
+      Serial.println(fft_log_out[i]); // send out the data
+    }
+
     if (khz_17 > khz_12 && khz_17 > khz_7) {
       return 17;
     } else if (khz_12 > khz_7 && khz_12 > khz_17) {
@@ -114,12 +123,7 @@ uint8_t getFreq()
     }
 
     
-/*
-        Serial.println("start");
-    for (byte i = 0 ; i < FFT_N/2 ; i++) { 
-      Serial.println(fft_log_out[i]); // send out the data
-    }
-    */
+    
     
  
 }
@@ -128,11 +132,11 @@ uint8_t getFreq()
 unsigned long getAvg()
 {
   unsigned long ret = 0;
-  for (int i = 0; i < 1000; i++)
+  for (int i = 0; i < 10; i++)
   {
     ret += analogRead(IR_PIN);
-    delayMicroseconds(100);
+    delay(1);
   }
 
-  return ret / 1000;
+  return ret / 10;
 }

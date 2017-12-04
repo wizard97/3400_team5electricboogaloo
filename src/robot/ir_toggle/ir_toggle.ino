@@ -18,9 +18,10 @@
 #define LINE_FOLLOW_P 2
 #define FORWARD_SPEED 10
 
-#define WALL_THRESHOLD 150
+#define WALL_THRESHOLD 220 
+#define FFT_DETECT_THRESH 150
 
-#define MUX_OUT A3
+#define MUX_OUT A0
 #define MUX_S0 2
 #define MUX_S1 3
 #define MUX_S2 4
@@ -29,12 +30,12 @@
 
 // IR stuff
 #define IR_PIN A5
-#define DETECT_THRESH 500
+#define DETECT_THRESH 300 
 #define LOG_OUT 1 // use the log output function
 #define FFT_N 128 // set to 256 point fft
-#define KHZ_7_START 47
-#define KHZ_12_START 80
-#define KHZ_17_START 113
+#define KHZ_7_START 24
+#define KHZ_12_START 41
+#define KHZ_17_START 58
 #define KHZ_RANGE 5
 #include <FFT.h>
 
@@ -103,20 +104,15 @@ void setup() {
   Serial.println("Radio started");
   delay(10);
   
-  radio.setRetries(30,30);
-  radio.setAutoAck(true);
+  radio.setRetries(15,15);
+  //radio.setAutoAck(true);
   radio.setChannel(0x50);
   radio.setPALevel(RF24_PA_HIGH);
   radio.setDataRate(RF24_250KBPS);
   radio.setPayloadSize(sizeof(data_string_t));
 
-  if( role == role_ping_out ) {
-    radio.openWritingPipe(pipes[0]);
-    radio.openReadingPipe(1,pipes[1]);
-  } else {
-    radio.openWritingPipe(pipes[1]);
-    radio.openReadingPipe(1,pipes[0]);
-  }
+radio.openWritingPipe(pipes[0]);
+radio.openReadingPipe(1,pipes[1]);
 
   radio.startListening();
 
@@ -125,30 +121,22 @@ void setup() {
 
 }
 
+
+int getMux()
+{
+  int ret = 0;
+  for (int i=0; i < 50; i++) {
+    ret += analogRead(MUX_OUT);
+    delay(1);
+  }
+  
+  return ret/50;
+}
+
 void loop() {
   int ileft_ir = analogRead(IN_LEFT_IR);
   int iright_ir = analogRead(IN_RIGHT_IR);
   int oleft_ir = analogRead(OUT_LEFT_IR);
-  digitalWrite(POW_SWITCH, LOW);
-  delay(2);
-  digitalWrite(MUX_S2, LOW);
-  digitalWrite(MUX_S1, LOW);
-  digitalWrite(MUX_S0, LOW);
-  
-  delay(2);
-  int front_dist = analogRead(MUX_OUT);
-  Serial.println(front_dist);
-  digitalWrite(MUX_S2, LOW);
-  digitalWrite(MUX_S1, LOW);
-  digitalWrite(MUX_S0, HIGH);
-  delay(2);
-  int left_dist = analogRead(MUX_OUT);
-  digitalWrite(MUX_S2, LOW);
-  digitalWrite(MUX_S1, HIGH);
-  digitalWrite(MUX_S0, LOW);
-  delay(2);
-  int right_dist = analogRead(MUX_OUT);
-  digitalWrite(POW_SWITCH, HIGH);
   
   int maxs = map(FORWARD_SPEED, 0, 100, 90, 0);
   int delta_dir = ileft_ir - iright_ir;
@@ -176,7 +164,27 @@ void loop() {
       x_coord = updateXCoord(dir, x_coord);
       y_coord = updateYCoord(dir, y_coord);
       grid[y_coord][x_coord].visited = true;
+
+      digitalWrite(POW_SWITCH, LOW);
+      delay(3);
+      digitalWrite(MUX_S2, LOW);
+      digitalWrite(MUX_S1, LOW);
+      digitalWrite(MUX_S0, LOW);
       
+      delay(3);
+      int front_dist = getMux();
+      digitalWrite(MUX_S2, LOW);
+      digitalWrite(MUX_S1, LOW);
+      digitalWrite(MUX_S0, HIGH);
+      delay(3);
+      int left_dist = getMux();
+      digitalWrite(MUX_S2, LOW);
+      digitalWrite(MUX_S1, HIGH);
+      digitalWrite(MUX_S0, LOW);
+      delay(3);
+      int right_dist = getMux();
+      digitalWrite(POW_SWITCH, HIGH);
+  
       walls_t walls = checkWalls(front_dist, left_dist, right_dist);
       state_dir_t left_dir, right_dir;
       int front_x = -1;
@@ -259,13 +267,15 @@ void loop() {
 // Radio helper functions
 void transmit(int x, int y, state_dir_t next_dir, bool done) {
   data_string_t data;
+      data.treasure17 = 0;
+    data.treasure12 = 0;
+    data.treasure7 = 0;
   digitalWrite(POW_SWITCH, HIGH);
-  unsigned long res = getAvg();
-  if (res >= DETECT_THRESH) {
+  unsigned long freq = getFreq();
+  if (freq) {
     Serial.print("Detection! freq: ");
-    uint8_t freq = getFreq();
     Serial.println(freq);
-
+    
     if (freq == 17) {
       data.treasure17 = true;
     } else if (freq == 12) {
@@ -273,6 +283,8 @@ void transmit(int x, int y, state_dir_t next_dir, bool done) {
     } else {
       data.treasure7 = true;
     }
+
+    
   } else {
     Serial.println("No detection!");
   }
@@ -297,31 +309,6 @@ void transmit(int x, int y, state_dir_t next_dir, bool done) {
     } else Serial.print("failed.\n\r");
 
     radio.startListening();
-
-    // Wait here until we get a response, or timeout (250ms)
-    unsigned long started_waiting_at = millis();
-    bool timeout = false;
-    while(!radio.available() && !timeout) {
-      if (millis() - started_waiting_at > 200)
-        timeout = true;
-    }
-
-    // Describe the results
-    if ( timeout ) {
-      Serial.print("Failed, response timed out.\n\r");
-    } else {
-      // Grab the response, compare, and send to debugging spew
-      unsigned long got_time;
-      radio.read( &got_time, sizeof(unsigned long) );
-
-      // Spew it
-      Serial.print("Got response %lu, round-trip delay: %lu\n\r");
-      Serial.print(got_time);
-      Serial.print(millis()-got_time);
-    }
-
-    // Try again 1s later
-    delay(1000);
   }
   delay(1);
 }
@@ -499,6 +486,11 @@ bool checkOpen(int x, int y) {
 
 // Helper functions for treasure detection
 uint8_t getFreq() {
+
+  digitalWrite(MUX_S2, HIGH);
+  digitalWrite(MUX_S1, LOW);
+  digitalWrite(MUX_S0, LOW);
+  
   int tim_old = TIMSK0;
   int adc_old = ADCSRA;
   int admux_old = ADMUX;
@@ -509,42 +501,58 @@ uint8_t getFreq() {
   ADMUX = 0x40; // use adc0
   DIDR0 = 0x01; // turn off the digital input for adc0
   
-  cli(); // UDRE interrupt slows this way down on arduino1.0
-  byte freq = 0;
-  byte test = 0;
-  for (int i = 0 ; i < FFT_N ; i += 2) { // save 256 samples
-    while(!(ADCSRA & 0x10)); // wait for adc to be ready
-    ADCSRA = 0xf5; // restart adc
-    byte m = ADCL; // fetch adc data
-    byte j = ADCH;
-    int k = (j << 8) | m; // form into an int
-    k -= 0x0200; // form into a signed int
-    k <<= 6; // form into a 16b signed int
-    fft_input[i] = k; // put real data into even bins
-    fft_input[i+1] = 0; // set odd bins to 0
-  }
-  fft_window(); // window the data for better frequency response
-  fft_reorder(); // reorder the data before doing the fft
-  fft_run(); // process the data in the fft
-  fft_mag_log(); // take the output of the fft
-  sei();
+   cli();  // UDRE interrupt slows this way down on arduino1.0
+    byte freq = 0;
+    byte test = 0;
+    for (int i = 0 ; i < 256 ; i += 2) { // save 256 samples
+      while(!(ADCSRA & 0x10)); // wait for adc to be ready
+      ADCSRA = 0xf5; // restart adc
+      byte m = ADCL; // fetch adc data
+      byte j = ADCH;
+      int k = (j << 8) | m; // form into an int
+      k -= 0x0200; // form into a signed int
+      k <<= 6; // form into a 16b signed int
+      fft_input[i] = k; // put real data into even bins
+      fft_input[i+1] = 0; // set odd bins to 0
+    }
+    fft_window(); // window the data for better frequency response
+    fft_reorder(); // reorder the data before doing the fft
+    fft_run(); // process the data in the fft
+    fft_mag_log(); // take the output of the fft
+    sei();
 
-  int khz_7 = fft_log_out[KHZ_7_START]; 
-  int khz_12 = fft_log_out[KHZ_12_START]; 
-  int khz_17 = fft_log_out[KHZ_17_START];
-
+    int khz_7 = fft_log_out[KHZ_7_START]; 
+    int khz_12 = fft_log_out[KHZ_12_START]; 
+    int khz_17 = fft_log_out[KHZ_17_START];
+    /*
+    Serial.print("7KHZ: ");
+    Serial.println(khz_7);
+     Serial.print("12KHZ: ");
+    Serial.println(khz_12);
+     Serial.print("17KHZ: ");
+    Serial.println(khz_17);
+    */
   TIMSK0 = tim_old; // turn off timer0 for lower jitter
   ADCSRA = adc_old; // set the adc to free running mode
   ADMUX = admux_old; // use adc0
   DIDR0 = didr_old; 
 
-  if (khz_17 > khz_12 && khz_17 > khz_7) {
-    return 17;
-  } else if (khz_12 > khz_7 && khz_12 > khz_17) {
-    return 12;
-  } else {
-    return 7;
-  }
+  /*
+    for (byte i = 0 ; i < FFT_N/2 ; i++) { 
+      Serial.print(i);
+      Serial.print(": ");
+      Serial.println(fft_log_out[i]); // send out the data
+    }
+*/
+    if (khz_17 > khz_12 && khz_17 > khz_7 && khz_17 > FFT_DETECT_THRESH) {
+      return 17;
+    } else if (khz_12 > khz_7 && khz_12 > khz_17 && khz_12 > FFT_DETECT_THRESH) {
+      return 12;
+    } else if (khz_7 > FFT_DETECT_THRESH){
+      return 7;
+    }
+    
+    return 0;
 }
 
 unsigned long getAvg() {

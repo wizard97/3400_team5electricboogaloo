@@ -172,8 +172,8 @@ void setup() {
   // Setup and configure rf radio
   radio.begin();
   // optionally, increase the delay between retries & # of retries
-  radio.setRetries(30,30);
-  radio.setAutoAck(true);
+  radio.setRetries(15,15);
+  //radio.setAutoAck(true);
   // set the channel
   radio.setChannel(0x50);
   // set the power
@@ -184,21 +184,17 @@ void setup() {
 
   radio.setPayloadSize(sizeof(data_string_t));
 
-  if ( role == role_ping_out ) {
-    radio.openWritingPipe(pipes[0]);
-    radio.openReadingPipe(1,pipes[1]);
-  } else {
-    radio.openWritingPipe(pipes[1]);
-    radio.openReadingPipe(1,pipes[0]);
-  }
+  radio.openWritingPipe(pipes[1]);
+  radio.openReadingPipe(1,pipes[0]);
 
   radio.startListening();
 
   radio.printDetails();
+  delay(100);
 }
 
 void loop() {
-if( role == role_pong_back ) {
+if( 1) {
     // if there is data ready
     if ( radio.available() ) {
       // Dump the payloads until we've gotten everything
@@ -208,8 +204,6 @@ if( role == role_pong_back ) {
       // Fetch the payload, and see if this was the last one.
       if(radio.read( &data, sizeof(data) )) {
         
-        
-      
         // Print the received data as a decimal
         Serial.print("Got payload %d... suck it trebek \n");
     
@@ -219,7 +213,7 @@ if( role == role_pong_back ) {
         delay(20);
      
         // First, stop listening so we can talk
-        radio.stopListening();
+        //radio.stopListening();
         uint8_t walls = 0;
         // POsx is right horz
         walls |= data.posX_bound == WALL ? MASK_NEGY : 0;
@@ -249,12 +243,6 @@ if( role == role_pong_back ) {
         }
      }
 
-      // Send the final one back.
-      //radio.write( &got_time, sizeof(unsigned long) );
-      Serial.print("Sent response.\n\r");
-
-      // Now, resume listening so we catch the next packets.
-      radio.startListening();
     }
   }
 
@@ -294,15 +282,29 @@ void addWall(uint8_t x, uint8_t y, uint8_t walls, uint8_t tfreq)
     //char s[] = (tfreq == 17) ? "17" : (tfreq == 12) ? "12" : " 7";
     uint8_t rad = 10;
     lcd.fillCircle(xcent+lw2, ycent+lw2, rad, YELLOW);
-    lcd.setTextColor(MAGENTA);
+    
     lcd.setCursor(xcent+lw2-rad/2,ycent+lw2-rad/2);
     lcd.setTextSize(2);
-    if (tfreq == 17)
+    uint16_t color;
+    if (tfreq == 17) {
+      color = BLUE;
+    } else if (tfreq == 12) {
+      color = GREEN;
+    } else {
+      color = RED;
+    }
+    lcd.setTextColor(color);
+
+    if (tfreq == 17) {
+      color = BLUE;
       lcd.print("17");
-     else if (tfreq == 12)
+    } else if (tfreq == 12) {
+      color = GREEN;
       lcd.print("12");
-     else
+    } else {
+      color = RED;
       lcd.print("7");
+    }
   }
 }
     
