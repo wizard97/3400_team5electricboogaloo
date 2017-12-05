@@ -195,11 +195,11 @@ This graph shows evenly spaced bins for multiples of a 660 Hz signal. We also kn
 
 #### Running Microphone and 660 Hz tone through the ADC
 
-After learning the to use the fft sketch, we next hooked up the microphones output to the A0 pin and did an FFT of the 660 Hz output through the microphone. After graphin the data, we found that we were able to get a similar graph to that of the generated signal using the function generator. We got a signal at the 18th bin, which was the same bin number as our function generator proving that our sound detection is correct. We were able to get this data by physically printing the different magnitudes in each bin of the fft output and then plotting them in excel.   
+After learning the to use the fft sketch, we next hooked up the microphones output to the A0 pin and did an FFT of the 660 Hz output through the microphone. After graphin the data, we found that we were able to get a similar graph to that of the generated signal using the function generator. We got a signal at the 18th bin, which was the same bin number as our function generator proving that our sound detection is correct. We were able to get this data by physically printing the different magnitudes in each bin of the fft output and then plotting them in excel. This is the graph we have below. As you can see the max is at about 18.    
 
 ![alt text](Lab2pics/Mic_FFT_capture.JPG)
 
-We also added a small code snippet that prints different statements when a 660Hz is detected.
+We also added a small code snippet that prints different statements when a 660Hz is detected or not detected. 
 
 ```
 byte freq=0;
@@ -217,3 +217,6 @@ for (byte i = 0 ; i < FFT_N/2 ; i++) {
     else  Serial.println("This is NOT a 660 Hz tone"); 
 ```
 It simply decides whether the signal is 660Hz or not by making sure the highest value is at the correct bin number. 
+
+####Conclusion
+This method of simply adjusting the gain and using fft to filter responses workes rather well, especially for the 660Hz tone start for the robot. The only issue only on occasion the robot can sometimes detect a tone when a tone is not played. For that reason, in final implementations, it would be smart to put a filter of some sort just to get rid of some of the excess noise. Another helpful tip is that the code for detecting the tone above can easily be munipulated to create the start for the robot.   
