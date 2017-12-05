@@ -169,7 +169,8 @@ Next, we studied the ADC of the arduino, the FFT library and the fft_adc_serial 
 * The ADC can be run in a variety of ways, we chose to use the ADC's free running mode
 
 First, we had to alter our code a bit, in order to correct the prescaler. The original fft_adc_serial sketch placed the prescaler value at 32, which results in a clock of 500kHz. That would then decrease the accuracy of our readings. The register that set up the prescaler was the ADCSRA. The last 3 bits of the register are what determine the prescaler based on pages 319 and 320 in the ATmega328 datasheet.  The code originally read at
-```void setup() {
+``` C
+void setup() {
   Serial.begin(9600); 
   TIMSK0 = 0;
   ADCSRA = 0xe5; // <---THIS LINE set the adc to free running mode and set the prescaler originally to 32
@@ -194,7 +195,7 @@ This graph shows evenly spaced bins for multiples of a 660 Hz signal. We also kn
 
 #### Running Microphone and 660 Hz tone through the ADC
 
-After learning the to use the fft sketch, we next hooked up the microphones output to the A0 pin and did an FFT of the 660 Hz output through the microphone. After graphin the data, we found that we were able to get a similar graph to that of the generated signal using the function generator. We got a signal at the 18th bin, which was the same bin number as our function generator proving that our sound detection is correct.  
+After learning the to use the fft sketch, we next hooked up the microphones output to the A0 pin and did an FFT of the 660 Hz output through the microphone. After graphin the data, we found that we were able to get a similar graph to that of the generated signal using the function generator. We got a signal at the 18th bin, which was the same bin number as our function generator proving that our sound detection is correct. We were able to get this data by physically printing the different magnitudes in each bin of the fft output and then plotting them in excel.   
 
 ![alt text](Lab2pics/Mic_FFT_capture.JPG)
 
