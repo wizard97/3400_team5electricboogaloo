@@ -1,6 +1,6 @@
 ![alt text](GroupPhoto.JPG)
 
-From left to right: David Valley (drv34), Christina Xu (chx3), Aaron Wisner (daw286), Adam Macioszek (amm452), Rajiv Kommareddy (rrk64), and Kelsey Nedd (kan54).
+*From left to right: David Valley (drv34), Christina Xu (chx3), Aaron Wisner (daw286), Adam Macioszek (amm452), Rajiv Kommareddy (rrk64), and Kelsey Nedd (kan54).*
 
 Click [here](https://www.youtube.com/channel/UCm90IIF1_Y7RqOT-j5PvCxw/f) to go to our YouTube channel! You can click on our playlists to see how the robot progressed over the course of the semester, including bonus [behind-the-scenes footage](https://www.youtube.com/watch?v=dQw4w9WgXcQ) of the building process!
 
