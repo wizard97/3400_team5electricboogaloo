@@ -23,15 +23,13 @@ Unfortunately for us, our robot did not work the way we planned during the compe
 
 [Here's the video of our robot during the final competition](https://www.youtube.com/watch?v=oZpQe9s_qdU)
 
-### Conclusions
-It was hard to test in different environments because background sound and lightalways affect thresholds whereas in simulations those things can be held constant. Our robot and seemed to be working fine during all testing leading up to the final competition. Our robot was built without having to purchase any parts not already found in lab, so we used $0 of our $100 budget.
-
 #### Suggestions for Future Improvements
 * Solder working circuit, so there will be no chances of wires popping out. This can save a lot of time when testing.
 * Use different layered boards so that wires wouldn't be blocking the Arduino when we needed to access it.
 * Larger wheels to improve speed.
 
-
+### Conclusions
+It was hard to test in different environments because background sound and lightalways affect thresholds whereas in simulations those things can be held constant. Our robot and seemed to be working fine during all testing leading up to the final competition. Our robot was built without having to purchase any parts not already found in lab, so we used $0 of our $100 budget.
 
 
 https://cei-lab.github.io/ece3400/Grading/Design_score.html
