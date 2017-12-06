@@ -39,7 +39,7 @@ We also created an actual base station by velcroing a breadboard, our second Ard
 (CAN SOMEONE DISCUSS HOW THE MUX WORKED AND WHAT WAS CONNECTED TO IT)
 
 #### Algorithms and Display
-We used a depth-first search to solve the maze, using the priority order of forward-left-right. At each intersection, the robot would transmit via the radio information about the surrounding walls, treasures, and the robot's location at that node. At the base station, this information was parsed and put together in our display. A green dot means that the node has been visited, a red line is a wall, and the treasures were designated at the nodes by yellow circles with the corresponding number in kHz for the frequencies, 7, 12 and 17 (in the colors red, green and blue respectively).
+We used a depth-first search to solve the maze, using the priority order of forward-left-right. At each intersection, the robot would transmit via the radio information about the surrounding walls, treasures, and the robot's location at that node. At the base station, this information was parsed and put together in our display. A green dot means that the node has been visited, a red line is a wall, and the treasures were designated at the nodes by yellow circles with the corresponding number in kHz for the frequencies, 7, 12 and 17 (in the colors red, green and blue respectively). Here is a [video demo of our display](https://www.youtube.com/watch?v=_FmDJLEa9xo) (Note: this one does not have the treasure detection).
 
 
 #### Potential Flaws in Design
