@@ -8,6 +8,9 @@ From left to right: David Valley (drv34), Christina Xu (chx3), Aaron Wisner (daw
 * [Final Design](FinalRobotDesignAndComments.md)
 * [Bonus behind-the-scenes footage of the building process!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
+## Click [here](https://www.youtube.com/channel/UCm90IIF1_Y7RqOT-j5PvCxw/f) to go to our YouTube Channel!
+* You can click on our playlists to see how the robot progressed over the course of the semester
+
 ## Labs
 
 * [Lab 1](Lab1page.md)
