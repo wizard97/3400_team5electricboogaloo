@@ -56,7 +56,7 @@ We also created an actual base station by velcroing a breadboard, our second Ard
 One important aspect of our design was the inclusion of an 8:1 mux. Given that we were limited to the one Arduino, we ran into design constraints early on with regards to the number of analog pins available to use for all of our peripherals. Between the microphone circuit, short-range wall detectors, line detection sensors, and the treasure detection circuit, it is easy to see how quickly a team can run out of pins. To remedy this, we made use of an 8:1 mux to which we wired our three wall detectors, our treasure detection circuit output, and our microphone circuit ouput. We kept the line detection sensors on the Arduino's analog pins and also wired the mux output to one of the analog pins on the Arduino. In this way we could designate in our software when to read which mux input by digitally writing to the three mux signals. The following table shows how the mux signals correspond to the eight possible mux inputs.
 
 | S2 | S1 | S0 | Output |
-| ------------- |:-------------:|
+| ---- | ---- | ---- | ------ |
 | LOW | LOW | LOW | Y0 |
 | LOW | LOW | HIGH | Y1 |
 | LOW | HIGH | LOW | Y2 |
