@@ -29,6 +29,8 @@ Our robot was built without having to purchase any parts not already found in la
 
 #### Suggestions for Future Improvements
 * Solder working circuit, so there will be no chances of wires popping out. This can save a lot of time when testing.
+* Use different layered boards so that wires wouldn't be blocking the Arduino when we needed to access it.
+* Larger wheels to improve speed.
 
 
 
