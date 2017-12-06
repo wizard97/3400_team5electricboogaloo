@@ -1,4 +1,4 @@
-# Milestone 1
+# __Milestone 1__
 
 ### Objective
 The objective of this milestone was to add line-following and turn functionality to our robot. More specifically, this entailed correctly implementing two "inner" line sensors (for line-following functionality) and two "outer" line sensors (for detecting intersections and turn functionality). Ultimately, these two core functionalities were combined, allowing our robot to move in a figure eight path.
