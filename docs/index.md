@@ -22,7 +22,7 @@ From left to right: David Valley (drv34), Christina Xu (chx3), Aaron Wisner (daw
 * [Milestone 4](Milestone4Page.md)
 
 ## Meeting Minutes
-* [Last updated 11/15/17](Minutes.pdf)
+* [Last updated 12/1/17](Minutes.pdf)
 
 ## Check out the team contract!
 * [Team Contract](Contract2.0.pdf)
