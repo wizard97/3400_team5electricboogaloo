@@ -31,7 +31,7 @@ Unfortunately for us, our robot did not work the way we planned during the compe
 ### Conclusions
 It was hard to test in different environments because background sound and light always affect thresholds whereas in simulations those things can be held constant. Our robot and seemed to be working fine during all testing leading up to the final competition. Loose wires were the main cause for the poor showing in the competition, which was compounded with other small errors.
 Our robot was built without having to purchase any parts not already found in lab, so we used $0 of our $100 budget.
-In the end, it was a fun, albeit stressful semester which gave all of us experience actually implementing many different ECE concepts we have learned in other classes, as well as experience working in a team, and many opportunities to make mistakes and learn from them. We all gained an appreciation for the development process for complicated intelligent physical systems, from the many smaller goals which needed to be completed in order to get to our final robot. 
+In the end, it was a fun, albeit stressful semester which gave all of us experience actually implementing many different ECE concepts we have learned in other classes, as well as experience working in a team, and many opportunities to make mistakes and learn from them. We all gained an appreciation for the development process for complicated intelligent physical systems, from using effective communication to complete the the many smaller goals needed in order to get to our final robot.
 
 
 https://cei-lab.github.io/ece3400/Grading/Design_score.html
