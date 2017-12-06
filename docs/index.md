@@ -1,10 +1,8 @@
-# Welcome to Team 5's webpage!
-
-Monday Night Lab Section 403:
+# Welcome to Team 5's webpage! (Monday Night Lab Section 403)
 
 ![alt text](GroupPhoto.JPG)
 
-Rajiv Kommareddy (rrk64), Adam Macioszek (amm452), Kelsey Nedd (kan54), David Valley (drv34), Aaron Wisner (daw286), and Christina Xu (chx3)
+From left to right: David Valley (drv34), Christina Xu (chx3), Aaron Wisner (daw286), Adam Macioszek (amm452), Rajiv Kommareddy (rrk64), and Kelsey Nedd (kan54)
 
 ## Labs
 
@@ -28,4 +26,4 @@ Rajiv Kommareddy (rrk64), Adam Macioszek (amm452), Kelsey Nedd (kan54), David Va
 ## Our Ethics HW assignment can be found [here](Ethics.pdf)
 
 ## PUBLIC SHAME LIST
-* Adam (thought he could beat a cheetah and kangaroo in a fight[not at the same time])
+* Nobody, nice work everybody!
