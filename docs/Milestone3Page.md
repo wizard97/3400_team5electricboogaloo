@@ -1,4 +1,4 @@
-# __*Milestone 3*__
+# __Milestone 3__
 
 ### Objective
 The objective of this milestone was to implement a path-traversing algorithm to facilitate maze exploration. This involved first running our algorithm in a simulation and then running our algorithm on our robot. In both the simulation and the real-life simulation, there is an indicator for when maze exploration is complete.
@@ -9,7 +9,7 @@ The entire team developed the algorithm together. Adam and David worked on the i
 ### Lab Documentation
 
 #### Searching Algorithm
-The team decided to implement a random-search algorithm to facilitate maze exploration. At each "node", the algorithm uses data about on its left, front, and right sides (i.e. whether or not a wall is present) to determine the nodes that are "available" to visit next. Our algorithm then randomly chooses one of the available nodes to visit. See below for the pseudo-code for the bulk of our algorithm.
+The team decided to implement a random-search algorithm to facilitate maze exploration. At each "node", the algorithm uses data about its left, front, and right sides (i.e. whether or not a wall is present) to determine the nodes that are "available" to visit next. Our algorithm then randomly chooses one of the available nodes to visit. See below for the pseudo-code for the bulk of our algorithm.
 
 ```c++
 #define MAX_AVAILABLE 3
@@ -33,7 +33,6 @@ visit(random);
 Detecting that the robot should stop was the most complicated part of the algorithm. Each time a new node was visited, the visited array would be set, if a wall was detected the associated wall_grid element would be set. To determine that every possible node was visited, a simple DFS algorithm would run and check to make sure no reachable nodes were unvisited. Our function that checks this was recursive, and would stop recursing once all the neighboring nodes had already been visited by the algorithm or a wall was detected on that particular edge. We intend to eventually make this function non-recursive to make sure we don't blow out the stack on the microcontroller. If the recursive DFS function could not find a node that was not visited it would return false. To make our robot stop where we started, we had an x-offset-counter and y-offset-counter that was initilized to zero. Each black line the robot passed would increment or decrement the appropriate counter. Once our DFS algorithm detected that we visited all the nodes, and that our offset counters were both 0 (the robot is in the starting position), the robot would stop and light up the done LED. This function would be called every time a new node was visited.
 
 ```c++
-
 bool wall_grid[4][5];
 bool visited[4][5];
 
