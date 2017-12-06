@@ -54,7 +54,8 @@ The transfer function of the amplifier looks as follows. The passband is roughly
 
 We also created an actual base station by velcroing a breadboard, our second Arduino, and our FPGA for ease of use in transporting the base station and keeping everything together.
 
-(CAN SOMEONE DISCUSS HOW THE MUX WORKED AND WHAT WAS CONNECTED TO IT)
+#### Multiplexing
+One important aspect of our design was the inclusion of a three-way mux. Given that we were limited to the one arduino, we ran into design constraints early on in regards to the number of pins we had to use for all of our peripherals. Between the audio detection circuit, the radio transmitter, the short-range wall detectors, the servos, the line detection sensors, and the treasure detector circuits, it is easy to see how quickly a team can run out of pins. To remedy this we made use of a three-way mux to which we wired our three wall detectors, our treasure detector, and our audio detection circuit, subsequently wiring the mux output to the analog pins on the arduino. In this way we could designate in software the correct situations in which to read from the appropriate mux input, and free up pins for the much more critical radio transmitter.
 
 #### Algorithms and Display
 We used a depth-first search to solve the maze, using the priority order of forward-left-right. At each intersection, the robot would transmit via the radio information about the surrounding walls, treasures, and the robot's location at that node. At the base station, this information was parsed and put together in our display. A green dot means that the node has been visited, a red line is a wall, and the treasures were designated at the nodes by yellow circles with the corresponding number in kHz for the frequencies, 7, 12 and 17 (in the colors red, green and blue respectively). Here is a [video demo of our display](https://www.youtube.com/watch?v=_FmDJLEa9xo) (Note: this one does not have the treasure detection).
