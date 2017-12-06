@@ -6,6 +6,7 @@ From left to right: David Valley (drv34), Christina Xu (chx3), Aaron Wisner (daw
 
 ## Final Discussion of Robot (includes cost)
 * link available soon!
+* [Bonus behind-the-scenes footage of the building process!](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 ## Labs
 
