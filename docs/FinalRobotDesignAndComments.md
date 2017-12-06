@@ -1,5 +1,8 @@
 # __Final Discussion of Robot__
 
+### Introduction
+In general, the overall design of our robot was an extended exercise in systems integration. This is evident not only in our efforts the last few weeks of the semester to combine the various components from the labs, but also in how the course overall is structured. As shown on our website, each of the four labs serves to verify functionality of the many subsystems, while our milestones force us to incrementally integrate the work done in labs into our final design. Many of our successes in our final design can be attributed to the robustness of our individual circuits and code for treasure detection, wall detection, line following, etc., while many of the shortcomings can be attributed to how we structured the integration of all of these components into the final code design, as well as the physical robot wiring. Our final design does a number of things very well, as documented in our previous lab write ups. Our line detection has almost never failed, our base station and fpga were remarkably efficient and creative, and our treasure detection circuit was extremely compact. The few problems we had last minute came down to attention to wiring and code complexity. In retrospect, these were significant elements of the course, and more time spent on these early on in the semester could have saved many a headache. Nonetheless, our final design demonstrates all of our various circuits and code sequences, as well as our own strategies for design integration.
+
 ### Design
 Here are a couple of photos of our final robot:
 
