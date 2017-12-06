@@ -28,7 +28,7 @@ Unfortunately for us, our robot did not work the way we planned during the compe
 * Use different layered boards so that wires wouldn't be blocking the Arduino when we needed to access it.
 * Larger wheels to improve speed.
 
-### Cost
+#### Cost
 The total cost of our robot was $63, coming in at $37 below the budget. The cost came from our line sensors, distance sensors, microphone (with gain), and servos. All other pieces of the robot were spare parts found in the lab (e.g. Arduino Unos, FPGA, wires, resistors, capacitors, etc.) at no additional cost to us. 
 
 ### Conclusions
