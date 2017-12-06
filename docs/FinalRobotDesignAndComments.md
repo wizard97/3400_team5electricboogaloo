@@ -5,6 +5,24 @@
 ![alt text](Finalpics/IMG_20171204_115202_ds.jpg)
 ![alt text](Finalpics/IMG_20171204_115205_ds.jpg)
 
+
+<!---
+RUBRIC:
+Good introductions and problem motivations
+Clarity and thoroughness of documentation
+Intuitive and nice layouts
+Use of the right tools for analysis and unit testing
+Presence of schematics when applicable
+Presence of simulation results when applicable
+Presence and evaluation of experimental results
+Use of graphs and tables to display results, as well as proper axis and unit labeling
+Presence of design flaws
+Comparative discussion of simulation and experimental results
+Presence of conclusions
+Presence of suggestions for future work/improvements
+You can also gain extra points by making good general tutorials for students in future semesters to use. These tutorials may for instance include ways to implement PID control, in-depth tutorials on ATmega timers, new ways to make 3D parts, etc.
+-->
+
 #### The Physical Design
 We decided to stick the original design from the beginning of the class and simply build from there. We had an ordinary chassis, midsize wheels with rubber grip for better traction, a section underneath the base for the power bank, a ball bearing for stability, and we added a second layer to provide us with space to wire our circuit. We passed most of our wires through different openings in our top level chassis. We tried to keep the wires relatively organized and typically kept all ground and power wires, black and red, respectively. This helped keep the area around the actual Arduino Uno less cluttered. On the top of our robot, we also included two 9V batteries responsible for powering the rails of our robot, so that we could have a negative reference for certain circuits we included for treasure detection and possible filtering for the microphone. Our wall and treasure sensors were placed on the front, left, and right sides of the robot.
 
