@@ -29,7 +29,7 @@ Unfortunately for us, our robot did not work the way we planned during the compe
 * Larger wheels to improve speed.
 
 #### Cost
-The total cost of our robot was $63, coming in at $37 below the budget. The cost came from our line sensors, distance sensors, microphone (with gain), and servos. All other pieces of the robot were spare parts found in the lab (e.g. Arduino Unos, FPGA, wires, resistors, capacitors, etc.) at no additional cost to us. 
+The total cost of our robot was $63, coming in at $37 below the budget. The cost came from our line sensors, distance sensors, microphone (with gain), and servos. All other components of the robot were spare parts found in the lab (e.g. Arduino Unos, FPGA, wires, resistors, capacitors, etc.) at no additional cost to us. 
 
 ### Conclusions
 It was hard to test in different environments because background sound and light always affect thresholds whereas in simulations those things can be held constant. Our robot and seemed to be working fine during all testing leading up to the final competition. Loose wires were the main cause for the poor showing in the competition, which was compounded with other small errors.
