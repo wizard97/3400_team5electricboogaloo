@@ -23,7 +23,7 @@ The entire team worked together on this milestone. Aaron, David, and Adam worked
 * Treasures
 
 #### Varying Treasure Frequencies
-We began by using our circuit and code from Lab 2 for detecting treasures. It has roughly 1000x amplification with a passband of roughly 2-20KHz:
+We began by using our circuit and code from [Lab 2](Lab2Page.md) for detecting treasures. It has roughly 1000x amplification with a passband of roughly 2-20 kHz:
 
 ![alt text](Lab2pics/HighLowPassAmplifierFilterOptical.JPG)
 
